@@ -35,4 +35,10 @@
 	delete from review 
 	where reviewId = #{reviewId}
 	</delete>
+	
+	<update id="updateViewCnt" parameterType="int">
+	update review
+	set viewCnt = #{viewCnt} +1
+	where reviewId = #{reviewId}
+	</update>
 </mapper>

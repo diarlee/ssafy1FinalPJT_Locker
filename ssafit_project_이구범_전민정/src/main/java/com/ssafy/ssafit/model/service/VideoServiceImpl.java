@@ -40,4 +40,11 @@ public class VideoServiceImpl implements VideoService {
 		return videoDao.selectVideo();
 	}
 
+	@Override
+	public void modifyViewCnt(String videoId) {
+		// TODO Auto-generated method st
+		videoDao.updateViewCnt(videoId);
+		
+	}
+
 }

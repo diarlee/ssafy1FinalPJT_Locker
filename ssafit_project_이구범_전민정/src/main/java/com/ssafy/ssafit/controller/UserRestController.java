@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -25,6 +27,7 @@ public class UserRestController {
 	private UserService userService;
 
 	@GetMapping("/user")
+	@ApiOperation(value="모든 유저", notes="모든 유저 조회하기")
 	public ResponseEntity<?> getList() {
 		List<User> list = userService.getList();
 		if (list == null || list.size() == 0) {
@@ -36,6 +39,7 @@ public class UserRestController {
 
 	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody로 객체 형태로 받기
 	@PostMapping("/signup")
+	@ApiOperation(value="회원가입")
 	public ResponseEntity<?> signup(@RequestBody User user) {
 //		System.out.println(user.toString());
 		userService.signup(user);
@@ -43,6 +47,7 @@ public class UserRestController {
 	}
 
 	@PostMapping("/login")
+	@ApiOperation(value="로그인")
 	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + map으로 문자열 받기
 	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
 //		System.out.println(map.get("id") + " " + map.get("pwd"));
@@ -58,6 +63,7 @@ public class UserRestController {
 	}
 
 	@GetMapping("/logout")
+	@ApiOperation(value="로그아웃")
 	public ResponseEntity<?> logout(HttpSession session) {
 		session.invalidate();
 //		System.out.println("logout");

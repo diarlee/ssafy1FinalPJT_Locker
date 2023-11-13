@@ -23,4 +23,7 @@ public interface ReviewDao {
 	// 리뷰 삭제
 	public void deleteReview(int id);
 
+	// 조회수 증가
+	public void updateViewCnt(int id);
+
 }

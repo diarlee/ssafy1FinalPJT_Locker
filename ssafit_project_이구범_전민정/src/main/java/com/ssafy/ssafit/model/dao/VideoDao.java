@@ -13,4 +13,7 @@ public interface VideoDao {
 
 	// 조회수 가장 많은 영상 조회
 	public Video selectVideo();
+
+	// 운동 영상 조회수 증가
+	public Object updateViewCnt(String videoId);
 }

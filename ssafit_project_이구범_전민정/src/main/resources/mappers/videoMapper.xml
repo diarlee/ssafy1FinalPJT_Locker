@@ -21,4 +21,10 @@
 	order by viewCnt desc 
 	limit 1; 
 	</select>
+	
+	<update id="updateViewCnt" parameterType="String">
+	update video
+	set viewCnt = #{viewCnt} + 1
+	where videoId = #{videoId}
+	</update>
 </mapper>
