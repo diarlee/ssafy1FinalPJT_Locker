@@ -27,7 +27,7 @@ export const useReviewStore = defineStore("review", () => {
     })
       .then(() => {
         // reviewList로 수정
-        router.push({ name: "videoDetail", params: {id: videoId, url: urll}});
+        router.push({ name: "videoDetail", params: {id: videoId, url: videoUrl}});
       })
       .catch((err) => {
         console.log(err);
