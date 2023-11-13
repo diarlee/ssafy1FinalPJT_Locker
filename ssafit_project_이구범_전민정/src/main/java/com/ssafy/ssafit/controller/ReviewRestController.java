@@ -22,16 +22,29 @@ public class ReviewRestController {
 
 	@Autowired
 	private ReviewService reviewService;
-
-	@GetMapping("/review")
-	public ResponseEntity<?> getList() {
-		List<Review> list = reviewService.getList();
+	
+	
+	@GetMapping("/reviewAll")
+	public ResponseEntity<?> getAllList() {
+		List<Review> list = reviewService.getAll();
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
 			return new ResponseEntity<List<Review>>(list, HttpStatus.OK);
 		}
 	}
+
+	@GetMapping("/review")
+	public ResponseEntity<?> getList(String videoId) {
+		List<Review> list = reviewService.getList(videoId);
+		if (list == null || list.size() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<List<Review>>(list, HttpStatus.OK);
+		}
+	}
+	
+	
 
 	@GetMapping("/review/{id}")
 	public ResponseEntity<?> getReview(@PathVariable int id) {

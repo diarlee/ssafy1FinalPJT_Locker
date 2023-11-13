@@ -21,11 +21,17 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewServiceImpl(ReviewDao reviewDao) {
 		this.reviewDao = reviewDao;
 	}
+	@Override
+	public List<Review> getAll() {
+		// TODO Auto-generated method stub
+		return reviewDao.selectAllList();
+	}
 
 	@Override
-	public List<Review> getList() {
-		// TODO Auto-generated method stub
-		return reviewDao.selectAll();
+	public List<Review> getList(String videoId) {
+		
+		
+		return reviewDao.selectAll(videoId);
 	}
 
 	@Override
@@ -51,5 +57,6 @@ public class ReviewServiceImpl implements ReviewService {
 		// TODO Auto-generated method stub
 		reviewDao.deleteReview(id);
 	}
+
 
 }

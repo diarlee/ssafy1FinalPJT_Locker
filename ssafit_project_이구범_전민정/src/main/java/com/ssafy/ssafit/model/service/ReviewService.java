@@ -5,9 +5,13 @@ import java.util.List;
 import com.ssafy.ssafit.model.dto.Review;
 
 public interface ReviewService {
+	
 	// 전체 리뷰 조회
-	public List<Review> getList();
-
+	public List<Review> getAll();
+	
+	// 해당 하는 리뷰 조회
+	public List<Review> getList(String videoId);
+	
 	// 리뷰 조회
 	public Review getReview(int id);
 
