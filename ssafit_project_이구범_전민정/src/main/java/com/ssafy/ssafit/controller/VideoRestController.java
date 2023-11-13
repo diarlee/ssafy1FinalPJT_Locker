@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.ssafit.model.dto.Video;
 import com.ssafy.ssafit.model.service.VideoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api")
 public class VideoRestController {
@@ -21,6 +23,7 @@ public class VideoRestController {
 	private VideoService videoService;
 
 	@GetMapping("/video")
+	@ApiOperation(value="모든 영상", notes="모든 영상 조회하기")
 	public ResponseEntity<?> getList() {
 		List<Video> list = videoService.getList();
 		if (list == null || list.size() == 0) {
@@ -31,6 +34,7 @@ public class VideoRestController {
 	}
 
 	@GetMapping("/video/{part}")
+	@ApiOperation(value="부위별 영상", notes="부위별 영상 조회하기")
 	public ResponseEntity<?> getByPart(@PathVariable String part) {
 		List<Video> list = videoService.getByPart(part);
 		if (list == null || list.size() == 0) {
@@ -41,11 +45,13 @@ public class VideoRestController {
 	}
 
 	@GetMapping("/videoOne")
-	public ResponseEntity<?> getVideo() {
+	@ApiOperation(value="영상 하나 선택", notes="영상 하나 선택하기")
+	public ResponseEntity<?> getVideo(String videoId) {
 		Video video = videoService.getVideo();
 		if (video == null) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
+			videoService.modifyViewCnt(videoId);
 			return new ResponseEntity<Video>(video, HttpStatus.OK);
 		}
 	}

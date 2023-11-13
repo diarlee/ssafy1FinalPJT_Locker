@@ -23,4 +23,7 @@ public interface ReviewService {
 
 	// 리뷰 삭제
 	public void removeReview(int id);
+	
+	// 리뷰 조회수 증가
+	public void modifyViewCnt(int id);
 }

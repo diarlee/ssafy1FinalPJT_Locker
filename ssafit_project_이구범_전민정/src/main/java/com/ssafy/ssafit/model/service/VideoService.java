@@ -13,4 +13,7 @@ public interface VideoService {
 
 	// 조회수 가장 많은 영상 조회
 	public Video getVideo();
+	
+	// 운동영상 조회수 증가
+	public void modifyViewCnt(String videoId);
 }

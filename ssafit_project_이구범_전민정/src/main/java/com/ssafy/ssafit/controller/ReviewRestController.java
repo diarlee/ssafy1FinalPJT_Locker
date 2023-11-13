@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.service.ReviewService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
@@ -25,6 +28,7 @@ public class ReviewRestController {
 	
 	
 	@GetMapping("/reviewAll")
+	@ApiOperation(value="모든 리뷰 조회", notes="모든 리뷰 조회하기")
 	public ResponseEntity<?> getAllList() {
 		List<Review> list = reviewService.getAll();
 		if (list == null || list.size() == 0) {
@@ -34,8 +38,9 @@ public class ReviewRestController {
 		}
 	}
 
-	@GetMapping("/review")
-	public ResponseEntity<?> getList(String videoId) {
+	@GetMapping("/review/{videoId}")
+	@ApiOperation(value="리뷰 조회", notes="영상 아이디에 해당하는 모든 리뷰 조회하기")
+	public ResponseEntity<?> getList(@PathVariable String videoId) {
 		List<Review> list = reviewService.getList(videoId);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -47,28 +52,33 @@ public class ReviewRestController {
 	
 
 	@GetMapping("/review/{id}")
+	@ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회하기")
 	public ResponseEntity<?> getReview(@PathVariable int id) {
 		Review review = reviewService.getReview(id);
 		if (review == null) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
+			reviewService.modifyViewCnt(id);
 			return new ResponseEntity<Review>(review, HttpStatus.OK);
 		}
 	}
 
 	@PostMapping("/write")
-	public ResponseEntity<?> writeReview(Review review) {
+	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
+	public ResponseEntity<?> writeReview(@RequestBody Review review) {
 		reviewService.writeReview(review);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/modify")
+	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(Review review) {
 		reviewService.modifyReview(review);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/review/{id}")
+	@ApiOperation(value="리뷰 삭제", notes="리뷰 삭제하기")
 	public ResponseEntity<?> removeReview(@PathVariable int id) {
 		reviewService.removeReview(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
