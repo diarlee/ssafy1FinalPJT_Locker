@@ -17,6 +17,7 @@ export const useReviewStore = defineStore("review", () => {
   }
 
   // review 등록
+  // 등록 마무리하기!
   const createReview = function (review, videoId, videoUrl) {
     // console.log(review);
     axios({
