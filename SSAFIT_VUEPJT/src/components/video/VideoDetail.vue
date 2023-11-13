@@ -9,7 +9,6 @@
         </div>
 
         <hr class="mb-3" />
-        <!-- 임시 src -->
         <div class="text-center">
           <iframe
             width="560"
@@ -25,13 +24,19 @@
         <hr class="mb-3" />
 
         <div class="d-flex justify-content-between">
-          <button
+          <!-- <button
             type="button"
             @click="goToCreateReview"
             class="w-20 me-2 btn btn-outline-primary"
           >
-            글 작성
-          </button>
+        </button> -->
+          <RouterLink
+            type="button"
+            class="w-20 me-2 btn btn-outline-primary"
+            :to="{ name: 'reviewCreate', param: { id: route.params.id, url: route.params.url } }"
+            >글 작성</RouterLink
+          >
+          글 작성
           <div
             style="border-bottom: solid gray 1px"
             class="d-flex align-items-center"
@@ -58,18 +63,20 @@
               <th class="border-bottom p-3">조회수</th>
               <th class="border-bottom p-3">작성시간</th>
             </tr>
-            <div v-for="review in reviewList">
-              <tr
-                @click="goToReviewDetail"
+            <div v-for="review in store.reviewList">
+              <RouterLink
+                :to="{ name: 'reviewDetail', param: { id: route.params.id, url: route.params.url } }"
                 style="cursor: pointer; text-decoration: underline"
                 class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
               >
-                <td class="p-3">{{ review.reviewId }}</td>
-                <td class="p-3">{{ review.title }}</td>
-                <td class="p-3">{{ review.writer }}</td>
-                <td class="p-3">{{ review.viewCnt }}</td>
-                <td class="p-3">{{ review.regDate }}</td>
-              </tr>
+                <tr>
+                  <td class="p-3">{{ review.reviewId }}</td>
+                  <td class="p-3">{{ review.title }}</td>
+                  <td class="p-3">{{ review.writer }}</td>
+                  <td class="p-3">{{ review.viewCnt }}</td>
+                  <td class="p-3">{{ review.regDate }}</td>
+                </tr>
+              </RouterLink>
             </div>
 
             <!-- <c:forEach items="${reviewList}" var="review">
@@ -93,26 +100,20 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
-import router2 from "@/router";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { RouterView, RouterLink } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useReviewStore } from "@/stores/review";
 
 const route = useRoute();
 const router = useRouter();
 
-onMounted(() => {
-    store.getReviewList(route.params.videoId)
-})
+const store = useReviewStore();
 
-const goToCreateReview = function () {
-  // console.log("ing");
-  router2.push({ name: "reviewCreate" });
-};
-
-const goToReviewDetail = function () {
-  router2.push({ name: "reviewDetail", param: { id: 1 } });
-};
-
+// onMounted(() => {
+//   store.getReviewList(route.params.id);
+//   console.log(route.params.id);
+// });
 </script>
 
 <style scoped>

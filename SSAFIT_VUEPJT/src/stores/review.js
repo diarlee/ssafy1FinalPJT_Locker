@@ -7,6 +7,15 @@ const REST_REVIEW_API = "http://localhost:8080/api/review";
 
 export const useReviewStore = defineStore("review", () => {
 
+  // reviewList 가져오기
+  const reviewList = ref([]);
+  const getReviewList = function (videoId) {
+    axios.get(`${REST_REVIEW_API}/${videoId}`)
+    .then((response) => {
+      reviewList.value = response.data
+    })
+  }
+
   // review 등록
   const createReview = function (review) {
     // console.log(review);

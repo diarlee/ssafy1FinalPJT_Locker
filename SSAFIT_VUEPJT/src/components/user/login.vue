@@ -34,7 +34,7 @@
               <input type="text" class="form-control" id="password" name="title" v-model="password" />
             </div>
             <!-- <RouterLink class="w-20 me-2 btn btn-outline-primary" @click="login" :to="{ name: 'home' }">로그인</RouterLink> -->
-            <button type="submit" class="w-20 me-2 btn btn-outline-primary" @click="login">로그인</button>
+            <button type="submit" class="w-20 me-2 btn btn-outline-primary" @click.prevent="login">로그인</button>
             <RouterLink class="w-20 btn btn-outline-danger" :to="{ name: 'home' }">취소</RouterLink>
             <!-- <button type="button" onclick="location.href='./main?act=reviewList&videoId=${videoId}&url=${url }'" class="w-20 btn btn-outline-danger">취소</button> -->
           </form>

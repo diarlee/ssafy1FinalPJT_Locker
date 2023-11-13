@@ -47,7 +47,7 @@ export const useUsersStore = defineStore("users", () => {
       }
     })
       .then(() => {
-        loginStatus.value = true;
+        loginStatus.value = !loginStatus.value
         console.log("로그인 성공");
         router.push({ name: 'home' });
       })
@@ -61,7 +61,7 @@ export const useUsersStore = defineStore("users", () => {
   const logoutFunc = () => {
     axios.get(`${REST_USER_API}/logout`)
       .then(() => {
-        loginStatus.value = false;
+        loginStatus.value = !loginStatus.value;
         console.log("로그아웃 성공");
         router.push({ name: 'home' });
       })

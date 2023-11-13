@@ -39,7 +39,7 @@
             </div>
 
             <!-- <RouterLink class="w-20 me-2 btn btn-outline-primary" :to="{ name: 'login' }" @click="signin">회원가입</RouterLink> -->
-            <button class="w-20 me-2 btn btn-outline-primary" @click="signin">회원가입</button>
+            <button class="w-20 me-2 btn btn-outline-primary" @click.prevent="signin">회원가입</button>
             <RouterLink class="w-20 btn btn-outline-danger" :to="{ name: 'home' }">취소</RouterLink>
             <!-- <button type="button" onclick="location.href='./main?act=reviewList&videoId=${videoId}&url=${url }'" class="w-20 btn btn-outline-danger">취소</button> -->
           </form>

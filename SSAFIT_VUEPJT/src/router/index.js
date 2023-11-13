@@ -31,12 +31,12 @@ const router = createRouter({
       component: VideoDetail,
     },
     {
-      path: "/review/create",
+      path: "/review/create/:id/:url",
       name: "reviewCreate",
       component: ReviewCreate,
     },
     {
-      path: "/review/detail",
+      path: "/review/detail/:id/:url",
       name: "reviewDetail",
       component: ReviewDetail,
     },
