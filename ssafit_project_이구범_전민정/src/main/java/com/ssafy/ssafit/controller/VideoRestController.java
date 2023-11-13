@@ -44,14 +44,17 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/videoOne")
+	@GetMapping("/videoOne/{videoId}")
 	@ApiOperation(value="영상 하나 선택", notes="영상 하나 선택하기")
-	public ResponseEntity<?> getVideo(String videoId) {
-		Video video = videoService.getVideo();
+	public ResponseEntity<?> getVideo(@PathVariable String videoId) {
+		Video video = videoService.getVideoOne(videoId);
 		if (video == null) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
-			videoService.modifyViewCnt(videoId);
+			if(videoId.equals(video.getVideoId())) {
+				int viewCnt = video.getViewCnt();
+				videoService.modifyViewCnt(viewCnt, videoId);
+			}
 			return new ResponseEntity<Video>(video, HttpStatus.OK);
 		}
 	}

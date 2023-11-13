@@ -51,14 +51,17 @@ public class ReviewRestController {
 	
 	
 
-	@GetMapping("/review/{id}")
+	@GetMapping("/review/datail/{id}")
 	@ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회하기")
 	public ResponseEntity<?> getReview(@PathVariable int id) {
 		Review review = reviewService.getReview(id);
 		if (review == null) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
-			reviewService.modifyViewCnt(id);
+			if(id == review.getReviewId()) {
+				int viewCnt = review.getViewCnt();
+				reviewService.modifyViewCnt(viewCnt, id);
+			}
 			return new ResponseEntity<Review>(review, HttpStatus.OK);
 		}
 	}

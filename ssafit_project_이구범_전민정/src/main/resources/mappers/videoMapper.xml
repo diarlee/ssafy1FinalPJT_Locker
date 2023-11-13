@@ -22,9 +22,15 @@
 	limit 1; 
 	</select>
 	
-	<update id="updateViewCnt" parameterType="String">
+	<update id="updateViewCnt" parameterType="map">
 	update video
 	set viewCnt = #{viewCnt} + 1
 	where videoId = #{videoId}
 	</update>
+	
+	<select id="selectOne" parameterType="String" resultType="Video">
+		select *
+		from video
+		where videoId = #{videoId}
+	</select>
 </mapper>

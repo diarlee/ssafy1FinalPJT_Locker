@@ -59,8 +59,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void modifyViewCnt(int id) {
-		reviewDao.updateViewCnt(id);
+	public void modifyViewCnt(int viewCnt, int id) {
+		reviewDao.updateViewCnt(viewCnt, id);
 	}
 
 
