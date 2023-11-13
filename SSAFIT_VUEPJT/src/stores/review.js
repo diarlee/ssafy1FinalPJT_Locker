@@ -17,16 +17,16 @@ export const useReviewStore = defineStore("review", () => {
   }
 
   // review 등록
-  const createReview = function (review) {
+  const createReview = function (review, videoId, videoUrl) {
     // console.log(review);
     axios({
-      url: REST_REVIEW_API,
+      url: `${REST_REVIEW_API}/write`,
       method: "POST",
       data: review,
     })
       .then(() => {
         // reviewList로 수정
-        router.push({ name: "main" });
+        router.push({ name: "videoDetail", params: {id: videoId, url: urll}});
       })
       .catch((err) => {
         console.log(err);
@@ -48,5 +48,5 @@ export const useReviewStore = defineStore("review", () => {
     });
   };
 
-  return { createReview, getReview, updateReview };
+  return { reviewList, getReviewList, createReview, getReview, updateReview };
 });

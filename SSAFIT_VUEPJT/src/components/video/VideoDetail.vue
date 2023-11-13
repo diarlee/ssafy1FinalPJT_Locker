@@ -36,7 +36,6 @@
             :to="{ name: 'reviewCreate', param: { id: route.params.id, url: route.params.url } }"
             >글 작성</RouterLink
           >
-          글 작성
           <div
             style="border-bottom: solid gray 1px"
             class="d-flex align-items-center"
@@ -110,10 +109,11 @@ const router = useRouter();
 
 const store = useReviewStore();
 
-// onMounted(() => {
-//   store.getReviewList(route.params.id);
-//   console.log(route.params.id);
-// });
+onMounted(() => {
+  store.getReviewList(route.params.id);
+  // console.log(store.reviewList)
+  // console.log(route.params.id);  
+});
 </script>
 
 <style scoped>

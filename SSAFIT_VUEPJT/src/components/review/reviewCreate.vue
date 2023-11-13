@@ -75,7 +75,7 @@ const review = ref({
 
 const createReview = function () {
   // console.log("ing");
-  store.createReview(review.value);
+  store.createReview(review.value, route.params.id, route.params.url);
 };
 </script>
 

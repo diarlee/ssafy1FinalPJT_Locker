@@ -51,7 +51,7 @@ public class ReviewRestController {
 	
 	
 
-	@GetMapping("/review/{id}")
+	@GetMapping("/review/detail/{id}")
 	@ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회하기")
 	public ResponseEntity<?> getReview(@PathVariable int id) {
 		Review review = reviewService.getReview(id);
@@ -63,14 +63,14 @@ public class ReviewRestController {
 		}
 	}
 
-	@PostMapping("/write")
+	@PostMapping("/review/write")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
 	public ResponseEntity<?> writeReview(@RequestBody Review review) {
 		reviewService.writeReview(review);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/modify")
+	@PutMapping("/review/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(Review review) {
 		reviewService.modifyReview(review);
