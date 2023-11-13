@@ -33,12 +33,12 @@
 	
 	<delete id="deleteReview" parameterType="int">
 	delete from review 
-	where reviewId = #{reviewId}
+	where reviewId = #{id}
 	</delete>
 	
-	<update id="updateViewCnt" parameterType="int">
+	<update id="updateViewCnt" parameterType="map">
 	update review
 	set viewCnt = #{viewCnt} +1
-	where reviewId = #{reviewId}
+	where reviewId = #{id}
 	</update>
 </mapper>

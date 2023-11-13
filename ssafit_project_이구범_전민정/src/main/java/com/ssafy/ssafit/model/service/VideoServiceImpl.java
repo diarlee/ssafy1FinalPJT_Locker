@@ -41,10 +41,16 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public void modifyViewCnt(String videoId) {
-		// TODO Auto-generated method st
-		videoDao.updateViewCnt(videoId);
+	public void modifyViewCnt(int viewCnt, String videoId) {
+		// TODO Auto-generated method stub
+		videoDao.updateViewCnt(viewCnt, videoId);
 		
+	}
+
+	@Override
+	public Video getVideoOne(String videoId) {
+		// TODO Auto-generated method stub
+		return videoDao.selectOne(videoId);
 	}
 
 }

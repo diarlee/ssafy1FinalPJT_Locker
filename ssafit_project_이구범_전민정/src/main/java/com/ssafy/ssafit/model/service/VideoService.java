@@ -15,5 +15,8 @@ public interface VideoService {
 	public Video getVideo();
 	
 	// 운동영상 조회수 증가
-	public void modifyViewCnt(String videoId);
+	public void modifyViewCnt(int viewCnt, String videoId);
+	
+	// 운동영상 하나 조회
+	public Video getVideoOne(String videoId);
 }

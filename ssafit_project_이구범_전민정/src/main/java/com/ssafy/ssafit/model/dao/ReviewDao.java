@@ -2,6 +2,8 @@ package com.ssafy.ssafit.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ssafy.ssafit.model.dto.Review;
 
 public interface ReviewDao {
@@ -24,6 +26,6 @@ public interface ReviewDao {
 	public void deleteReview(int id);
 
 	// 조회수 증가
-	public void updateViewCnt(int id);
+	public void updateViewCnt(@Param("viewCnt") int viewCnt, @Param("id")int id);
 
 }
