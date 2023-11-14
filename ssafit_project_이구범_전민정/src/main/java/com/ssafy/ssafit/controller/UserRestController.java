@@ -48,7 +48,7 @@ public class UserRestController {
 
 	@PostMapping("/login")
 	@ApiOperation(value="로그인")
-	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody 
+	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + Map
 	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
 //		System.out.println(map.get("id") + " " + map.get("pwd"));
 		

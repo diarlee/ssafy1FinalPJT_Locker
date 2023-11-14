@@ -40,11 +40,6 @@ public class UserServiceImpl implements UserService {
 		userDao.insertUser(user);
 	}
 
-//	@Override
-//	public User login(String userId, String password) {
-//		// TODO Auto-generated method stub
-//		return userDao.login(userId, password);
-//		
-//	}
+
 
 }
