@@ -1,13 +1,11 @@
 package com.ssafy.ssafit.controller;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class ReviewRestController {
 
 	@Autowired
@@ -89,11 +88,11 @@ public class ReviewRestController {
 //		}
 	}
 
-	@PutMapping("/review/modify/{id}")
+	@PutMapping("/review/modify/{reviewId}")
 	@ApiOperation(value = "리뷰 수정", notes = "리뷰 수정하기")
-	public ResponseEntity<?> modifyReview(Review review, @PathVariable int id) {
+	public ResponseEntity<?> modifyReview(Review review, @PathVariable int reviewId) {
 
-		if (review.getReviewId() == id) {
+		if (review.getReviewId() == reviewId) {
 			reviewService.modifyReview(review);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
