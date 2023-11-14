@@ -25,32 +25,42 @@
             class="form-control"
             id="inputEmail3"
             name="title"
-            value="${review.title }"
+            v-model="review.title"
           />
         </div>
 
         <div class="mb-4">
           <label for="inputContent" class="col-form-label">수정할 내용</label>
-          <textarea class="form-control" type="text" name="content" rows="3">
-  ${review.content }</textarea
+          <textarea
+            class="form-control"
+            type="text"
+            name="content"
+            rows="3"
+            v-model="review.content"
           >
+          </textarea>
         </div>
 
         <button
           type="submit"
-          @click="updateReview"
+          @click.prevent="updateReview"
           class="w-20 me-2 btn btn-outline-primary"
         >
           수정
         </button>
-        <button
+        <RouterLink
+          :to="{
+            name: 'reviewDetail',
+            params: {
+              reviewId: route.params.reviewId,
+              videoId: route.params.videoId,
+              url: route.params.url,
+            },
+          }"
           type="button"
-          @click="goToReviewDetail"
           class="w-20 btn btn-outline-danger"
+          >취소</RouterLink
         >
-          취소
-        </button>
-        <RouterLink :to="{name: 'reviewDetail'}"></RouterLink>
       </form>
     </div>
   </div>
@@ -59,17 +69,25 @@
 <script setup>
 import { RouterView, RouterLink } from "vue-router";
 import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+import { useUsersStore } from "@/stores/users"
 import { useReviewStore } from "@/stores/review";
-import router from "@/router";
-const store = useReviewStore();
+
+const route = useRoute();
+const userStore = useUsersStore();
+const reviewStore = useReviewStore();
+
+const review = ref({
+  reviewId: route.params.reviewId,
+  videoId: route.params.videoId,
+  userId: userStore.loginId,
+  title: "",
+  content: "",
+});
 
 const updateReview = function () {
-  // console.log("ing");
-  store.updateReview();
-};
-
-const goToReviewDetail = function () {
-  router.push({ name: "reviewDetail" });
+  // console.log(review.value)
+  reviewStore.updateReview(review, route.params.url);
 };
 </script>
 

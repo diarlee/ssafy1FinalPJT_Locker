@@ -47,10 +47,24 @@ export const useReviewStore = defineStore("review", () => {
   };
 
   // review 수정
-  const updateReview = function () {
-    axios.put(REST_REVIEW_API, review.value).then(() => {
-      router.push({ name: "reviewList" });
-    });
+  const updateReview = function (review, videoUrl) {
+    axios({
+      url: `${REST_REVIEW_API}/modify/${review.value.reviewId}`,
+      method: 'PUT',
+      data: {
+        reviewId: review.value.reviewId,
+        videoId: review.value.videoId,
+        userId: review.value.userId,
+        title: review.value.title,
+        content: review.value.content
+      }
+    })
+    .then(() => {
+      router.push({ name: "reviewDetail" , params: {reviewId: review.value.reviewId, videoId: review.value.videoId, url: videoUrl}});
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   };
 
   return { reviewList, review, getReviewList, createReview, getReview, updateReview };

@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class ReviewRestController {
 
 	@Autowired
