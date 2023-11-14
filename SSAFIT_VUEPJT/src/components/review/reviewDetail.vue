@@ -55,7 +55,6 @@
             <div>작성자: {{ store.review.writer }}</div>
             <div>작성일: {{ store.review.regDate }}</div>
             <div>조회수: {{ store.review.viewCnt }}</div>
-            
           </div>
         </div>
       </form>
@@ -69,7 +68,6 @@ import { useRoute, useRouter } from "vue-router";
 import { useReviewStore } from "@/stores/review";
 import { onMounted } from "vue";
 import axios from "axios";
-import router2 from "@/router";
 
 const store = useReviewStore();
 
@@ -82,9 +80,12 @@ onMounted(() => {
 
 const deleteReview = function () {
   axios
-    .delete(`http://localhost:8080/api/review/${route.params.id}`)
+    .delete(`http://localhost:8080/api/review/${route.params.reviewId}`)
     .then(() => {
-      router.push({ name: "reviewList" });
+      router.push({
+        name: "videoDetail",
+        params: { id: route.params.videoId, url: route.params.url },
+      });
     });
 };
 </script>
