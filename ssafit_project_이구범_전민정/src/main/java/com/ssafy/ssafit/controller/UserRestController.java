@@ -49,11 +49,14 @@ public class UserRestController {
 	@PostMapping("/login")
 	@ApiOperation(value="로그인")
 	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody 
-	public ResponseEntity<?> login(@RequestBody String userId, @RequestBody String password, HttpSession session) {
+	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
 //		System.out.println(map.get("id") + " " + map.get("pwd"));
 		
+		String userId = map.get("id");
+		String password = map.get("pwd");
+		
 		User user = userService.getUser(userId);
-		 
+		
 		if (user == null || !password.equals(user.getPassword())) {
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		} else {
