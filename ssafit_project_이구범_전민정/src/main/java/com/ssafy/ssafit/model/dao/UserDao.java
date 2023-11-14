@@ -14,6 +14,4 @@ public interface UserDao {
 	// 회원 가입
 	public void insertUser(User user);
 	
-	//로그인
-//	public User login(String userId, String password);
 }
