@@ -69,18 +69,18 @@ public class ReviewRestController {
 		}
 	}
 
-	@PostMapping("/review/write/{videoId}")
+	@PostMapping("/review/write")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
-	public ResponseEntity<?> writeReview(@PathVariable("videoId") String videoId, @RequestBody Review review, HttpSession session) {
-		User user = (User) session.getAttribute("loginUser");
-		if (user != null) {
-			review.setVideoId(videoId);
-			review.setUserId(user.getUserId());
+	public ResponseEntity<?> writeReview(@RequestBody Review review, HttpSession session) {
+//		User user = (User) session.getAttribute("loginUser");
+//		if (user != null) {
+//			review.setVideoId(videoId);
+//			review.setUserId(user.getUserId());
 			reviewService.writeReview(review);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-		}
+//		} else {
+//			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+//		}
 	}
 
 	@PutMapping("/review/modify")
