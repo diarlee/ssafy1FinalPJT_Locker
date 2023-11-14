@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.ReviewService;
+import com.ssafy.ssafit.model.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
 public class ReviewRestController {
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private ReviewService reviewService;
@@ -76,6 +80,12 @@ public class ReviewRestController {
 //		if (user != null) {
 //			review.setVideoId(videoId);
 //			review.setUserId(user.getUserId());
+		
+			User user = userService.getUser(review.getUserId());
+			
+			String writer = user.getUsername();
+			
+			review.setWriter(writer);
 			reviewService.writeReview(review);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 //		} else {
