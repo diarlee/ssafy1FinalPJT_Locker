@@ -90,7 +90,7 @@ public class ReviewRestController {
 
 	@PutMapping("/review/modify/{reviewId}")
 	@ApiOperation(value = "리뷰 수정", notes = "리뷰 수정하기")
-	public ResponseEntity<?> modifyReview(Review review, @PathVariable int reviewId) {
+	public ResponseEntity<?> modifyReview(@RequestBody Review review, @PathVariable int reviewId) {
 
 		if (review.getReviewId() == reviewId) {
 			reviewService.modifyReview(review);

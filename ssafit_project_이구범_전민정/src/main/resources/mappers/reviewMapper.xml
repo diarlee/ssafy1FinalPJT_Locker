@@ -27,7 +27,7 @@
 	
 	<update id="updateReview" parameterType="Review">
 	update review
-	set title=#{title}, content = #{content} 
+	set title = #{title}, content = #{content} 
 	where reviewId = #{reviewId}
 	</update>
 	
