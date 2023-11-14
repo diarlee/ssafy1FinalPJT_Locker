@@ -22,7 +22,7 @@
 	
 	<insert id="insertReview" parameterType="Review">
 	insert into review (videoId, title, content) 
-	values (#{title}, #{content});
+	values (#{videoId}, #{title}, #{content});
 	</insert>
 	
 	<update id="updateReview" parameterType="Review">
