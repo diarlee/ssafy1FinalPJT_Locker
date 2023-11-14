@@ -48,16 +48,16 @@ public class UserRestController {
 
 	@PostMapping("/login")
 	@ApiOperation(value="로그인")
-	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + map으로 문자열 받기
-	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
+	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody 
+	public ResponseEntity<?> login(@RequestBody String userId, @RequestBody String password, HttpSession session) {
 //		System.out.println(map.get("id") + " " + map.get("pwd"));
-		String id = map.get("id");
-		String pwd = map.get("pwd");
-		User temp = userService.getUser(id);
-		if (temp == null || !pwd.equals(temp.getPassword())) {
+		
+		User user = userService.getUser(userId);
+		 
+		if (user == null || !password.equals(user.getPassword())) {
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		} else {
-			session.setAttribute("loginUser", temp.getPassword());
+			session.setAttribute("loginUser", user);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}

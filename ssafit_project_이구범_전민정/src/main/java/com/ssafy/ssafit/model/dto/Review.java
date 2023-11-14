@@ -14,17 +14,6 @@ public class Review {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Review(int reviewId, String videoId, String userId, String title, String writer, String content,
-			int viewCnt) {
-		this.reviewId = reviewId;
-		this.videoId = videoId;
-		this.userId = userId;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.viewCnt = viewCnt;
-	}
-
 	public Review(int reviewId, String videoId, String userId, String title, String writer, String regDate,
 			String content, int viewCnt) {
 		this.reviewId = reviewId;

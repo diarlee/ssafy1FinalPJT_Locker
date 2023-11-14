@@ -2,6 +2,8 @@ package com.ssafy.ssafit.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Review;
+import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.ReviewService;
 
 import io.swagger.annotations.ApiOperation;
@@ -51,7 +54,7 @@ public class ReviewRestController {
 	
 	
 
-	@GetMapping("/review/datail/{id}")
+	@GetMapping("/review/detail/{id}")
 	@ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회하기")
 	public ResponseEntity<?> getReview(@PathVariable int id) {
 		Review review = reviewService.getReview(id);
@@ -66,15 +69,21 @@ public class ReviewRestController {
 		}
 	}
 
-	@PostMapping("/reiview/write/{videoId}")
+	@PostMapping("/review/write/{videoId}")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
-	public ResponseEntity<?> writeReview(@PathVariable("videoId") String videoId, @RequestBody Review review) {
-		review.setVideoId(videoId);
-		reviewService.writeReview(review);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public ResponseEntity<?> writeReview(@PathVariable("videoId") String videoId, @RequestBody Review review, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		if (user != null) {
+			review.setVideoId(videoId);
+			review.setUserId(user.getUserId());
+			reviewService.writeReview(review);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
 	}
 
-	@PutMapping("/reivew/modify")
+	@PutMapping("/review/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(Review review) {
 		reviewService.modifyReview(review);
