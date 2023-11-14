@@ -21,8 +21,8 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="Review">
-	insert into review (videoId,, userId, title, writer, content) 
-	values (#{videoId}, #{userId}, #{title}, #{writer}, #{content});
+	insert into review (videoId, userId, title, writer, content, viewCnt) 
+	values (#{videoId}, #{userId}, #{title}, #{writer}, #{content}, #{viewCnt});
 	</insert>
 	
 	<update id="updateReview" parameterType="Review">

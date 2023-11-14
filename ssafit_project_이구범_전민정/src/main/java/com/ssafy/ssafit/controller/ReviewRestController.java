@@ -1,6 +1,7 @@
 package com.ssafy.ssafit.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -75,23 +76,22 @@ public class ReviewRestController {
 
 	@PostMapping("/review/write")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
-	public ResponseEntity<?> writeReview(@RequestBody Review review, HttpSession session) {
+	public ResponseEntity<?> writeReview(@RequestBody Review review) {
 //		User user = (User) session.getAttribute("loginUser");
 //		if (user != null) {
 //			review.setVideoId(videoId);
 //			review.setUserId(user.getUserId());
 		
 			User user = userService.getUser(review.getUserId());
+			review.setWriter(user.getUsername());
 			
-			String writer = user.getUsername();
-			
-			review.setWriter(writer);
 			reviewService.writeReview(review);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 //		} else {
 //			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 //		}
 	}
+
 
 	@PutMapping("/review/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
