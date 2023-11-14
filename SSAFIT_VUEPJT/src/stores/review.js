@@ -17,7 +17,6 @@ export const useReviewStore = defineStore("review", () => {
   }
 
   // review 등록
-  // 등록 마무리하기!
   const createReview = function (review, videoId, videoUrl) {
     // console.log(review);
     axios({
@@ -26,7 +25,6 @@ export const useReviewStore = defineStore("review", () => {
       data: review,
     })
       .then(() => {
-        // reviewList로 수정
         router.push({ name: "videoDetail", params: {id: videoId, url: videoUrl}});
       })
       .catch((err) => {
@@ -49,5 +47,5 @@ export const useReviewStore = defineStore("review", () => {
     });
   };
 
-  return { reviewList, getReviewList, createReview, getReview, updateReview };
+  return { reviewList, review, getReviewList, createReview, getReview, updateReview };
 });

@@ -66,14 +66,15 @@ public class ReviewRestController {
 		}
 	}
 
-	@PostMapping("/review/write")
+	@PostMapping("/reiview/write/{videoId}")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
-	public ResponseEntity<?> writeReview(@RequestBody Review review) {
+	public ResponseEntity<?> writeReview(@PathVariable("videoId") String videoId, @RequestBody Review review) {
+		review.setVideoId(videoId);
 		reviewService.writeReview(review);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/review/modify")
+	@PutMapping("/reivew/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(Review review) {
 		reviewService.modifyReview(review);

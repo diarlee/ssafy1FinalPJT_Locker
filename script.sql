@@ -64,9 +64,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
   `content` VARCHAR(255) NOT NULL,
   `viewCnt` INT NOT NULL,
   PRIMARY KEY (`reviewId`),
-  UNIQUE INDEX `reviewId_UNIQUE` (`reviewId` ASC) VISIBLE,
-  UNIQUE INDEX `userId_UNIQUE` (`userId` ASC) VISIBLE,
-  INDEX `fk_review_video1_idx` (`videoId` ASC) VISIBLE,
+
   CONSTRAINT `fk_review_video1`
     FOREIGN KEY (`videoId`)
     REFERENCES `ssafit`.`video` (`videoId`)
@@ -85,8 +83,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
--- INSERT INTO user (userId, username, email, password)
--- VALUES ("ssafy", "admin", "ssafy@naver.com", "1234");
+INSERT INTO user (userId, username, email, password)
+VALUES ("ssafy", "admin", "ssafy@naver.com", "1234");
 
 INSERT INTO video
 VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]", "전신", "ThankyouBUBU", 0,
@@ -106,8 +104,17 @@ VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소�
 		("7TLk7pscICk", "ssafy", "(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)", "복부", "SomiFit", 0,
 			"https://www.youtube.com/embed/7TLk7pscICk");
 
+INSERT INTO review(videoId, userId, title, writer, content, viewCnt)
+VALUES 
+("gMaB-fG4u4g", "test1", "bad", "ssafy", "bad", 0),
+("gMaB-fG4u4g", "test1", "good", "ssafy", "bad", 0);
+
+
 SELECT *
 FROM video;
 
 SELECT *
 FROM user;
+
+SELECT *
+FROM review;

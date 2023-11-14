@@ -62,20 +62,25 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { RouterView, RouterLink } from "vue-router";
+import { useUsersStore } from "@/stores/users"
 import { useReviewStore } from "@/stores/review";
 
 const route = useRoute();
 const router = useRouter();
-const store = useReviewStore();
+const userStore = useUsersStore();
+const reviewStore = useReviewStore();
 
 const review = ref({
+  videoId: "",
+  userId: "",
   title: "",
   content: "",
 });
 
 const createReview = function () {
-  // console.log("ing");
-  store.createReview(review.value, route.params.id, route.params.url);
+  review.value.videoId = route.params.id
+  review.value.userId = userStore.loginId
+  reviewStore.createReview(review, route.params.id, route.params.url);
 };
 </script>
 

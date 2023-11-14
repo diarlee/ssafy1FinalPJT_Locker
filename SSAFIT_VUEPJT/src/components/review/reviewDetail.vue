@@ -11,7 +11,7 @@
           <hr class="mb-3" />
   
           <div class="d-flex justify-content-between">
-            <button
+            <button 
               type="button"
               @click="goToVideoDetail"
               class="w-20 me-2 btn btn-outline-primary"
@@ -64,9 +64,11 @@
   
   const route = useRoute();
   const router = useRouter();
-  // onMounted(() => {
-  //   store.getReview(route.params.id);
-  // });
+
+  onMounted(() => {
+    store.getReview(route.params.id);
+  });
+
   const deleteReview = function () {
     axios
       .delete(`http://localhost:8080/api/review/${route.params.id}`)

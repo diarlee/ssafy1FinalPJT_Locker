@@ -33,7 +33,10 @@
           <RouterLink
             type="button"
             class="w-20 me-2 btn btn-outline-primary"
-            :to="{ name: 'reviewCreate', param: { id: route.params.id, url: route.params.url } }"
+            :to="{
+              name: 'reviewCreate',
+              param: { id: route.params.id, url: route.params.url },
+            }"
             >글 작성</RouterLink
           >
           <div
@@ -64,7 +67,14 @@
             </tr>
             <div v-for="review in store.reviewList">
               <RouterLink
-                :to="{ name: 'reviewDetail', param: { id: route.params.id, url: route.params.url } }"
+                :to="{
+                  name: 'reviewDetail',
+                  params: {
+                    reviewId: `${review.reviewId}`,
+                    videoId: route.params.id,
+                    url: route.params.url,
+                  },
+                }"
                 style="cursor: pointer; text-decoration: underline"
                 class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
               >
@@ -112,7 +122,7 @@ const store = useReviewStore();
 onMounted(() => {
   store.getReviewList(route.params.id);
   // console.log(store.reviewList)
-  // console.log(route.params.id);  
+  // console.log(route.params.id);
 });
 </script>
 

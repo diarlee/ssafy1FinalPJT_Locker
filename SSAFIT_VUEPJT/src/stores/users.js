@@ -7,6 +7,7 @@ const REST_USER_API = `http://localhost:8080/api`
 
 export const useUsersStore = defineStore("users", () => {
   const loginStatus = ref(false);
+  const loginId = ref("");
 
   const signinFunc = (userId, password, username, email) => {
     // console.log(userId, password, username, email);
@@ -48,6 +49,7 @@ export const useUsersStore = defineStore("users", () => {
     })
       .then(() => {
         loginStatus.value = !loginStatus.value
+        loginId.value = userId
         console.log("로그인 성공");
         router.push({ name: 'home' });
       })
@@ -71,5 +73,5 @@ export const useUsersStore = defineStore("users", () => {
 
   };
 
-  return { loginStatus, signinFunc, loginFunc, logoutFunc };
+  return { loginStatus, loginId, signinFunc, loginFunc, logoutFunc };
 });

@@ -36,7 +36,7 @@ const router = createRouter({
       component: ReviewCreate,
     },
     {
-      path: "/review/detail/:id/:url",
+      path: "/review/detail/:reviewId/:videoId/:url",
       name: "reviewDetail",
       component: ReviewDetail,
     },
