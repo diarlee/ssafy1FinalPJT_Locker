@@ -86,13 +86,6 @@ public class ReviewRestController {
 			User user = userService.getUser(review.getUserId());
 			review.setWriter(user.getUsername());
 			
-<<<<<<< HEAD
-			String writer = user.getUsername();
-			
-			review.setWriter(writer);
-			System.out.println(review.toString());
-=======
->>>>>>> 3e251d1e4c1569a6b0069ecc1a6989eecdcbcb45
 			reviewService.writeReview(review);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 //		} else {

@@ -40,8 +40,6 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`video` (
   `viewCnt` INT NOT NULL,
   `url` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`videoId`),
-  UNIQUE INDEX `videoId_UNIQUE` (`videoId` ASC) VISIBLE,
-  INDEX `fk_video_user_idx` (`userId` ASC) VISIBLE,
   CONSTRAINT `fk_video_user`
     FOREIGN KEY (`userId`)
     REFERENCES `ssafit`.`user` (`userId`)
@@ -64,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
   `content` VARCHAR(255) NOT NULL,
   `viewCnt` INT NOT NULL,
   PRIMARY KEY (`reviewId`),
-
   CONSTRAINT `fk_review_video1`
     FOREIGN KEY (`videoId`)
     REFERENCES `ssafit`.`video` (`videoId`)
