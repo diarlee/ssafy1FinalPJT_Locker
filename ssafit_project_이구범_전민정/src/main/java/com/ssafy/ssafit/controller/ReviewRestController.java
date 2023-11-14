@@ -100,10 +100,10 @@ public class ReviewRestController {
 		}
 	}
 
-	@DeleteMapping("/review/{id}")
+	@DeleteMapping("/review/delete/{reviewId}")
 	@ApiOperation(value = "리뷰 삭제", notes = "리뷰 삭제하기")
-	public ResponseEntity<?> removeReview(@PathVariable int id) {
-		reviewService.removeReview(id);
+	public ResponseEntity<?> removeReview(@PathVariable int reviewId) {
+		reviewService.removeReview(reviewId);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }
