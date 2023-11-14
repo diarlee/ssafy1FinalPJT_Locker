@@ -1,9 +1,6 @@
 package com.ssafy.ssafit.controller;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -91,11 +88,11 @@ public class ReviewRestController {
 //		}
 	}
 
-	@PutMapping("/review/modify/{id}")
+	@PutMapping("/review/modify/{reviewId}")
 	@ApiOperation(value = "리뷰 수정", notes = "리뷰 수정하기")
-	public ResponseEntity<?> modifyReview(Review review, @PathVariable int id) {
+	public ResponseEntity<?> modifyReview(Review review, @PathVariable int reviewId) {
 
-		if (review.getReviewId() == id) {
+		if (review.getReviewId() == reviewId) {
 			reviewService.modifyReview(review);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
