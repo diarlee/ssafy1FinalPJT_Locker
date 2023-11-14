@@ -76,7 +76,7 @@ public class ReviewRestController {
 
 	@PostMapping("/review/write")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
-	public ResponseEntity<?> writeReview(@RequestBody Review review, HttpSession session) {
+	public ResponseEntity<?> writeReview(@RequestBody Review review) {
 //		User user = (User) session.getAttribute("loginUser");
 //		if (user != null) {
 //			review.setVideoId(videoId);
@@ -87,6 +87,7 @@ public class ReviewRestController {
 			String writer = user.getUsername();
 			
 			review.setWriter(writer);
+			System.out.println(review.toString());
 			reviewService.writeReview(review);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 //		} else {

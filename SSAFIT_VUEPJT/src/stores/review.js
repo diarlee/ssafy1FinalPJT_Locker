@@ -18,11 +18,16 @@ export const useReviewStore = defineStore("review", () => {
 
   // review 등록
   const createReview = function (review, videoId, videoUrl) {
-    // console.log(review);
+    console.log(review.value);
     axios({
       url: `${REST_REVIEW_API}/write`,
       method: "POST",
-      data: review,
+      data: {
+        videoId: review.value.videoId,
+        userId: review.value.userId,
+        title: review.value.title,
+        content: review.value.content,
+      },
     })
       .then(() => {
         router.push({ name: "videoDetail", params: {id: videoId, url: videoUrl}});
