@@ -35,7 +35,8 @@ export const useReviewStore = defineStore("review", () => {
   // review 상세
   const review = ref({});
   const getReview = function (reviewId) {
-    axios.get(`${REST_REVIEW_API}/${id}`).then((response) => {
+    axios.get(`${REST_REVIEW_API}/detail/${reviewId}`)
+    .then((response) => {
       review.value = response.data;
     });
   };

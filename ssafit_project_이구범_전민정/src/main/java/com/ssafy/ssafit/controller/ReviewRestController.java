@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,7 +52,7 @@ public class ReviewRestController {
 	
 	
 
-	@GetMapping("/review/datail/{id}")
+	@GetMapping("/review/detail/{id}")
 	@ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회하기")
 	public ResponseEntity<?> getReview(@PathVariable int id) {
 		Review review = reviewService.getReview(id);
@@ -66,7 +67,7 @@ public class ReviewRestController {
 		}
 	}
 
-	@PostMapping("/reiview/write/{videoId}")
+	@PostMapping("/review/write/{videoId}")
 	@ApiOperation(value="리뷰 등록", notes="리뷰 작성하기")
 	public ResponseEntity<?> writeReview(@PathVariable("videoId") String videoId, @RequestBody Review review) {
 		review.setVideoId(videoId);
@@ -74,7 +75,7 @@ public class ReviewRestController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/reivew/modify")
+	@PutMapping("/review/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(Review review) {
 		reviewService.modifyReview(review);
