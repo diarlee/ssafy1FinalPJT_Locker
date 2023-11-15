@@ -26,22 +26,22 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: "/video/detail/:id/:url",
+      path: "/video/detail/:id",
       name: "videoDetail",
       component: VideoDetail,
     },
     {
-      path: "/review/create/:id/:url",
+      path: "/review/create/:id",
       name: "reviewCreate",
       component: ReviewCreate,
     },
     {
-      path: "/review/detail/:reviewId/:videoId/:url",
+      path: "/review/detail/:reviewId/:videoId",
       name: "reviewDetail",
       component: ReviewDetail,
     },
     {
-      path: "/review/update/:reviewId/:videoId/:url",
+      path: "/review/update/:reviewId/:videoId",
       name: "reviewUpdate",
       component: ReviewUpdate,
     },

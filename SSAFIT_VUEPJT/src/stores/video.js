@@ -11,7 +11,15 @@ export const useVideoStore = defineStore('video', () => {
         .then((response) => {
             videoList.value = response.data
         })
-    }
+    };
 
-    return  { videoList, getVideoList }
-})
+    const video = ref({});
+    const getVideo = function (videoId) {
+        axios.get(`${REST_VIDEO_API}/one/${videoId}`)
+        .then((response) => {
+            video.value = response.data
+        });
+    };
+
+    return  { videoList, getVideoList, video, getVideo };
+});

@@ -46,7 +46,7 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/videoOne/{videoId}")
+	@GetMapping("/video/one/{videoId}")
 	@ApiOperation(value="영상 하나 선택", notes="영상 하나 선택하기")
 	public ResponseEntity<?> getVideo(@PathVariable String videoId) {
 		Video video = videoService.getVideoOne(videoId);

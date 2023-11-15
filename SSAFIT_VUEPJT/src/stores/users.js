@@ -50,6 +50,7 @@ export const useUsersStore = defineStore("users", () => {
       .then(() => {
         loginStatus.value = !loginStatus.value
         loginId.value = userId
+        // sessionStorage.setItem("", response.data[""])
         console.log("로그인 성공");
         router.push({ name: 'home' });
       })
@@ -74,4 +75,4 @@ export const useUsersStore = defineStore("users", () => {
   };
 
   return { loginStatus, loginId, signinFunc, loginFunc, logoutFunc };
-});
+}, {persist: true}); // pinia로 login 상태 local storage에 저장

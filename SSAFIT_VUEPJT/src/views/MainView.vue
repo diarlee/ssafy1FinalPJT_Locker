@@ -25,7 +25,7 @@
                 <p class="fw-bold text-left fs-4">최근 가장 많이 본 영상</p>
             </div>
             <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-                <RouterLink v-for="video in store.videoList" :to="{ name: 'videoDetail', params: {id: `${video.videoId}`, url: `${video.url}`} }"
+                <RouterLink v-for="video in store.videoList" :to="{ name: 'videoDetail', params: {id: `${video.videoId}`} }"
                     style="cursor: pointer; width: 30%;">
                     <div class="text-wrap fw-bold">
                         <div class="text-center">
@@ -48,7 +48,7 @@
                 <p class="fw-bold text-left fs-4">최근 가장 많이 본 영상</p>
             </div>
             <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-                <RouterLink v-for="video in store.videoList" :to="{ name: 'videoDetail', params: {id: `${video.videoId}`, url: `${video.url}`} }"
+                <RouterLink v-for="video in store.videoList" :to="{ name: 'videoDetail', params: {id: `${video.videoId}`} }"
                     style="cursor: pointer; width: 30%;">
                     <div class="text-wrap fw-bold">
                         <div class="text-center">

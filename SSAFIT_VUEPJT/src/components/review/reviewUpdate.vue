@@ -7,10 +7,6 @@
         action="main"
         style="width: 80%; margin: auto"
       >
-        <input type="hidden" name="act" value="doReviewUpdate" />
-        <input type="hidden" name="videoId" value="${videoId }" />
-        <input type="hidden" name="url" value="${url }" />
-        <input type="hidden" name="reviewId" value="${review.reviewId }" />
         <div class="text-center">
           <span class="material-symbols-outlined">dialogs</span>
           <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 수정</h2>
@@ -54,7 +50,6 @@
             params: {
               reviewId: route.params.reviewId,
               videoId: route.params.videoId,
-              url: route.params.url,
             },
           }"
           type="button"
@@ -70,7 +65,7 @@
 import { RouterView, RouterLink } from "vue-router";
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
-import { useUsersStore } from "@/stores/users"
+import { useUsersStore } from "@/stores/users";
 import { useReviewStore } from "@/stores/review";
 
 const route = useRoute();
@@ -87,7 +82,7 @@ const review = ref({
 
 const updateReview = function () {
   // console.log(review.value)
-  reviewStore.updateReview(review, route.params.url);
+  reviewStore.updateReview(review);
 };
 </script>
 

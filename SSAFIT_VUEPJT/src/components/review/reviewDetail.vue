@@ -80,11 +80,11 @@ onMounted(() => {
 
 const deleteReview = function () {
   axios
-    .delete(`http://localhost:8080/api/review/${route.params.reviewId}`)
+    .delete(`http://localhost:8080/api/review/delete/${route.params.reviewId}`)
     .then(() => {
       router.push({
         name: "videoDetail",
-        params: { id: route.params.videoId, url: route.params.url },
+        params: { id: route.params.videoId },
       });
     });
 };

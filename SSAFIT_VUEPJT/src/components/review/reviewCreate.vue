@@ -40,17 +40,11 @@
         <button type="submit" class="w-20 me-2 btn btn-outline-primary">
           등록
         </button>
-        <!-- <button
-            type="button"
-            @click="goToVideoDetail"
-            class="w-20 btn btn-outline-danger"
-          >
-          </button> -->
         <RouterLink
           class="w-20 btn btn-outline-danger"
           :to="{
             name: 'videoDetail',
-            params: { id: route.params.id, url: route.params.url },
+            params: { id: route.params.id },
           }"
           >취소</RouterLink>
       </form>
@@ -80,7 +74,7 @@ const review = ref({
 const createReview = function () {
   review.value.videoId = route.params.id
   review.value.userId = userStore.loginId
-  reviewStore.createReview(review, route.params.id, route.params.url);
+  reviewStore.createReview(review);
 };
 </script>
 
