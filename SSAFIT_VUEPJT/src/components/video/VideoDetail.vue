@@ -9,12 +9,11 @@
         </div>
 
         <hr class="mb-3" />
-        <!-- 임시 src -->
         <div class="text-center">
           <iframe
             width="560"
             height="315"
-            :src="route.params.url"
+            :src="videoStore.video.url"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -25,13 +24,15 @@
         <hr class="mb-3" />
 
         <div class="d-flex justify-content-between">
-          <button
+          <RouterLink
             type="button"
-            @click="goToCreateReview"
             class="w-20 me-2 btn btn-outline-primary"
+            :to="{
+              name: 'reviewCreate',
+              param: { id: route.params.id },
+            }"
+            >글 작성</RouterLink
           >
-            글 작성
-          </button>
           <div
             style="border-bottom: solid gray 1px"
             class="d-flex align-items-center"
@@ -58,33 +59,27 @@
               <th class="border-bottom p-3">조회수</th>
               <th class="border-bottom p-3">작성시간</th>
             </tr>
-            <div v-for="review in reviewList">
-              <tr
-                @click="goToReviewDetail"
+            <div v-for="review in reviewStore.reviewList">
+              <RouterLink
+                :to="{
+                  name: 'reviewDetail',
+                  params: {
+                    reviewId: `${review.reviewId}`,
+                    videoId: route.params.id,
+                  },
+                }"
                 style="cursor: pointer; text-decoration: underline"
                 class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
               >
-                <td class="p-3">{{ review.reviewId }}</td>
-                <td class="p-3">{{ review.title }}</td>
-                <td class="p-3">{{ review.writer }}</td>
-                <td class="p-3">{{ review.viewCnt }}</td>
-                <td class="p-3">{{ review.regDate }}</td>
-              </tr>
+                <tr>
+                  <td class="p-3">{{ review.reviewId }}</td>
+                  <td class="p-3">{{ review.title }}</td>
+                  <td class="p-3">{{ review.writer }}</td>
+                  <td class="p-3">{{ review.viewCnt }}</td>
+                  <td class="p-3">{{ review.regDate }}</td>
+                </tr>
+              </RouterLink>
             </div>
-
-            <!-- <c:forEach items="${reviewList}" var="review">
-              <tr
-                onclick="location.href='./main?act=reviewDetail&videoId=${videoId}&url=${url }&reviewId=${review.reviewId }'"
-                style="cursor: pointer; text-decoration: underline"
-                class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
-              >
-                <td class="p-3">${review.reviewId }</td>
-                <td class="p-3">${review.title }</td>
-                <td class="p-3">${review.writer }</td>
-                <td class="p-3">${review.viewCnt }</td>
-                <td class="p-3">${review.regDate }</td>
-              </tr>
-            </c:forEach> -->
           </table>
         </div>
       </form>
@@ -93,26 +88,23 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
-import router2 from "@/router";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { RouterView, RouterLink } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useVideoStore } from "@/stores/video";
+import { useReviewStore } from "@/stores/review";
 
 const route = useRoute();
-const router = useRouter();
+
+const videoStore = useVideoStore();
+const reviewStore = useReviewStore();
 
 onMounted(() => {
-    store.getReviewList(route.params.videoId)
-})
-
-const goToCreateReview = function () {
-  // console.log("ing");
-  router2.push({ name: "reviewCreate" });
-};
-
-const goToReviewDetail = function () {
-  router2.push({ name: "reviewDetail", param: { id: 1 } });
-};
-
+  videoStore.getVideo(route.params.id);
+  reviewStore.getReviewList(route.params.id)
+  // console.log(store.reviewList)
+  // console.log(route.params.id);
+});
 </script>
 
 <style scoped>

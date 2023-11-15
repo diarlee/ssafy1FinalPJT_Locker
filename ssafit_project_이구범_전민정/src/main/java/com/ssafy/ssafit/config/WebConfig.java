@@ -9,14 +9,15 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.ssafy.ssafit.interceptor.JwtInterceptor;
+import com.ssafy.ssafit.interceptor.LoginInterceptor;
 
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 	
-	@Autowired
-	private JwtInterceptor jwtInterceptor;
 	
+	@Autowired
+	private LoginInterceptor loginInterceptor;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -33,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// 등록하면된다...
 		
-		registry.addInterceptor(jwtInterceptor).addPathPatterns("/swagger-ui/api/review/*").excludePathPatterns("/api/login", "/swagger-resources/**", "/swagger-ui/**", "/v2/api-docs");
+		registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/api/login", "/swagger-resources/**", "/swagger-ui/**", "/v2/api-docs");
 	}
 	
 	//CORS 에러를 해결하기 위해서 컨트롤러에 각각 작성을 할수도 있지만 공통처리(전역처리)라면 요기다 한방에 가넝

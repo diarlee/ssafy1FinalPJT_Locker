@@ -69,9 +69,6 @@ public class ExerciseRestController {
 			
 			exerciseService.upload(exercise);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
-//		} else {
-//			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-//		}
 	}
 
 
@@ -89,3 +86,4 @@ public class ExerciseRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }
+

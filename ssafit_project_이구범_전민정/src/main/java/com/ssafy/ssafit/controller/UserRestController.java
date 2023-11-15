@@ -104,7 +104,7 @@ public class UserRestController {
 	@ApiOperation(value="로그아웃")
 	public ResponseEntity<?> logout(HttpSession session) {
 		session.invalidate();
-		System.out.println("logout");
+//		System.out.println("logout");
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	

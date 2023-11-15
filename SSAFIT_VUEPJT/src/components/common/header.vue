@@ -32,7 +32,7 @@
                 </ul>
               </li>
               <div style="display: flex">
-                <div v-if="!loginOrNot" style="display: flex">
+                <div v-if="!store.loginStatus" style="display: flex">
                   <li class="nav-item">
                     <RouterLink class="nav-link" :to="{ name: 'signin' }">회원가입</RouterLink>
                     <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
@@ -63,10 +63,6 @@ import { RouterView, RouterLink } from "vue-router";
 import { computed } from "vue";
 import { useUsersStore } from "@/stores/users";
 const store = useUsersStore();
-
-const loginOrNot = computed(() => {
-  return store.loginStatus.value;
-})
 
 const logout = () => {
   store.logoutFunc();
