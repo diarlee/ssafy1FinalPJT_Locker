@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserService;
+import com.ssafy.ssafit.util.JwtUtil;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -24,6 +27,12 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api")
 @CrossOrigin("*")
 public class UserRestController {
+	
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
+	
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	@Autowired
 	private UserService userService;
@@ -48,24 +57,47 @@ public class UserRestController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
+//	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + Map
+//	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
+////		System.out.println(map.get("id") + " " + map.get("pwd"));
+//		
+//		String userId = map.get("id");
+//		String password = map.get("pwd");
+//		
+//		User user = userService.getUser(userId);
+//		
+//		if (user == null || !password.equals(user.getPassword())) {
+//			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+//		} else {
+//			session.setAttribute("loginUser", user);
+//			return new ResponseEntity<Void>(HttpStatus.OK);
+//		}
+//	}
 	@PostMapping("/login")
 	@ApiOperation(value="로그인")
-	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + Map
-	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
-//		System.out.println(map.get("id") + " " + map.get("pwd"));
+	public ResponseEntity<?> login(@RequestBody User user){
+		Map<String, Object> result = new HashMap<String, Object>();
 		
-		String userId = map.get("id");
-		String password = map.get("pwd");
+		HttpStatus status = null;
 		
-		User user = userService.getUser(userId);
-		
-		if (user == null || !password.equals(user.getPassword())) {
-			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-		} else {
-			session.setAttribute("loginUser", user);
-			return new ResponseEntity<Void>(HttpStatus.OK);
+		try {
+			if (user.getUserId() != null && user.getUserId().length() > 0) {
+				System.out.println(user);
+				result.put("access-token", jwtUtil.createToken("userId", user.getUserId()));
+				result.put("message", SUCCESS);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				result.put("message", FAIL);
+				status = HttpStatus.NO_CONTENT;
+			}
+		} catch (UnsupportedEncodingException e) {
+			result.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
+		
+		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
+	
 
 	@GetMapping("/logout")
 	@ApiOperation(value="로그아웃")

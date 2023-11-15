@@ -34,7 +34,7 @@ public class ExerciseRestController {
 	private ExerciseService exerciseService;
 	
 	
-	@GetMapping("/reviewAll")
+	@GetMapping("/exerciseAll")
 	@ApiOperation(value="모든 인증 게시글 조회")
 	public ResponseEntity<?> getAllList() {
 		List<Exercise> list = exerciseService.getList();
@@ -45,7 +45,7 @@ public class ExerciseRestController {
 		}
 	}
 
-	@GetMapping("/review/{exerciseId}")
+	@GetMapping("/exercise/{exerciseId}")
 	@ApiOperation(value="인증 게시글 조회", notes="리뷰 디테일")
 	public ResponseEntity<?> getList(@PathVariable int exerciseId) {
 		Exercise exercise = exerciseService.getExercise(exerciseId);
@@ -57,7 +57,7 @@ public class ExerciseRestController {
 	}
 	
 
-	@PostMapping("/review/write")
+	@PostMapping("/exercise/write")
 	@ApiOperation(value="인증 게시글 등록")
 	public ResponseEntity<?> writeExercise(@RequestBody Exercise exercise) {
 //		User user = (User) session.getAttribute("loginUser");
@@ -75,14 +75,14 @@ public class ExerciseRestController {
 	}
 
 
-	@PutMapping("/review/modify")
+	@PutMapping("/exercise/modify")
 	@ApiOperation(value="리뷰 수정", notes="리뷰 수정하기")
-	public ResponseEntity<?> modifyReview(Exercise exercise) {
+	public ResponseEntity<?> modifyReview(@RequestBody Exercise exercise) {
 		exerciseService.modify(exercise);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@DeleteMapping("/review/{exerciseId}")
+	@DeleteMapping("/exercise/{exerciseId}")
 	@ApiOperation(value="리뷰 삭제", notes="리뷰 삭제하기")
 	public ResponseEntity<?> removeReview(@PathVariable int exerciseId) {
 		exerciseService.delete(exerciseId);
