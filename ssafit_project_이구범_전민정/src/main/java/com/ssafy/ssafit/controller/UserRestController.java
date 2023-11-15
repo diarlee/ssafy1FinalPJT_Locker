@@ -57,46 +57,47 @@ public class UserRestController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-//	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + Map
-//	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
-////		System.out.println(map.get("id") + " " + map.get("pwd"));
-//		
-//		String userId = map.get("id");
-//		String password = map.get("pwd");
-//		
-//		User user = userService.getUser(userId);
-//		
-//		if (user == null || !password.equals(user.getPassword())) {
-//			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-//		} else {
-//			session.setAttribute("loginUser", user);
-//			return new ResponseEntity<Void>(HttpStatus.OK);
-//		}
-//	}
 	@PostMapping("/login")
 	@ApiOperation(value="로그인")
-	public ResponseEntity<?> login(@RequestBody User user){
-		Map<String, Object> result = new HashMap<String, Object>();
+	// vue를 거쳐 json 데이터로 전달되므로 @RequestBody + Map
+	public ResponseEntity<?> login(@RequestBody Map<String, String> map, HttpSession session) {
+//		System.out.println(map.get("id") + " " + map.get("pwd"));
 		
-		HttpStatus status = null;
+		String userId = map.get("id");
+		String password = map.get("pwd");
 		
-		try {
-			if (user.getUserId() != null && user.getUserId().length() > 0) {
-				System.out.println(user);
-				result.put("access-token", jwtUtil.createToken("userId", user.getUserId()));
-				result.put("message", SUCCESS);
-				status = HttpStatus.ACCEPTED;
-			} else {
-				result.put("message", FAIL);
-				status = HttpStatus.NO_CONTENT;
-			}
-		} catch (UnsupportedEncodingException e) {
-			result.put("message", FAIL);
-			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		User user = userService.getUser(userId);
+		
+		if (user == null || !password.equals(user.getPassword())) {
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		} else {
+			session.setAttribute("loginUser", user);
+			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
-		
-		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
+	
+//	public ResponseEntity<?> login(@RequestBody User user){
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		
+//		HttpStatus status = null;
+//		
+//		try {
+//			if (user.getUserId() != null && user.getUserId().length() > 0) {
+//				System.out.println(user);
+//				result.put("access-token", jwtUtil.createToken("userId", user.getUserId()));
+//				result.put("message", SUCCESS);
+//				status = HttpStatus.ACCEPTED;
+//			} else {
+//				result.put("message", FAIL);
+//				status = HttpStatus.NO_CONTENT;
+//			}
+//		} catch (UnsupportedEncodingException e) {
+//			result.put("message", FAIL);
+//			status = HttpStatus.INTERNAL_SERVER_ERROR;
+//		}
+//		
+//		return new ResponseEntity<Map<String, Object>>(result, status);
+//	}
 	
 
 	@GetMapping("/logout")
@@ -106,5 +107,11 @@ public class UserRestController {
 		System.out.println("logout");
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+//	public ResponseEntity<?> logout(@RequestBody Map<String, Object> result){
+//		result.clear();
+//		return new ResponseEntity<Void>(HttpStatus.OK);
+//	}
+
 
 }
