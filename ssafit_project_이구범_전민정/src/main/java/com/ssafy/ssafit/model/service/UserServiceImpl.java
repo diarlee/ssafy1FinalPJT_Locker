@@ -11,6 +11,7 @@ import com.ssafy.ssafit.model.dto.User;
 @Service
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
 	private UserDao userDao;
 
 	public UserServiceImpl() {
