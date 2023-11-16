@@ -69,9 +69,11 @@ public class UserRestController {
 		User user = userService.getUser(userId);
 		
 		if (user == null || !password.equals(user.getPassword())) {
+			System.out.println(user);
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		} else {
 			session.setAttribute("loginUser", user);
+			System.out.println(user);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}
@@ -103,6 +105,7 @@ public class UserRestController {
 	@GetMapping("/logout")
 	@ApiOperation(value="로그아웃")
 	public ResponseEntity<?> logout(HttpSession session) {
+		System.out.println("logout");
 		session.invalidate();
 //		System.out.println("logout");
 		return new ResponseEntity<Void>(HttpStatus.OK);
