@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainView from "@/views/MainView.vue";
+import MainView from "@/views/mainView.vue";
 import Signin from "@/components/user/signin.vue";
 import Login from "@/components/user/login.vue";
+import ArticleList from "@/views/articleView.vue"
+import VideoList from "@/views/videoView.vue"
 import VideoDetail from "@/components/video/videoDetail.vue";
 import ReviewCreate from "@/components/review/reviewCreate.vue";
 import ReviewDetail from "@/components/review/reviewDetail.vue";
@@ -26,6 +28,16 @@ const router = createRouter({
       component: Login,
     },
     {
+      path: "/article",
+      name: "articleList",
+      component: ArticleList,
+    },
+    {
+      path: "/video/:videoType",
+      name: "videoList",
+      component: VideoList,
+    },
+    {
       path: "/video/detail/:id",
       name: "videoDetail",
       component: VideoDetail,
@@ -45,6 +57,8 @@ const router = createRouter({
       name: "reviewUpdate",
       component: ReviewUpdate,
     },
+    
+    
     // {
     //   path: "/review",
     //   name: "review",

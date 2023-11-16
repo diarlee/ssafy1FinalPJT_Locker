@@ -8,33 +8,19 @@
       />
     </div>
     <div class="container">
-      <calender />
-      <div
-        style="width: 100%; padding: 10px; border-radius: 8px"
-        class="d-flex align-items-center shadow-sm mb-4"
-      >
-        <span class="material-symbols-outlined">search</span>
-        <div style="flex-grow: 1; margin-left: 10px">
-          <input
-            style="
-              width: 100%;
-              border: none;
-              background-color: transparent;
-              margin: 6px 2px 6px 2px;
-              padding: 2px;
-            "
-            list="datalistOptions"
-            placeholder="운동 제목 검색"
-          />
-        </div>
-        <datalist id="datalistOptions">
-          <option value="상체"></option>
-          <option value="하체"></option>
-          <option value="어깨"></option>
-          <option value="가슴"></option>
-          <option value="삼두"></option>
-        </datalist>
+      <div class="userInfo_articleList-container">
+        <userInfo class="userInfo"/>
+        <articleList1 class="articleList1" />
       </div>
+      <div class="calender_articleList-container">
+        <calender class="calender" />
+        <articleList2 class="articleList2" />
+      </div>
+      <div class="more">
+        <RouterLink type="button" :to="{name: 'articleList'}">+더보기</RouterLink>
+      </div>
+      <br>
+      <br>
       <div class="video-box">
         <div>
           <p class="fw-bold text-left fs-4">최근 가장 많이 본 영상</p>
@@ -73,6 +59,9 @@
             </div>
           </RouterLink>
         </div>
+      </div>
+      <div class="more">
+        <RouterLink type="button" :to="{name: 'videoList', params: {videoType: 'guide'}}">+더보기</RouterLink>
       </div>
       <div class="mt-5 video-box">
         <div>
@@ -113,6 +102,9 @@
           </RouterLink>
         </div>
       </div>
+      <div class="more">
+        <RouterLink type="button" :to="{name: 'videoList', params: {videoType: 'music'}}">+더보기</RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -120,7 +112,10 @@
 <script setup>
 import { useVideoStore } from "@/stores/video";
 import { onMounted } from "vue";
-import calender from "@/components/main/calender.vue";
+import userInfo from "@/components/user/userInfo.vue";
+import calender from "@/components/calender/calender.vue";
+import articleList1 from "@/components/article/articleList1.vue";
+import articleList2 from "@/components/article/articleList2.vue";
 
 const store = useVideoStore();
 
@@ -159,6 +154,54 @@ a {
   margin-top: 100px;
   margin-bottom: 200px;
   width: 1400px;
+}
+
+.userInfo_articleList-container {
+  width: 100%;
+  display: flex;
+}
+
+.userInfo_articleList-container > .userInfo {
+  flex-grow: 2;
+  height: 220px;
+}
+
+.userInfo_articleList-container > .articleList1{
+  flex-grow: 8;
+  height: 200px;
+}
+
+.calender_articleList-container {
+  width: 100%;
+  display: flex;
+}
+
+.calender_articleList-container > .calender {
+  flex-grow: 1;
+  height: 220px;
+}
+
+
+.calender_articleList-container > .articleList1 {
+  flex-grow: 9;
+  height: 200px;
+}
+
+.articleList2 {
+  width: 100%;
+  height: 200px;
+}
+
+.more {
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+}
+
+.moreButton {
+  width: 10%; 
 }
 
 .container-fluid {

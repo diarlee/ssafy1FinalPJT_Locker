@@ -81,19 +81,6 @@ a {
   text-decoration: none !important;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  left: 0;
-  right: 0;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
-  width: 1400px;
-}
-
 .container-fluid {
   padding: 0 20px 0 20px !important;
 }
@@ -103,27 +90,8 @@ a {
   font-size: 2rem;
 }
 
-.main-image {
-  width: 100%;
-  height: 200px;
-}
-
-.search-box {
-  width: 100%;
-  padding: 10px;
-}
-
 input {
   width: 100%;
 }
 
-.video-list img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.video-box {
-  width: 100%;
-}
 </style>

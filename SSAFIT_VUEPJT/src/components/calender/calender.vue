@@ -1,5 +1,5 @@
 <template>
-  <div class="calender_container">
+  <div class="calender-container">
     <table class="Calendar">
       <thead>
         <tr>
@@ -25,9 +25,12 @@
 </template>
 
 <script setup>
-window.onload = function () {
+import { onMounted } from "vue";
+
+onMounted(() => {
   buildCalendar();
-}; // 웹 페이지가 로드되면 buildCalendar 실행
+});
+
 
 let nowMonth = new Date(); // 현재 달을 페이지를 로드한 날의 달로 초기화
 let today = new Date(); // 페이지를 로드한 날짜를 저장
@@ -67,13 +70,8 @@ function buildCalendar() {
     // 둥근 사각형 모양으로 집어넣기
     nowColumn.innerText = leftPad(nowDay.getDate()); // 추가한 열에 날짜 입력
 
-    if (nowDay.getDay() == 0) {
-      // 일요일인 경우 글자색 빨강으로
-      nowColumn.style.color = "#DC143C";
-    }
     if (nowDay.getDay() == 6) {
-      // 토요일인 경우 글자색 파랑으로 하고
-      nowColumn.style.color = "#0000CD";
+      // 토요일인 경우
       nowRow = tbody_Calendar.insertRow(); // 새로운 행 추가
     }
 
@@ -141,8 +139,10 @@ function leftPad(value) {
 </script>
 
 <style scoped>
-.calender_container {
+.calender-container {
     border: solid 1px;
+    display: flex;
+    align-items: center;
 }
 
 td {
@@ -157,6 +157,8 @@ td {
 
 .Calendar > thead > tr:first-child > td {
   font-weight: bold;
+  height: 35px;
+  /* border: 1px solid; */
 }
 
 .Calendar > thead > tr:last-child > td {
