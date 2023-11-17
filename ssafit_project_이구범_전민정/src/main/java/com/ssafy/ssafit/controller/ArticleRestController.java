@@ -84,9 +84,13 @@ public class ArticleRestController {
 	@ApiOperation(value = "게시글 등록")
 	public ResponseEntity<?> createArticle(@RequestBody Article article){
 		User user = userService.getUser(article.getUserId());
-		article.setWriter(user.getUsername());
-		articleService.writeArticle(article);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+		if(user != null) {
+			article.setWriter(user.getUsername());
+			articleService.writeArticle(article);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 	
 	
