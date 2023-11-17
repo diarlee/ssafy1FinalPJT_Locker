@@ -1,6 +1,6 @@
 <template>
     <div class="userInfo-container">
-
+        <div class="userGrade"></div>
     </div>
 </template>
 

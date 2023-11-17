@@ -45,6 +45,7 @@
 </template>
 
 <script setup>
+import Snowing from "@/components/common/snowing.vue"
 import { RouterView, RouterLink } from "vue-router";
 import { ref } from "vue";
 import { useUsersStore } from "@/stores/users";

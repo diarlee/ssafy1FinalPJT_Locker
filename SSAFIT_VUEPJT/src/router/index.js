@@ -3,6 +3,7 @@ import MainView from "@/views/mainView.vue";
 import Signin from "@/components/user/signin.vue";
 import Login from "@/components/user/login.vue";
 import ArticleList from "@/views/articleView.vue"
+import ArticleCreate from "@/components/article/articleCreate.vue"
 import VideoList from "@/views/videoView.vue"
 import VideoDetail from "@/components/video/videoDetail.vue";
 import ReviewCreate from "@/components/review/reviewCreate.vue";
@@ -31,6 +32,11 @@ const router = createRouter({
       path: "/article",
       name: "articleList",
       component: ArticleList,
+    },
+    {
+      path: "/article/write",
+      name: "articleCreate",
+      component: ArticleCreate,
     },
     {
       path: "/video/:videoType",

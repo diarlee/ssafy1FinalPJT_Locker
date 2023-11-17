@@ -13,17 +13,18 @@
         <articleList1 class="articleList1" />
       </div>
       <div class="calender_articleList-container">
-        <calender class="calender" />
         <articleList2 class="articleList2" />
+        <calender class="calender" />
       </div>
       <div class="more">
-        <RouterLink type="button" :to="{name: 'articleList'}">+더보기</RouterLink>
+        <RouterLink type="button" class="moreButton" :to="{name: 'articleList'}">+더보기</RouterLink>
+        <RouterLink type="button" :to="{name: 'articleCreate'}">인증하기</RouterLink>
       </div>
       <br>
       <br>
       <div class="video-box">
         <div>
-          <p class="fw-bold text-left fs-4">최근 가장 많이 본 영상</p>
+          <p class="fw-bold text-left fs-4">운동할 때 보면좋은</p>
         </div>
         <div
           class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around"
@@ -65,7 +66,7 @@
       </div>
       <div class="mt-5 video-box">
         <div>
-          <p class="fw-bold text-left fs-4">최근 가장 많이 본 영상</p>
+          <p class="fw-bold text-left fs-4">운동할 때 듣기좋은</p>
         </div>
         <div
           class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around"
@@ -110,12 +111,14 @@
 </template>
 
 <script setup>
+import { RouterLink, RouterView } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { onMounted } from "vue";
 import userInfo from "@/components/user/userInfo.vue";
 import calender from "@/components/calender/calender.vue";
 import articleList1 from "@/components/article/articleList1.vue";
 import articleList2 from "@/components/article/articleList2.vue";
+import snowing from "@/components/common/snowing.vue";
 
 const store = useVideoStore();
 
@@ -200,13 +203,6 @@ a {
   justify-content: center;
 }
 
-.moreButton {
-  width: 10%; 
-}
-
-.container-fluid {
-  padding: 0 20px 0 20px !important;
-}
 
 #page-name {
   font-weight: bold;
@@ -216,11 +212,6 @@ a {
 .main-image {
   width: 100%;
   height: 200px;
-}
-
-.search-box {
-  width: 100%;
-  padding: 10px;
 }
 
 input {
