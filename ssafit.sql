@@ -1,18 +1,17 @@
-
 -- MySQL Workbench Forward Engineering
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema ssafit
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `ssafit` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `ssafit` DEFAULT CHARACTER SET utf8mb3 ;
+
 USE `ssafit` ;
-
 -- -----------------------------------------------------
--- Table `mydb`.`user`
+-- Table `ssafit`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ssafit`.`user` (
   `userId` VARCHAR(16) NOT NULL,
@@ -20,13 +19,59 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`user` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `score` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`userId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`video`
+-- Table `ssafit`.`article`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ssafit`.`article` (
+  `articleId` INT NOT NULL AUTO_INCREMENT,
+  `userId` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `content` VARCHAR(255) NOT NULL,
+  `isChecked` TINYINT NOT NULL DEFAULT 0,
+  `isPublic` TINYINT NOT NULL DEFAULT 0,
+  `image` VARCHAR(255) NOT NULL,
+  `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `liked` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`articleId`) ,
+  CONSTRAINT `fk_article_user`
+    FOREIGN KEY (`userId`)
+    REFERENCES `ssafit`.`user` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ssafit`.`articleComment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ssafit`.`articleComment` (
+  `commentId` INT NOT NULL AUTO_INCREMENT,
+  `articleId` INT NOT NULL,
+  `userId` VARCHAR(45) NOT NULL,
+  `content` VARCHAR(255) NOT NULL,
+  `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`commentId`),
+  CONSTRAINT `fk_articleComment_article`
+    FOREIGN KEY (`articleId`)
+    REFERENCES `ssafit`.`article` (`articleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_articleComment_user`
+    FOREIGN KEY (`userId`)
+    REFERENCES `ssafit`.`user` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ssafit`.`video`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ssafit`.`video` (
   `videoId` VARCHAR(255) NOT NULL,
@@ -37,19 +82,15 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`video` (
   `viewCnt` INT NOT NULL,
   `url` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`videoId`),
-  UNIQUE INDEX `videoId_UNIQUE` (`videoId` ASC) VISIBLE,
-  INDEX `fk_video_user_idx` (`userId` ASC) VISIBLE,
   CONSTRAINT `fk_video_user`
     FOREIGN KEY (`userId`)
-    REFERENCES `ssafit`.`user` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `ssafit`.`user` (`userId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`review`
+-- Table `ssafit`.`review`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
   `reviewId` INT NOT NULL AUTO_INCREMENT,
@@ -61,25 +102,22 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
   `content` VARCHAR(255) NOT NULL,
   `viewCnt` INT NOT NULL,
   PRIMARY KEY (`reviewId`),
-  UNIQUE INDEX `reviewId_UNIQUE` (`reviewId` ASC) VISIBLE,
-  INDEX `fk_review_video1_idx` (`videoId` ASC) VISIBLE,
-  CONSTRAINT `fk_review_video1`
-    FOREIGN KEY (`videoId`)
-    REFERENCES `ssafit`.`video` (`videoId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_review_user1`
+  CONSTRAINT `fk_review_user`
     FOREIGN KEY (`userId`)
-    REFERENCES `ssafit`.`user` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `ssafit`.`user` (`userId`),
+  CONSTRAINT `fk_review_video`
+    FOREIGN KEY (`videoId`)
+    REFERENCES `ssafit`.`video` (`videoId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb3;
 
--- INSERT INTO user (userId, username, email, password)
--- VALUES ("ssafy", "admin", "ssafy@naver.com", "1234");
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-SET foreign_key_checks = 0;
+INSERT INTO user (userId, username, email, password)
+VALUES ("ssafy", "admin", "ssafy@naver.com", "1234");
 
 INSERT INTO video
 VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]", "전신", "ThankyouBUBU", 0,
@@ -99,12 +137,16 @@ VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소�
         ("7TLk7pscICk", "ssafy", "(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)", "복부", "SomiFit", 0,
             "https://www.youtube.com/embed/7TLk7pscICk");
 
-SET foreign_key_checks = 1;
-
 INSERT INTO review(videoId, userId, title, writer, content, viewCnt)
-VALUES ("gMaB-fG4u4g", "bs", "good", "bs", "good", 0),
-("gMaB-fG4u4g", "mj", "bad", "mj", "bad", 0),
-("7TLk7pscICk", "oree", "bad", "ori", "bad", 0);
+VALUES 
+("gMaB-fG4u4g", "ssafy", "bad", "ssafy", "bad", 0),
+("gMaB-fG4u4g", "ssafy", "good", "ssafy", "bad", 0);
+
+INSERT INTO article(userId, title, content, isPublic, image)
+values ("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱");
+
+INSERT INTO articleComment(articleId, userId, content)
+values (1, "ssafy", "신고합니다.");
 
 SELECT *
 FROM video;
@@ -112,4 +154,11 @@ FROM video;
 SELECT *
 FROM user;
 
-select * from review;
+SELECT *
+FROM review;
+
+SELECT *
+FROM article;
+
+SELECT *
+FROM articleComment;

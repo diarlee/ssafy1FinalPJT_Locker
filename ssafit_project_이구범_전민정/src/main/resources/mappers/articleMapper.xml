@@ -21,7 +21,26 @@
 		values(#{userId}, #{title}, #{content}, #{image});
 	</insert>
 	
-	<delete id="updateArticle" parameterType="Article">
-		
+	<update id="updateArticle" parameterType="Article">
+		update article
+		set title = #{title}, content = #{content} 
+		where articleId = #{articleId};
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		delete from article
+		where articleId = #{articleId};
 	</delete>
+	
+	<update id="updateLike" parameterType="int">
+		update article
+		set liked = #{liked}
+		where articleId = #{articleId};
+	</update>
+	
+	<update id="updateCheck" parameterType="int">
+		update article
+		set isChecked = #{isChecked}
+		where articleId = #{articleId};
+	</update>
 </mapper>
