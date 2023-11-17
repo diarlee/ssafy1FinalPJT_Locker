@@ -1,4 +1,5 @@
 -- MySQL Workbench Forward Engineering
+drop schema if exists `ssafit`;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -31,6 +32,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `ssafit`.`article` (
   `articleId` INT NOT NULL AUTO_INCREMENT,
   `userId` VARCHAR(45) NOT NULL,
+  `writer` VARCHAR(45) NOT NULL,
   `title` VARCHAR(45) NOT NULL,
   `content` VARCHAR(255) NOT NULL,
   `isChecked` TINYINT NOT NULL DEFAULT 0,
@@ -117,7 +119,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO user (userId, username, email, password)
-VALUES ("ssafy", "admin", "ssafy@naver.com", "1234");
+VALUES ("ssafy", "admin", "ssafy@naver.com", "1234"),
+("test", "tester", "test@naver.com", "1234");
 
 INSERT INTO video
 VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]", "전신", "ThankyouBUBU", 0,
@@ -143,7 +146,13 @@ VALUES
 ("gMaB-fG4u4g", "ssafy", "good", "ssafy", "bad", 0);
 
 INSERT INTO article(userId, title, content, isPublic, image)
-values ("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱");
+values 
+("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱"),
+("test", "오리", "꽥꽥", 1, "이미지~ 속았지롱"),
+("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱"),
+("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱"),
+("test", "런닝머신이...", "고장나서 오늘은 등 함", 1, "이미지~ 속았지롱"),
+("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱");
 
 INSERT INTO articleComment(articleId, userId, content)
 values (1, "ssafy", "신고합니다.");
@@ -159,6 +168,16 @@ FROM review;
 
 SELECT *
 FROM article;
+
+select * 
+from article
+order by regDate desc
+limit 4;
+
+select * 
+from article
+order by regDate desc
+limit 4, 8;
 
 SELECT *
 FROM articleComment;

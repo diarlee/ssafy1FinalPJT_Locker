@@ -9,6 +9,12 @@ public interface ArticleDao {
 	// 전체 게시글 조회 
 	List<Article> selectAll();
 
+	// 최신순 top 4
+	List<Article> selectTopfour();
+	
+	// 최신순 top 5-8
+	List<Article> selectTopeight();
+
 	// 게시글 상세 조회
 	Article selectOne(int articleId);
 
@@ -26,5 +32,6 @@ public interface ArticleDao {
 
 	// 운동 인증하기
 	void updateCheck(int articleId);
+
 
 }

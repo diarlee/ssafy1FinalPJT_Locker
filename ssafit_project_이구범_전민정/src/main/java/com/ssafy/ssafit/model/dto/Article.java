@@ -4,6 +4,7 @@ public class Article {
 
 	private int articleId;
 	private String userId;
+	private String writer;
 	private String title;
 	private String content;
 	private boolean isChecked;
@@ -16,10 +17,11 @@ public class Article {
 		
 	}
 
-	public Article(int articleId, String userId, String title, String content, boolean isChecked, boolean isPublic,
+	public Article(int articleId, String userId, String writer, String title, String content, boolean isChecked, boolean isPublic,
 			String image, String regDate, int liked) {
 		this.articleId = articleId;
 		this.userId = userId;
+		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		this.isChecked = isChecked;
@@ -101,9 +103,17 @@ public class Article {
 		this.liked = liked;
 	}
 
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	
 	@Override
 	public String toString() {
-		return "Article [articleId=" + articleId + ", userId=" + userId + ", title=" + title + ", content=" + content
+		return "Article [articleId=" + articleId + ", userId=" + userId + ", writer=" + writer +", title=" + title + ", content=" + content
 				+ ", isChecked=" + isChecked + ", isPublic=" + isPublic + ", image=" + image + ", regDate=" + regDate
 				+ ", liked=" + liked + "]";
 	}

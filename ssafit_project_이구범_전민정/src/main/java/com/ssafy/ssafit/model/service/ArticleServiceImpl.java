@@ -21,6 +21,17 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	public List<Article> getTopFour() {
+		return articleDao.selectTopfour();
+	}
+	
+	@Override
+	public List<Article> getTopEight() {
+		// TODO Auto-generated method stub
+		return articleDao.selectTopeight();
+	}
+	
+	@Override
 	public Article getArticle(int articleId) {
 		// TODO Auto-generated method stub
 		return articleDao.selectOne(articleId);
@@ -52,5 +63,6 @@ public class ArticleServiceImpl implements ArticleService {
 	public void checkIt(int articleId) {
 		articleDao.updateCheck(articleId);		
 	}
+
 
 }

@@ -9,6 +9,12 @@ public interface ArticleService {
 	// 전체 게시글 가져오기
 	public List<Article> getAll();
 	
+	// 전체 게시글 가져오기
+	public List<Article> getTopFour();
+	
+	// 전체 게시글 가져오기
+	public List<Article> getTopEight();
+	
 	// 게시글 상세 조회
 	public Article getArticle(int articleId);
 

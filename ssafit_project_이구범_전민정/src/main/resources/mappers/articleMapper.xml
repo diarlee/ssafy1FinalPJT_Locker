@@ -7,7 +7,22 @@
 	
 	<select id="selectAll" resultType="Article">
 		select * 
-		from article;
+		from article
+		order by regDate desc;
+	</select>
+	
+	<select id="selectTopfour" resultType="Article">
+		select * 
+		from article
+		order by regDate desc
+		limit 4;
+	</select>
+	
+	<select id="selectTopeight" resultType="Article">
+		select * 
+		from article
+		order by regDate desc
+		limit 4, 8;
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Article">
@@ -17,8 +32,8 @@
 	</select>
 	
 	<insert id="insertArticle" parameterType="Article">
-		insert into (userId, title, content, image)
-		values(#{userId}, #{title}, #{content}, #{image});
+		insert into (userId, title, writer, content, image)
+		values(#{userId}, #{title}, #{writer}, #{content}, #{image});
 	</insert>
 	
 	<update id="updateArticle" parameterType="Article">
@@ -34,13 +49,13 @@
 	
 	<update id="updateLike" parameterType="int">
 		update article
-		set liked = #{liked}
+		set liked = #{liked} + 1
 		where articleId = #{articleId};
 	</update>
 	
 	<update id="updateCheck" parameterType="int">
 		update article
-		set isChecked = #{isChecked}
+		set isChecked = #{isChecked}^1
 		where articleId = #{articleId};
 	</update>
 </mapper>
