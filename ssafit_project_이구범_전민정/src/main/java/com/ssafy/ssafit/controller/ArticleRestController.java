@@ -1,0 +1,143 @@
+package com.ssafy.ssafit.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ssafy.ssafit.model.dto.Article;
+import com.ssafy.ssafit.model.dto.User;
+import com.ssafy.ssafit.model.service.ArticleService;
+import com.ssafy.ssafit.model.service.UserService;
+
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@RequestMapping("/api/article")
+@CrossOrigin("*")
+public class ArticleRestController {
+
+	@Autowired
+	private ArticleService articleService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping("/all")
+	@ApiOperation(value = "모든 게시글 조회")
+	public ResponseEntity<?> getArticleList(){
+		List<Article> article = articleService.getAll();
+		
+		if(article != null) {
+			return new ResponseEntity<List<Article>>(article, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/top4")
+	@ApiOperation(value = "모든 게시글 조회")
+	public ResponseEntity<?> getTopfour(){
+		List<Article> article = articleService.getTopFour();
+		
+		if(article != null) {
+			return new ResponseEntity<List<Article>>(article, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/top4to8")
+	@ApiOperation(value = "모든 게시글 조회")
+	public ResponseEntity<?> getTopfourTo(){
+		List<Article> article = articleService.getTopEight();
+		
+		if(article != null) {
+			return new ResponseEntity<List<Article>>(article, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/detail/${articleId}")
+	@ApiOperation(value = "게시글 상세 조회")
+	public ResponseEntity<?> getArticle(@PathVariable int articleId){
+		Article article = articleService.getArticle(articleId);
+		if(article != null) {
+			return new ResponseEntity<Article>(article, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@PostMapping("/write")
+	@ApiOperation(value = "게시글 등록")
+	public ResponseEntity<?> createArticle(@RequestBody Article article){
+		User user = userService.getUser(article.getUserId());
+		if(user != null) {
+			article.setWriter(user.getUsername());
+			articleService.writeArticle(article);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	
+	@PutMapping("/modify/${articleId}")
+	@ApiOperation(value="게시글 수정")
+	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody Article article){
+		User user = userService.getUser(article.getUserId());
+		if(article.getArticleId() == articleId && user != null) {
+			articleService.writeArticle(article);
+			return new ResponseEntity<Void>(HttpStatus.OK);			
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+	}
+	
+	@DeleteMapping("/delete/${articleId}")
+	@ApiOperation(value="게시글 삭제")
+	public ResponseEntity<?> removeArticle(@PathVariable int articleId){
+		Article article = articleService.getArticle(articleId);
+		User user = userService.getUser(article.getUserId());
+		
+		if(user != null) {
+			articleService.removeArticle(articleId);
+			return new ResponseEntity<Void>(HttpStatus.OK);			
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}	
+	}
+	
+	// 이거 좀 복잡할지도... 더 생각해보기
+	@PutMapping("/like/${articleId}")
+	@ApiOperation(value="좋아요 누르기 기능")
+	public ResponseEntity<?> likeIt(String userId, @PathVariable int articleId){
+		articleService.likeIt(articleId);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	
+	@PutMapping("/check/${articleId}")
+	@ApiOperation(value="게시글 인증 기능")
+	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
+		if(userId == "ssafy") {
+			articleService.checkIt(articleId);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+}

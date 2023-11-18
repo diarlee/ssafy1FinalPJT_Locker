@@ -91,19 +91,25 @@ public class ReviewRestController {
 	@PutMapping("/review/modify/{reviewId}")
 	@ApiOperation(value = "리뷰 수정", notes = "리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(@RequestBody Review review, @PathVariable int reviewId) {
-
-		if (review.getReviewId() == reviewId) {
+		User user = userService.getUser(review.getUserId());
+		if (review.getReviewId() == reviewId && user != null) {
 			reviewService.modifyReview(review);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
 
 	@DeleteMapping("/review/delete/{reviewId}")
 	@ApiOperation(value = "리뷰 삭제", notes = "리뷰 삭제하기")
 	public ResponseEntity<?> removeReview(@PathVariable int reviewId) {
-		reviewService.removeReview(reviewId);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		Review review = reviewService.getReview(reviewId);
+		User user = userService.getUser(review.getUserId());
+		if(user != null) {
+			reviewService.removeReview(reviewId);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 }

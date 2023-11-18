@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserService;
+import com.ssafy.ssafit.util.JwtUtil;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -24,6 +27,12 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api")
 @CrossOrigin("*")
 public class UserRestController {
+	
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
+	
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	@Autowired
 	private UserService userService;
@@ -60,19 +69,52 @@ public class UserRestController {
 		User user = userService.getUser(userId);
 		
 		if (user == null || !password.equals(user.getPassword())) {
+			System.out.println(user);
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		} else {
 			session.setAttribute("loginUser", user);
+			System.out.println(user);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}
+	
+//	public ResponseEntity<?> login(@RequestBody User user){
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		
+//		HttpStatus status = null;
+//		
+//		try {
+//			if (user.getUserId() != null && user.getUserId().length() > 0) {
+//				System.out.println(user);
+//				result.put("access-token", jwtUtil.createToken("userId", user.getUserId()));
+//				result.put("message", SUCCESS);
+//				status = HttpStatus.ACCEPTED;
+//			} else {
+//				result.put("message", FAIL);
+//				status = HttpStatus.NO_CONTENT;
+//			}
+//		} catch (UnsupportedEncodingException e) {
+//			result.put("message", FAIL);
+//			status = HttpStatus.INTERNAL_SERVER_ERROR;
+//		}
+//		
+//		return new ResponseEntity<Map<String, Object>>(result, status);
+//	}
+	
 
 	@GetMapping("/logout")
 	@ApiOperation(value="로그아웃")
 	public ResponseEntity<?> logout(HttpSession session) {
+		System.out.println("logout");
 		session.invalidate();
 //		System.out.println("logout");
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+//	public ResponseEntity<?> logout(@RequestBody Map<String, Object> result){
+//		result.clear();
+//		return new ResponseEntity<Void>(HttpStatus.OK);
+//	}
+
 
 }

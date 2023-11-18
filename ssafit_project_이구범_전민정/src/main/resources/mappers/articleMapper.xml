@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ssafit.model.dao.ArticleDao">
+	
+	
+	<select id="selectAll" resultType="Article">
+		select * 
+		from article
+		order by regDate desc;
+	</select>
+	
+	<select id="selectTopfour" resultType="Article">
+		select * 
+		from article
+		order by regDate desc
+		limit 4;
+	</select>
+	
+	<select id="selectTopeight" resultType="Article">
+		select * 
+		from article
+		order by regDate desc
+		limit 4, 8;
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="Article">
+		select *
+		from article 
+		where aricleId = #{articleId};
+	</select>
+	
+	<insert id="insertArticle" parameterType="Article">
+		insert into (userId, title, writer, content, image)
+		values(#{userId}, #{title}, #{writer}, #{content}, #{image});
+	</insert>
+	
+	<update id="updateArticle" parameterType="Article">
+		update article
+		set title = #{title}, content = #{content} 
+		where articleId = #{articleId};
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		delete from article
+		where articleId = #{articleId};
+	</delete>
+	
+	<update id="updateLike" parameterType="int">
+		update article
+		set liked = #{liked} + 1
+		where articleId = #{articleId};
+	</update>
+	
+	<update id="updateCheck" parameterType="int">
+		update article
+		set isChecked = #{isChecked}^1
+		where articleId = #{articleId};
+	</update>
+</mapper>
