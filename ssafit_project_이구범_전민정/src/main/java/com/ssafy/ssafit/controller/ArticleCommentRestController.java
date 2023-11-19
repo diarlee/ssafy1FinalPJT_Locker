@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.ssafit.model.dto.Article;
 import com.ssafy.ssafit.model.dto.ArticleComment;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.ArticleCommentService;
@@ -34,7 +33,7 @@ public class ArticleCommentRestController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/all/${articleId}")
+	@GetMapping("/all/{articleId}")
 	@ApiOperation(value="댓글 보여줘잉")
 	public ResponseEntity<?> getList(@PathVariable int articleId){
 		List<ArticleComment> list = commentService.getComment(articleId);
@@ -46,7 +45,7 @@ public class ArticleCommentRestController {
 		}
 	}
 	
-	@PostMapping("/write/${articleId}")
+	@PostMapping("/write/{articleId}")
 	@ApiOperation(value = "댓글 등록")
 	public ResponseEntity<?> createArticle(@PathVariable int articleId, @RequestBody ArticleComment comment){
 		User user = userService.getUser(comment.getUserId());
@@ -61,7 +60,7 @@ public class ArticleCommentRestController {
 	}
 	
 	
-	@PutMapping("/modify/${articleId}")
+	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="댓글 수정")
 	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody ArticleComment comment){
 		User user = userService.getUser(comment.getUserId());
@@ -75,7 +74,7 @@ public class ArticleCommentRestController {
 		
 	}
 	
-	@DeleteMapping("/delete/${articleId}")
+	@DeleteMapping("/delete/{articleId}")
 	@ApiOperation(value="게시글 삭제")
 	public ResponseEntity<?> removeArticle(int commentId, @PathVariable int articleId){
 		ArticleComment comment = commentService.getOne(commentId);

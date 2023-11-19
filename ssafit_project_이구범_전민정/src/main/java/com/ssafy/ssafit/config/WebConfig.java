@@ -16,8 +16,8 @@ import com.ssafy.ssafit.interceptor.LoginInterceptor;
 public class WebConfig implements WebMvcConfigurer {
 	
 	// 가져다 쓸 인터셉터 ~ 
-	@Autowired
-	private LoginInterceptor loginInterceptor;
+//	@Autowired
+//	private LoginInterceptor loginInterceptor;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -5,18 +5,18 @@ public class ArticleComment {
 	private int commentId;
 	private int articleId;
 	private String userId;
-	private String comment;
+	private String content;
 	private String regDate;
 	
 	public ArticleComment() {
 		
 	}
 
-	public ArticleComment(int commentId, int articleId, String userId, String comment, String regDate) {
+	public ArticleComment(int commentId, int articleId, String userId, String content, String regDate) {
 		this.commentId = commentId;
 		this.articleId = articleId;
 		this.userId = userId;
-		this.comment = comment;
+		this.content = content;
 		this.regDate = regDate;
 	}
 
@@ -44,12 +44,12 @@ public class ArticleComment {
 		this.userId = userId;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getContent() {
+		return content;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getRegDate() {
@@ -63,7 +63,7 @@ public class ArticleComment {
 	@Override
 	public String toString() {
 		return "ArticleComment [commentId=" + commentId + ", articleId=" + articleId + ", userId=" + userId
-				+ ", comment=" + comment + ", regDate=" + regDate + "]";
+				+ ", content=" + content + ", regDate=" + regDate + "]";
 	}
 	
 	
