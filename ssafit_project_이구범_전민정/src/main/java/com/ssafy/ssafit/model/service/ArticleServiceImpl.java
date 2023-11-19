@@ -72,4 +72,23 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDao.updateCheck(articleId);
 	}
 
+	@Override
+	public void isPublic(int articleId) {
+		// TODO Auto-generated method stub
+		articleDao.updatePublic(articleId);
+	}
+	
+	@Override
+	public List<Article> getNotChecked() {
+		// TODO Auto-generated method stub
+		return articleDao.selectNoCheck();
+	}
+
+	@Override
+	public List<Article> getPublic() {
+		// TODO Auto-generated method stub
+		return articleDao.selectPublic();
+	}
+
+
 }

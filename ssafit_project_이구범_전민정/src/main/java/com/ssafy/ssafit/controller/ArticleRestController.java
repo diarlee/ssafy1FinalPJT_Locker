@@ -46,7 +46,7 @@ public class ArticleRestController {
 	}
 	
 	@GetMapping("/top4")
-	@ApiOperation(value = "모든 게시글 조회")
+	@ApiOperation(value = "top4 게시글 조회")
 	public ResponseEntity<?> getTopfour(){
 		List<Article> article = articleService.getTopFour();
 		
@@ -58,7 +58,7 @@ public class ArticleRestController {
 	}
 	
 	@GetMapping("/top4to8")
-	@ApiOperation(value = "모든 게시글 조회")
+	@ApiOperation(value = "top5 - 8 게시글 조회")
 	public ResponseEntity<?> getTopfourTo(){
 		List<Article> article = articleService.getTopEight();
 		
@@ -133,11 +133,40 @@ public class ArticleRestController {
 	@PutMapping("/check/{articleId}")
 	@ApiOperation(value="게시글 인증 기능")
 	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
-		if(userId == "ssafy") {
+		if(userId.equals("ssafy")) {
 			articleService.checkIt(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@PutMapping("/public/{articleId}")
+	@ApiOperation(value="게시글 전체 공개 설정")
+	public ResponseEntity<?> isPublic(@PathVariable int articleId){
+			articleService.checkIt(articleId);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/isPublic")
+	@ApiOperation(value="전체공개 게시글 목록 가져오기")
+	public ResponseEntity<?> getPublic(){
+		List<Article> articles = articleService.getPublic();
+		if( articles != null ) {
+			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/noCheck")
+	@ApiOperation(value="인증 안 된 게시글 목록 가져오기")
+	public ResponseEntity<?> notChecked(){
+		List<Article> articles = articleService.getNotChecked();
+		if( articles != null ) {
+			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 	}
 }
