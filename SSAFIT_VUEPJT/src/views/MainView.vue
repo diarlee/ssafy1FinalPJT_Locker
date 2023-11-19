@@ -118,7 +118,6 @@ import userInfo from "@/components/user/userInfo.vue";
 import calender from "@/components/calender/calender.vue";
 import articleList1 from "@/components/article/articleList1.vue";
 import articleList2 from "@/components/article/articleList2.vue";
-import snowing from "@/components/common/snowing.vue";
 
 const store = useVideoStore();
 

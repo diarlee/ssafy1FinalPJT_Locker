@@ -65,6 +65,7 @@ export const useUsersStore = defineStore("users", () => {
     axios.get(`${REST_USER_API}/logout`)
       .then(() => {
         loginStatus.value = !loginStatus.value;
+        loginId.value = "";
         console.log("로그아웃 성공");
         router.push({ name: 'home' });
       })

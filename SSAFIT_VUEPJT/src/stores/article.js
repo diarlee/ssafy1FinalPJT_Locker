@@ -36,11 +36,11 @@ export const useArticleStore = defineStore("article", () => {
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
       data: {
-        userId: article.userId,
-        image: article.image,
-        writer: article.writer,
-        content: article.content,
-        isPublic: article.isPublic,
+        userId: article.value.userId,
+        image: article.value.image,
+        title: article.value.title,
+        content: article.value.content,
+        isPublic: article.value.isPublic,
       },
     })
       .then(() => {

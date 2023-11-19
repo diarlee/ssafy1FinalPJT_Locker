@@ -131,10 +131,11 @@ public class ArticleRestController {
 	}
 	
 	
-	@PutMapping("/check/{articleId}")
+	@PutMapping("/check")
 	@ApiOperation(value="게시글 인증 기능")
-	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
-		if(userId.equals("ssafy")) {
+	public ResponseEntity<?> checkIt(String userId, int articleId){
+		System.out.println(userId + " " + articleId);
+		if(userId.equals("master")) {
 			articleService.checkIt(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
@@ -160,7 +161,7 @@ public class ArticleRestController {
 		}
 	}
 	
-	@GetMapping("/noCheck")
+	@GetMapping("/notCheck")
 	@ApiOperation(value="인증 안 된 게시글 목록 가져오기")
 	public ResponseEntity<?> notChecked(){
 		List<Article> articles = articleService.getNotChecked();

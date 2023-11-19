@@ -43,7 +43,7 @@ const articleStore = useArticleStore();
 const article = ref({
   userId: userStore.loginId,
   image: "",
-  writer: "",
+  title: "",
   content: "",
   isPublic: true,
 })
