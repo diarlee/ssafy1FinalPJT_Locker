@@ -2,7 +2,7 @@
   <div class="articleCreate-container">
     <div class="articleCreate-box">
       <h2>게시글 업로드</h2>
-      <form @submit.prevent="createArticle">
+      <form>
         <div class="input-box">
           <input type="text" v-model="article.image">
           <label for="">이미지</label>
@@ -18,7 +18,7 @@
         <div class="input-button">
           <button @click="article.isPublic = !article.isPublic">{{ getIsPublic }}</button>
         </div>
-        <a type="submit">
+        <a @click="createArticle">
           <span></span>
           <span></span>
           <span></span>
@@ -53,6 +53,7 @@ const getIsPublic = computed(() => {
 })
 
 const createArticle = function () {
+  // console.log("ing")
     articleStore.createArticle(article)
 }
 </script>
