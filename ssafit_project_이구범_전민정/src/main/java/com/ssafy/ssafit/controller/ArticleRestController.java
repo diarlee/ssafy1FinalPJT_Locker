@@ -69,7 +69,7 @@ public class ArticleRestController {
 		}
 	}
 	
-	@GetMapping("/detail/${articleId}")
+	@GetMapping("/detail/{articleId}")
 	@ApiOperation(value = "게시글 상세 조회")
 	public ResponseEntity<?> getArticle(@PathVariable int articleId){
 		Article article = articleService.getArticle(articleId);
@@ -94,7 +94,7 @@ public class ArticleRestController {
 	}
 	
 	
-	@PutMapping("/modify/${articleId}")
+	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="게시글 수정")
 	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody Article article){
 		User user = userService.getUser(article.getUserId());
@@ -107,7 +107,7 @@ public class ArticleRestController {
 		
 	}
 	
-	@DeleteMapping("/delete/${articleId}")
+	@DeleteMapping("/delete/{articleId}")
 	@ApiOperation(value="게시글 삭제")
 	public ResponseEntity<?> removeArticle(@PathVariable int articleId){
 		Article article = articleService.getArticle(articleId);
@@ -122,7 +122,7 @@ public class ArticleRestController {
 	}
 	
 	// 이거 좀 복잡할지도... 더 생각해보기
-	@PutMapping("/like/${articleId}")
+	@PutMapping("/like/{articleId}")
 	@ApiOperation(value="좋아요 누르기 기능")
 	public ResponseEntity<?> likeIt(String userId, @PathVariable int articleId){
 		articleService.likeIt(articleId);
@@ -130,7 +130,7 @@ public class ArticleRestController {
 	}
 	
 	
-	@PutMapping("/check/${articleId}")
+	@PutMapping("/check/{articleId}")
 	@ApiOperation(value="게시글 인증 기능")
 	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
 		if(userId == "ssafy") {
