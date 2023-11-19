@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.ssafit.model.dao.ArticleCommentDao;
 import com.ssafy.ssafit.model.dto.ArticleComment;
@@ -11,8 +12,17 @@ import com.ssafy.ssafit.model.dto.ArticleComment;
 @Service
 public class ArticleCommentServiceImpl implements ArticleCommentService{
 
-	@Autowired
 	private ArticleCommentDao commentDao;
+
+	public ArticleCommentServiceImpl() {
+
+	}
+
+	@Autowired
+	public ArticleCommentServiceImpl(ArticleCommentDao commentDao) {	
+		this.commentDao = commentDao;
+	}
+	
 	
 	@Override
 	public List<ArticleComment> getComment(int articleId) {

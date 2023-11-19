@@ -28,11 +28,11 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin("*")
 public class UserRestController {
 	
-	private static final String SUCCESS = "success";
-	private static final String FAIL = "fail";
-	
-	@Autowired
-	private JwtUtil jwtUtil;
+//	private static final String SUCCESS = "success";
+//	private static final String FAIL = "fail";
+//	
+//	@Autowired
+//	private JwtUtil jwtUtil;
 
 	@Autowired
 	private UserService userService;
