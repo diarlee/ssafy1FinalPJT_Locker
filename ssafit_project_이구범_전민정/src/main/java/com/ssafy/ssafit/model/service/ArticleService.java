@@ -32,4 +32,10 @@ public interface ArticleService {
 	
 	// 운동 인증하기
 	public void checkIt(int articleId);
+	
+	// 전체공개
+	public void isPublic(int articleId);
+	
+	// 인증 안 된 게시글 가져오기
+	public List<Article> getNotChecked();
 }

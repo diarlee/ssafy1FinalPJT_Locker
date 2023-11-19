@@ -27,12 +27,12 @@
 	<select id="selectOne" parameterType="int" resultType="Article">
 		select *
 		from article 
-		where aricleId = #{articleId};
+		where articleId = #{articleId};
 	</select>
 	
 	<insert id="insertArticle" parameterType="Article">
-		insert into (userId, title, writer, content, image)
-		values(#{userId}, #{title}, #{writer}, #{content}, #{image});
+		insert into (userId, title, writer, content, image, isPublic)
+		values(#{userId}, #{title}, #{writer}, #{content}, #{image}, #{isPublic});
 	</insert>
 	
 	<update id="updateArticle" parameterType="Article">
@@ -54,7 +54,19 @@
 	
 	<update id="updateCheck" parameterType="int">
 		update article
-		set isChecked = #{isChecked}^1
+		set isChecked = isChecked ^ 1
 		where articleId = #{articleId};
 	</update>
+	
+	<update id="updatePublic" parameterType="int">
+		update article
+		set isPublic = isPublic ^ 1
+		where articleId = #{articleId};
+	</update>
+	
+	<select id="selectNoCheck" resultType="Article">
+		select *
+		from article
+		where isChecked = 0;
+	</select>
 </mapper>

@@ -33,5 +33,11 @@ public interface ArticleDao {
 	// 운동 인증하기
 	void updateCheck(int articleId);
 
+	// 전체공개
+	void updatePublic(int articleId);
+
+	// 인증 안 된 게시글 가져오기
+	List<Article> selectNoCheck();
+
 
 }
