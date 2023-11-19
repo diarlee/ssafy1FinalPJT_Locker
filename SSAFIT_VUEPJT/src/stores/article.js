@@ -6,6 +6,14 @@ import axios from "axios";
 const REST_ARTICLE_API = "http://localhost:8080/api/article";
 
 export const useArticleStore = defineStore("article", () => {
+
+  // userId와 날짜로 articleId 가져오기
+  const getArticleId = function (userId, date) {
+    axios.get(`${REST_ARTICLE_API/getId}`).then((response) => {
+      return response.data
+    })
+  }
+
   // 전체 articleList 가져오기
   const articleList = ref([]);
   const getArticleList = function () {

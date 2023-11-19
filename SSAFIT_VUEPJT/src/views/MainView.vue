@@ -18,7 +18,6 @@
       </div>
       <div class="more">
         <RouterLink type="button" class="moreButton" :to="{name: 'articleList'}">+더보기</RouterLink>
-        <RouterLink type="button" :to="{name: 'articleCreate'}">인증하기</RouterLink>
       </div>
       <br>
       <br>

@@ -13,6 +13,7 @@ import { ref, computed } from "vue";
 import axios from "axios";
 import { useUsersStore } from "@/stores/users"
 import { onMounted } from "vue";
+import router from "@/router";
 
 const REST_ARTICLE_API = "http://localhost:8080/api/article";
 

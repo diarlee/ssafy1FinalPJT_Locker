@@ -5,6 +5,8 @@ import Login from "@/components/user/login.vue";
 import Master from "@/views/masterView.vue"
 import ArticleList from "@/views/articleView.vue"
 import ArticleCreate from "@/components/article/articleCreate.vue"
+import ArticleDetail from "@/components/article/articleDetail.vue"
+import ArticleUpdate from "@/components/article/articleUpdate.vue"
 import VideoList from "@/views/videoView.vue"
 import VideoDetail from "@/components/video/videoDetail.vue";
 import ReviewCreate from "@/components/review/reviewCreate.vue";
@@ -35,7 +37,7 @@ const router = createRouter({
       component: Master,
     },
     {
-      path: "/article",
+      path: "/article/all",
       name: "articleList",
       component: ArticleList,
     },
@@ -43,6 +45,16 @@ const router = createRouter({
       path: "/article/write",
       name: "articleCreate",
       component: ArticleCreate,
+    },
+    {
+      path: "/article/detail/:articleId",
+      name: "articleDetail",
+      component: ArticleDetail,
+    },
+    {
+      path: "/article/modify/:articleId",
+      name: "articleUpdate",
+      component: ArticleUpdate,
     },
     {
       path: "/video/:videoType",
@@ -69,8 +81,8 @@ const router = createRouter({
       name: "reviewUpdate",
       component: ReviewUpdate,
     },
-    
-    
+
+
     // {
     //   path: "/review",
     //   name: "review",
@@ -93,7 +105,7 @@ const router = createRouter({
     //     },
     //   ],
     // },
-    
+
   ],
 });
 

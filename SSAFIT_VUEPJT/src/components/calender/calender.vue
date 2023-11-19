@@ -25,7 +25,11 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
+// import { RouterView, RouterLink } from "vue-router";
+import { useArticleStore } from "@/stores/article";
+
+const store = useArticleStore()
 
 onMounted(() => {
   buildCalendar();
@@ -68,8 +72,15 @@ function buildCalendar() {
 
     let nowColumn = nowRow.insertCell(); // 새 열을 추가하고
     // 둥근 사각형 모양으로 집어넣기
-    nowColumn.innerText = leftPad(nowDay.getDate()); // 추가한 열에 날짜 입력
+    // nowColumn.innerText = leftPad(nowDay.getDate()); // 추가한 열에 날짜 입력
 
+    const date = nowDay.getDate();
+    const articleId = ref("")
+    const getArticleId= function (userId, date) {
+        articleId.value = store.getArticleId(userId, date)
+      };
+
+    nowColumn.innerHTML = `<a href=”/article/detail/${articleId.value}”>1</a>`
     if (nowDay.getDay() == 6) {
       // 토요일인 경우
       nowRow = tbody_Calendar.insertRow(); // 새로운 행 추가
@@ -140,9 +151,9 @@ function leftPad(value) {
 
 <style scoped>
 .calender-container {
-    border: solid 1px;
-    display: flex;
-    align-items: center;
+  border: solid 1px;
+  display: flex;
+  align-items: center;
 }
 
 td {
@@ -155,13 +166,13 @@ td {
   margin: 0 auto;
 }
 
-.Calendar > thead > tr:first-child > td {
+.Calendar>thead>tr:first-child>td {
   font-weight: bold;
   height: 35px;
   /* border: 1px solid; */
 }
 
-.Calendar > thead > tr:last-child > td {
+.Calendar>thead>tr:last-child>td {
   background-color: silver;
   color: white;
   height: 10px;
