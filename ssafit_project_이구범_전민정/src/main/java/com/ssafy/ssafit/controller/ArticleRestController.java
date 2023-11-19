@@ -130,9 +130,9 @@ public class ArticleRestController {
 	}
 	
 	
-	@PutMapping("/check/{articleId}")
+	@PutMapping("/check")
 	@ApiOperation(value="게시글 인증 기능")
-	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
+	public ResponseEntity<?> checkIt(String userId, int articleId){
 		if(userId.equals("master")) {
 			articleService.checkIt(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -141,9 +141,9 @@ public class ArticleRestController {
 		}
 	}
 	
-	@PutMapping("/public/{articleId}")
+	@PutMapping("/public")
 	@ApiOperation(value="게시글 전체 공개 설정")
-	public ResponseEntity<?> isPublic(@PathVariable int articleId){
+	public ResponseEntity<?> isPublic(int articleId){
 			articleService.isPublic(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
