@@ -148,10 +148,10 @@ VALUES
 INSERT INTO article(userId, title, content, isPublic, image, writer)
 values 
 ("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy"),
-("test", "오리", "꽥꽥", 1, "이미지~ 속았지롱", "tester"),
+("test", "오리", "꽥꽥", 0, "이미지~ 속았지롱", "tester"),
 ("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱", "tester"),
-("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy"),
-("test", "런닝머신이...", "고장나서 오늘은 등 함", 1, "이미지~ 속았지롱", "tester"),
+("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 0, "이미지~ 속았지롱", "ssafy"),
+("test", "런닝머신이...", "고장나서 오늘은 등 함", 0, "이미지~ 속았지롱", "tester"),
 ("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy");
 
 INSERT INTO articleComment(articleId, userId, content)

@@ -144,7 +144,7 @@ public class ArticleRestController {
 	@PutMapping("/public/{articleId}")
 	@ApiOperation(value="게시글 전체 공개 설정")
 	public ResponseEntity<?> isPublic(@PathVariable int articleId){
-			articleService.checkIt(articleId);
+			articleService.isPublic(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
