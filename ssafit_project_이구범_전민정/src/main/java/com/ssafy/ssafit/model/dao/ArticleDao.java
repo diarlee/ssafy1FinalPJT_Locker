@@ -39,5 +39,8 @@ public interface ArticleDao {
 	// 인증 안 된 게시글 가져오기
 	List<Article> selectNoCheck();
 
+	// 전체공개 게시글만 가져오기
+	List<Article> selectPublic();
+
 
 }

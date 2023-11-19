@@ -31,8 +31,8 @@
 	</select>
 	
 	<insert id="insertArticle" parameterType="Article">
-		insert into (userId, title, writer, content, image, isPublic)
-		values(#{userId}, #{title}, #{writer}, #{content}, #{image}, #{isPublic});
+		insert into article(userId, title, writer, content, image)
+		values(#{userId}, #{title}, #{writer}, #{content}, #{image});
 	</insert>
 	
 	<update id="updateArticle" parameterType="Article">
@@ -63,6 +63,12 @@
 		set isPublic = isPublic ^ 1
 		where articleId = #{articleId};
 	</update>
+	
+	<select id="selectPublic" resultType="Article">
+		select *
+		from article
+		where isPublic = 1;
+	</select>
 	
 	<select id="selectNoCheck" resultType="Article">
 		select *

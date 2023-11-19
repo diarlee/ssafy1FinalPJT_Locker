@@ -84,5 +84,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.selectNoCheck();
 	}
 
+	@Override
+	public List<Article> getPublic() {
+		// TODO Auto-generated method stub
+		return articleDao.selectPublic();
+	}
+
 
 }

@@ -38,4 +38,7 @@ public interface ArticleService {
 	
 	// 인증 안 된 게시글 가져오기
 	public List<Article> getNotChecked();
+	
+	// 전체공개 게시글만 가져오기
+	public List<Article> getPublic();
 }

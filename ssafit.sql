@@ -32,8 +32,8 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `ssafit`.`article` (
   `articleId` INT NOT NULL AUTO_INCREMENT,
   `userId` VARCHAR(45) NOT NULL,
-  `writer` VARCHAR(45) NOT NULL,
   `title` VARCHAR(45) NOT NULL,
+  `writer` VARCHAR(45) NOT NULL,
   `content` VARCHAR(255) NOT NULL,
   `isChecked` TINYINT NOT NULL DEFAULT 0,
   `isPublic` TINYINT NOT NULL DEFAULT 0,
@@ -145,14 +145,14 @@ VALUES
 ("gMaB-fG4u4g", "ssafy", "bad", "ssafy", "bad", 0),
 ("gMaB-fG4u4g", "ssafy", "good", "ssafy", "bad", 0);
 
-INSERT INTO article(userId, title, content, isPublic, image)
+INSERT INTO article(userId, title, content, isPublic, image, writer)
 values 
-("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱"),
-("test", "오리", "꽥꽥", 1, "이미지~ 속았지롱"),
-("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱"),
-("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱"),
-("test", "런닝머신이...", "고장나서 오늘은 등 함", 1, "이미지~ 속았지롱"),
-("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱");
+("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy"),
+("test", "오리", "꽥꽥", 1, "이미지~ 속았지롱", "tester"),
+("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱", "tester"),
+("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy"),
+("test", "런닝머신이...", "고장나서 오늘은 등 함", 1, "이미지~ 속았지롱", "tester"),
+("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy");
 
 INSERT INTO articleComment(articleId, userId, content)
 values (1, "ssafy", "신고합니다.");

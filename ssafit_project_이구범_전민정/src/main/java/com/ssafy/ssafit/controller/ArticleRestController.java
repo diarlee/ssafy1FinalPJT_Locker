@@ -148,6 +148,17 @@ public class ArticleRestController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@GetMapping("/isPublic")
+	@ApiOperation(value="전체공개 게시글 목록 가져오기")
+	public ResponseEntity<?> getPublic(){
+		List<Article> articles = articleService.getPublic();
+		if( articles != null ) {
+			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	@GetMapping("/noCheck")
 	@ApiOperation(value="인증 안 된 게시글 목록 가져오기")
 	public ResponseEntity<?> notChecked(){
