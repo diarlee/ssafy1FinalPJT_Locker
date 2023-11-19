@@ -1,6 +1,7 @@
 package com.ssafy.ssafit.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -133,8 +134,11 @@ public class ArticleRestController {
 	
 	@PutMapping("/check")
 	@ApiOperation(value="게시글 인증 기능")
-	public ResponseEntity<?> checkIt(String userId, int articleId){
-		System.out.println(userId + " " + articleId);
+	public ResponseEntity<?> checkIt(@RequestBody Map<String, String> map){
+		
+		String userId = map.get("userId");
+		int articleId = Integer.parseInt(map.get("articleId"));
+		
 		if(userId.equals("master")) {
 			articleService.checkIt(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -143,9 +147,9 @@ public class ArticleRestController {
 		}
 	}
 	
-	@PutMapping("/public/{articleId}")
+	@PutMapping("/public")
 	@ApiOperation(value="게시글 전체 공개 설정")
-	public ResponseEntity<?> isPublic(@PathVariable int articleId){
+	public ResponseEntity<?> isPublic(@RequestBody int articleId){
 			articleService.isPublic(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
