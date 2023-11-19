@@ -83,6 +83,7 @@ public class ArticleRestController {
 	@PostMapping("/write")
 	@ApiOperation(value = "게시글 등록")
 	public ResponseEntity<?> createArticle(@RequestBody Article article){
+		System.out.println(article);
 		User user = userService.getUser(article.getUserId());
 		if(user != null) {
 			article.setWriter(user.getUsername());
