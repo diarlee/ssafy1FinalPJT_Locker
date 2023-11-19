@@ -35,7 +35,7 @@ export const useArticleStore = defineStore("article", () => {
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      data: {},
+      data: {article},
     })
       .then(() => {
         router.push({ name: "home" });

@@ -1,29 +1,61 @@
 <template>
   <div class="articleCreate-container">
-    <div class="login-box">
-      <h2>Login</h2>
-      <form>
-        <div class="user-box">
-          <input type="text" name="" required="" />
-          <label>Username</label>
+    <div class="articleCreate-box">
+      <h2>게시글 업로드</h2>
+      <form @submit.prevent="createArticle">
+        <div class="input-box">
+          <input type="text" v-model="article.image">
+          <label for="">이미지</label>
         </div>
-        <div class="user-box">
-          <input type="password" name="" required="" />
-          <label>Password</label>
+        <div class="input-box">
+          <input type="text" name="" required="" v-model="article.title"/>
+          <label>title</label>
         </div>
-        <a href="#">
+        <div class="input-box">
+          <input type="text" name="" required="" v-model="article.content"/>
+          <label>content</label>
+        </div>
+        <div class="input-button">
+          <button @click="article.isPublic = !article.isPublic">{{ getIsPublic }}</button>
+        </div>
+        <a type="submit">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-          Submit
+          등록
         </a>
       </form>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { RouterView, RouterLink } from "vue-router";
+import { useUsersStore } from "@/stores/users"
+import { useArticleStore } from "@/stores/article";
+
+const userStore = useUsersStore();
+const articleStore = useArticleStore();
+
+const article = ref({
+  userId: userStore.loginId,
+  image: "",
+  writer: "",
+  content: "",
+  isPublic: true,
+})
+
+const getIsPublic = computed(() => {
+  return article.value.isPublic == true ? "private" : "public"
+})
+
+const createArticle = function () {
+    articleStore.createArticle(article)
+}
+</script>
 
 <style scoped>
 
@@ -36,7 +68,7 @@
   background: linear-gradient(#141e30, #243b55);
 }
 
-.login-box {
+.articleCreate-box {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -49,18 +81,18 @@
   border-radius: 10px;
 }
 
-.login-box h2 {
+.articleCreate-box h2 {
   margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
 }
 
-.login-box .user-box {
+.articleCreate-box .input-box {
   position: relative;
 }
 
-.login-box .user-box input {
+.articleCreate-box .input-box input {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -71,7 +103,7 @@
   outline: none;
   background: transparent;
 }
-.login-box .user-box label {
+.articleCreate-box .input-box label {
   position: absolute;
   top: 0;
   left: 0;
@@ -82,15 +114,15 @@
   transition: 0.5s;
 }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
+.articleCreate-box .input-box input:focus ~ label,
+.articleCreate-box .input-box input:valid ~ label {
   top: -20px;
   left: 0;
   color: #03e9f4;
   font-size: 12px;
 }
 
-.login-box form a {
+.articleCreate-box form a {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -104,7 +136,7 @@
   letter-spacing: 4px;
 }
 
-.login-box a:hover {
+.articleCreate-box a:hover {
   background: #03e9f4;
   color: #fff;
   border-radius: 5px;
@@ -112,12 +144,12 @@
     0 0 100px #03e9f4;
 }
 
-.login-box a span {
+.articleCreate-box a span {
   position: absolute;
   display: block;
 }
 
-.login-box a span:nth-child(1) {
+.articleCreate-box a span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -136,7 +168,7 @@
   }
 }
 
-.login-box a span:nth-child(2) {
+.articleCreate-box a span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -156,7 +188,7 @@
   }
 }
 
-.login-box a span:nth-child(3) {
+.articleCreate-box a span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -176,7 +208,7 @@
   }
 }
 
-.login-box a span:nth-child(4) {
+.articleCreate-box a span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
