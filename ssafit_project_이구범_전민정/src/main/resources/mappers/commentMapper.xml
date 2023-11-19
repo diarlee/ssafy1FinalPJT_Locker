@@ -17,13 +17,13 @@
 	</select>
 	
 	<insert id="insertComment" parameterType="ArticleComment">
-		insert into articleComment(articleId, userId, comment)
-		values(#{articleId}, #{userId}, #{comment})
+		insert into articleComment(articleId, userId, content)
+		values(#{articleId}, #{userId}, #{content})
 	</insert>
 	
 	<update id="updateComment" parameterType="ArticleComment">
 		update articleComment 
-		set comment = #{comment}
+		set content = #{content}
 		where commentId = #{commentId}
 	</update>
 	
