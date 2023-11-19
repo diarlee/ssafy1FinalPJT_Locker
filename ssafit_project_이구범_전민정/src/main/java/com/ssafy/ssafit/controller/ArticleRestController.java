@@ -133,7 +133,7 @@ public class ArticleRestController {
 	@PutMapping("/check/{articleId}")
 	@ApiOperation(value="게시글 인증 기능")
 	public ResponseEntity<?> checkIt(String userId, @PathVariable int articleId){
-		if(userId.equals("ssafy")) {
+		if(userId.equals("master")) {
 			articleService.checkIt(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
