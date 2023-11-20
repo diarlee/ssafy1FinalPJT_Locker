@@ -33,4 +33,20 @@
 		from video
 		where videoId = #{videoId}
 	</select>
+	
+	<insert id="insertVideo" parameterType="Video">
+		insert into video(videoId, userId, title, fitPartName, channelName, url)
+		values(#{videoId}, #{userId}, #{title}, #{fitPartName}, #{channelName}, #{url});
+	</insert>
+	
+	<update id="updateVideo" parameterType="Video">
+		update video
+		set title = #{title}, url = #{url}
+		where videoId = #{videoId}
+	</update>
+	
+	<delete id="deleteVideo" parameterType="String">
+		delete from video
+		where videoId = #{videoId}
+	</delete>
 </mapper>

@@ -21,4 +21,13 @@ public interface VideoDao {
 
 	// 운동 영상 하나 조회
 	public Video selectOne(String videoId);
+
+	// 운동 영상 등록하기
+	public void insertVideo(Video video);
+
+	// 운동 영상 수정하기
+	public void updateVideo(Video video);
+
+	// 운동 영상 삭제하기
+	public void deleteVideo(String videoId);
 }

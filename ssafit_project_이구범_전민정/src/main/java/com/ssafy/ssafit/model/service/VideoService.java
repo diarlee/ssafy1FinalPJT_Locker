@@ -19,4 +19,13 @@ public interface VideoService {
 	
 	// 운동영상 하나 조회
 	public Video getVideoOne(String videoId);
+	
+	// 운동영상 등록하기
+	public void addVideo(Video video);
+	
+	// 운동영상 수정하기
+	public void modifyVideo(Video video);
+	
+	// 운동영상 삭제하기
+	public void removeVideo(String videoId);
 }

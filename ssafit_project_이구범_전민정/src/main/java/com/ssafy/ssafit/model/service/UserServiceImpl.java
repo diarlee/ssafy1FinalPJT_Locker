@@ -41,6 +41,12 @@ public class UserServiceImpl implements UserService {
 		userDao.insertUser(user);
 	}
 
+	@Override
+	public void scores(String id) {
+		// TODO Auto-generated method stub
+		userDao.updateScore(id);
+	}
+
 
 
 }

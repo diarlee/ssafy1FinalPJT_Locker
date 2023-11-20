@@ -112,8 +112,27 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
     FOREIGN KEY (`videoId`)
     REFERENCES `ssafit`.`video` (`videoId`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
+
+-- -----------------------------------------------------
+-- Table `ssafit`.`heart`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ssafit`.`heart` (
+  `heartId` INT NOT NULL AUTO_INCREMENT,
+  `articleId` INT NOT NULL,
+  `userId` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`heartId`),
+  CONSTRAINT `fk_article_id`
+    FOREIGN KEY (`articleId`)
+    REFERENCES `ssafit`.`article` (`articleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_id`
+    FOREIGN KEY (`userId`)
+    REFERENCES `ssafit`.`user` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

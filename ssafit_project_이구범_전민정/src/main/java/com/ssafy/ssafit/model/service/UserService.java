@@ -14,5 +14,6 @@ public interface UserService {
 	// 회원 가입
 	public void signup(User user);
 	
-
+	// 점수 증가
+	public void scores(String id);
 }

@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,14 +21,14 @@ import com.ssafy.ssafit.model.service.VideoService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/video")
 @CrossOrigin("*")
 public class VideoRestController {
 
 	@Autowired
 	private VideoService videoService;
 
-	@GetMapping("/video")
+	@GetMapping("/all")
 	@ApiOperation(value="모든 영상", notes="모든 영상 조회하기")
 	public ResponseEntity<?> getList() {
 		List<Video> list = videoService.getList();
@@ -35,7 +39,7 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/video/{part}")
+	@GetMapping("/{part}")
 	@ApiOperation(value="부위별 영상", notes="부위별 영상 조회하기")
 	public ResponseEntity<?> getByPart(@PathVariable String part) {
 		List<Video> list = videoService.getByPart(part);
@@ -46,7 +50,7 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/video/one/{videoId}")
+	@GetMapping("/one/{videoId}")
 	@ApiOperation(value="영상 하나 선택", notes="영상 하나 선택하기")
 	public ResponseEntity<?> getVideo(@PathVariable String videoId) {
 		Video video = videoService.getVideoOne(videoId);
@@ -60,4 +64,35 @@ public class VideoRestController {
 			return new ResponseEntity<Video>(video, HttpStatus.OK);
 		}
 	}
+	
+	@PostMapping("/insert")
+	@ApiOperation(value="추천 영상 등록하기")
+	public ResponseEntity<?> insertVideo(@RequestBody Video video){
+		if(video != null) {
+			videoService.addVideo(video);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@PutMapping("/update/{videoId}")
+	@ApiOperation(value="추천 영상 수정하기")
+	public ResponseEntity<?> updateVideo(@PathVariable String videoId, @RequestBody Video video){
+		if(video.getVideoId().equals(videoId) && video != null) {
+			videoService.modifyVideo(video);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@DeleteMapping("/delete/{videoId}")
+	@ApiOperation(value="추천 영상 삭제하기")
+	public ResponseEntity<?> deleteVideo(@PathVariable String videoId){
+		videoService.removeVideo(videoId);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	
 }
