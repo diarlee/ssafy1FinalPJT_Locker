@@ -2,7 +2,7 @@ package com.ssafy.ssafit.model.dao;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.apache.ibatis.annotations.Param;
 
 import com.ssafy.ssafit.model.dto.Article;
 
@@ -45,7 +45,7 @@ public interface ArticleDao {
 	List<Article> selectPublic();
 
 	// 달력에 커밋하기
-	int commit(String userId, String date);
+	int commit(@Param("userId") String userId, @Param("date") String date);
 
 
 }
