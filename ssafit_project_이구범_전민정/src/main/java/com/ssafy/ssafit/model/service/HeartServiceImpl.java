@@ -15,14 +15,14 @@ public class HeartServiceImpl implements HeartService{
 	@Override
 	public void insertHeart(Heart heart) {
 		// TODO Auto-generated method stub
-		heartDao.insertDao(heart);
+		heartDao.insertHeart(heart);
 	}
 
 	@Override
 	public void deleteHeart(Heart heart) {
 		// TODO Auto-generated method stub
-		heartDao.deleteDao(heart);
-	}
+		heartDao.deleteHeart(heart);
+	} 
 
 	@Override
 	public Heart selectHeart(String userId, int articleId) {

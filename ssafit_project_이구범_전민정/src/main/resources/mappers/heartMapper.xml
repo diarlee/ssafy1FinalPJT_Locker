@@ -11,13 +11,13 @@
 	</select>	
 		
 	<insert id="insertHeart" parameterType="Heart">
-		insert into article(userId, articleId)
+		insert into heart(userId, articleId)
 		values(#{userId}, #{articleId});
 	</insert>
 
 	
 	<delete id="deleteHeart" parameterType="Heart">
-		delete from Heart
+		delete from heart
 		where userId = #{userId} and articleId = #{articleId};
 	</delete>
 

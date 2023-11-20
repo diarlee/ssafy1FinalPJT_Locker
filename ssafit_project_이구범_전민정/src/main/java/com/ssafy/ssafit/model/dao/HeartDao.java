@@ -6,9 +6,9 @@ import com.ssafy.ssafit.model.dto.Heart;
 
 public interface HeartDao {
 
-	void insertDao(Heart heart);
+	void insertHeart(Heart heart);
 
-	void deleteDao(Heart heart);
+	void deleteHeart(Heart heart);
 
 	Heart selectHeart(@Param("userId") String userId, @Param("articleId") int articleId);
 

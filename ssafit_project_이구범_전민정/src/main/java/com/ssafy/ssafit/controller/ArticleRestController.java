@@ -152,15 +152,18 @@ public class ArticleRestController {
 			Heart heart = new Heart();
 			heart.setUserId(userId);
 			heart.setArticleId(articleId);
+			
 			heartService.insertHeart(heart);
 			articleService.plusLike(articleId);
+			
+			return new ResponseEntity<String>("Like it!", HttpStatus.OK);
 		} else {
 			Heart heart = heartService.selectHeart(userId, articleId);
 			articleService.minusLike(articleId);
 			heartService.deleteHeart(heart);
+			
+			return new ResponseEntity<String>("Cancel T.T", HttpStatus.OK);
 		}
-		
-		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	
