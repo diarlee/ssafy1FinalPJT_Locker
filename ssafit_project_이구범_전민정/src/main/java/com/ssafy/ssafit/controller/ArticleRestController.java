@@ -89,7 +89,7 @@ public class ArticleRestController {
 	
 	@PostMapping("/write")
 	@ApiOperation(value = "게시글 등록")
-	public ResponseEntity<?> createArticle(@RequestBody Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
+	public ResponseEntity<?> createArticle(Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
 		User user = userService.getUser(article.getUserId());
 		if(user != null) {
 			article.setWriter(user.getUsername());
@@ -103,7 +103,7 @@ public class ArticleRestController {
 	
 	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="게시글 수정")
-	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
+	public ResponseEntity<?> updateArticle(@PathVariable int articleId, Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
 		User user = userService.getUser(article.getUserId());
 		if(article.getArticleId() == articleId && user != null) {
 			articleService.writeArticle(article, image);
