@@ -51,10 +51,11 @@ export const useArticleStore = defineStore("article", () => {
 
   // article 등록
   const createArticle = function (formData) {
+    console.log(formData);
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      headers: {'Content-Type': `multipart/form-data`},
+      headers: {'Content-Type': 'multipart/form-data'},
       data: formData,
     })
       .then(() => {

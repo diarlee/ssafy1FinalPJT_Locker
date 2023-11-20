@@ -88,11 +88,11 @@ public class ArticleRestController {
 	
 	@PostMapping("/write")
 	@ApiOperation(value = "게시글 등록")
-	public ResponseEntity<?> createArticle(Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
+	public ResponseEntity<?> createArticle(Article article, @RequestParam(required = true) MultipartFile uploadImage) throws IOException{
 		User user = userService.getUser(article.getUserId());
-		if(user != null) {
+		if(user != null) { 
 			article.setWriter(user.getUsername());
-			articleService.writeArticle(article, image);
+			articleService.writeArticle(article, uploadImage);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);

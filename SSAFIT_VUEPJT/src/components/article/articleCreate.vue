@@ -57,7 +57,7 @@ const isPublic = ref(true);
 // })
 
 const appendImage = (e) => {
-  formData.append("image", e.target.files[0]);
+  formData.append("uploadImage", e.target.files[0]);
 };
 
 const getIsPublic = computed(() => {
