@@ -129,7 +129,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public int commit(String id, String date) {
+	public Article commit(String id, String date) {
 		// TODO Auto-generated method stub
 		return articleDao.commit(id, date);
 	}

@@ -76,8 +76,8 @@
 		where isChecked = 0;
 	</select>
 	
-	<select id="commit" parameterType="map" resultType ="int">
-		select articleId 
+	<select id="commit" parameterType="map" resultType ="Article">
+		select *
 		from article
 		where date_format(regDate, "%Y-%m-%d") = #{date} 
 		and userId = #{id}
