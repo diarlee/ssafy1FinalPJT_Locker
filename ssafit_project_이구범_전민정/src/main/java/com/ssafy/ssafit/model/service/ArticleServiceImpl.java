@@ -107,7 +107,7 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Override
 	public void minusLike(int articleId) {
-		articleDao.plusLike(articleId);
+		articleDao.minusLike(articleId);
 	}
 
 	@Override
