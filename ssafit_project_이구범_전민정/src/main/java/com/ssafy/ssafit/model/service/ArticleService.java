@@ -35,7 +35,10 @@ public interface ArticleService {
 	public void removeArticle(int articleId);
 	
 	// 게시글 좋아요
-	public void likeIt(int articleId);
+	public void plusLike(int articleId);
+	
+	// 게시글 좋아요 취소
+	public void minusLike(int articleId);
 	
 	// 운동 인증하기
 	public void checkIt(int articleId);

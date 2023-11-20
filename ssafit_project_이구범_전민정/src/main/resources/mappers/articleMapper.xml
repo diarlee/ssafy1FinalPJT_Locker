@@ -46,9 +46,15 @@
 		where articleId = #{articleId};
 	</delete>
 	
-	<update id="updateLike" parameterType="int">
+	<update id="plusLike" parameterType="int">
 		update article
-		set liked = #{liked} + 1
+		set liked = liked + 1
+		where articleId = #{articleId};
+	</update>
+	
+	<update id="minusLike" parameterType="int">
+		update article
+		set liked = liked - 1
 		where articleId = #{articleId};
 	</update>
 	

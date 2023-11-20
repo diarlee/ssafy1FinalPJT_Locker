@@ -11,7 +11,6 @@ public class Heart {
 	}
 
 	public Heart(int heartId, int articleId, String userId) {
-		super();
 		this.heartId = heartId;
 		this.articleId = articleId;
 		this.userId = userId;

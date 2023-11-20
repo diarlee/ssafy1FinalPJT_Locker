@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.ssafit.model.dto.Article;
+import com.ssafy.ssafit.model.dto.Heart;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.ArticleService;
+import com.ssafy.ssafit.model.service.HeartService;
 import com.ssafy.ssafit.model.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
@@ -39,6 +40,9 @@ public class ArticleRestController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private HeartService heartService;
 	
 	@GetMapping("/all")
 	@ApiOperation(value = "모든 게시글 조회")
@@ -142,8 +146,20 @@ public class ArticleRestController {
 	// 이거 좀 복잡할지도... 더 생각해보기
 	@PutMapping("/like/{articleId}")
 	@ApiOperation(value="좋아요 누르기 기능")
-	public ResponseEntity<?> likeIt(String userId, @PathVariable int articleId){
-		articleService.likeIt(articleId);
+	public ResponseEntity<?> likeIt(@PathVariable int articleId, @RequestBody String userId){
+		
+		if(heartService.selectHeart(userId, articleId) == null) {
+			Heart heart = new Heart();
+			heart.setUserId(userId);
+			heart.setArticleId(articleId);
+			heartService.insertHeart(heart);
+			articleService.plusLike(articleId);
+		} else {
+			Heart heart = heartService.selectHeart(userId, articleId);
+			articleService.minusLike(articleId);
+			heartService.deleteHeart(heart);
+		}
+		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
@@ -207,7 +223,7 @@ public class ArticleRestController {
 			int articleId = article.getArticleId();
 			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Integer>(0, HttpStatus.OK);
 		}
 		
 	}
