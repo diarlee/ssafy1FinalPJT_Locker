@@ -76,11 +76,11 @@
 		where isChecked = 0;
 	</select>
 	
-	<select id="commit" parameterType="String" resultType ="int">
+	<select id="commit" parameterType="map" resultType ="int">
 		select articleId 
 		from article
 		where date_format(regDate, "%Y-%m-%d") = #{date} 
-		and userId = #{userId}
+		and userId = #{id}
 		limit 1;
 	</select>
 </mapper>

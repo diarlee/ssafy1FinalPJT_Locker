@@ -50,5 +50,5 @@ public interface ArticleService {
 	public List<Article> getPublic();
 	
 	//달력에 커밋합니다.
-	public int commit(String userId, String date);
+	public int commit(String id, String date);
 }
