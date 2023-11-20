@@ -75,4 +75,12 @@
 		from article
 		where isChecked = 0;
 	</select>
+	
+	<select id="commit" parameterType="String">
+		select articleId 
+		from article
+		where date_format(regDate, "%Y-%m-%d") = #{date} 
+		and userId = #{userId}
+		limit 1;
+	</select>
 </mapper>

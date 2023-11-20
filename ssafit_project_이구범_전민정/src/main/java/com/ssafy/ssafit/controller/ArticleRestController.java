@@ -174,4 +174,20 @@ public class ArticleRestController {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@GetMapping("/getId")
+	@ApiOperation(value="달력 누르면 게시글 가져오기")
+	public ResponseEntity<?> getArticleByDate(String userId, String date){
+		// 년 월 일만 추출해서 일치하는 걸로 가져오기
+		
+		int articleId = articleService.commit(userId, date);
+		
+		if(articleId > 0) {
+			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		
+		
+	}
 }

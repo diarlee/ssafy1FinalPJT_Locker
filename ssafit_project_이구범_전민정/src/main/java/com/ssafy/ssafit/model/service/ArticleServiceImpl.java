@@ -90,5 +90,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.selectPublic();
 	}
 
+	@Override
+	public int commit(String userId, String date) {
+		// TODO Auto-generated method stub
+		return articleDao.commit(userId, date);
+	}
+
 
 }

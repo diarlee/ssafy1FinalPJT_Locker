@@ -6,16 +6,19 @@ public class User {
 	private String email;
 	private String password;
 	private String create_time;
+	private int score;
 
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userId, String username, String email, String password) {
+	public User(String userId, String username, String email, String password, String create_time, int score) {
 		this.userId = userId;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.create_time = create_time;
+		this.score = score;
 	}
 
 	public String getUserId() {
@@ -57,10 +60,18 @@ public class User {
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
 	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", create_time=" + create_time + "]";
+				+ ", create_time=" + create_time + ", socre" + score + "]";
 	}
 }

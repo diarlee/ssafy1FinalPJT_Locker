@@ -41,4 +41,7 @@ public interface ArticleService {
 	
 	// 전체공개 게시글만 가져오기
 	public List<Article> getPublic();
+	
+	//달력에 커밋합니다.
+	public int commit(String userId, String date);
 }
