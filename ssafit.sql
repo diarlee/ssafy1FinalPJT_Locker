@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`article` (
   `isChecked` TINYINT NOT NULL DEFAULT 0,
   `isPublic` TINYINT NOT NULL DEFAULT 0,
   `image` VARCHAR(255) NOT NULL,
+  `orgImage` VARCHAR(255) NOT NULL,
   `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `liked` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`articleId`) ,
@@ -145,14 +146,14 @@ VALUES
 ("gMaB-fG4u4g", "ssafy", "bad", "ssafy", "bad", 0),
 ("gMaB-fG4u4g", "ssafy", "good", "ssafy", "bad", 0);
 
-INSERT INTO article(userId, title, content, isPublic, image, writer)
+INSERT INTO article(userId, title, content, isPublic, image, orgImage, writer)
 values 
-("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy"),
-("test", "오리", "꽥꽥", 0, "이미지~ 속았지롱", "tester"),
-("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱", "tester"),
-("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 0, "이미지~ 속았지롱", "ssafy"),
-("test", "런닝머신이...", "고장나서 오늘은 등 함", 0, "이미지~ 속았지롱", "tester"),
-("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "ssafy");
+("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱", "hh", "ssafy"),
+("test", "오리", "꽥꽥", 0, "이미지~ 속았지롱", "hh", "tester"),
+("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱", "hh", "tester"),
+("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 0, "이미지~ 속았지롱", "hh", "ssafy"),
+("test", "런닝머신이...", "고장나서 오늘은 등 함", 0, "이미지~ 속았지롱", "hh", "tester"),
+("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "hh", "ssafy");
 
 INSERT INTO articleComment(articleId, userId, content)
 values (1, "ssafy", "신고합니다.");

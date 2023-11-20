@@ -2,6 +2,8 @@ package com.ssafy.ssafit.model.dao;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ssafy.ssafit.model.dto.Article;
 
 public interface ArticleDao {
@@ -41,6 +43,9 @@ public interface ArticleDao {
 
 	// 전체공개 게시글만 가져오기
 	List<Article> selectPublic();
+
+	// 달력에 커밋하기
+	int commit(String userId, String date);
 
 
 }
