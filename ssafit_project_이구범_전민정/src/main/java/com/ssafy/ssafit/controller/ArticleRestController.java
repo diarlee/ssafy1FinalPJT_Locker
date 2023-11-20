@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,10 +103,10 @@ public class ArticleRestController {
 	
 	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="게시글 수정")
-	public ResponseEntity<?> updateArticle(@PathVariable int articleId, Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
+	public ResponseEntity<?> updateArticle(@PathVariable int articleId, Article article, @RequestParam(required = true) MultipartFile uploadImage) throws IOException{
 		User user = userService.getUser(article.getUserId());
 		if(article.getArticleId() == articleId && user != null) {
-			articleService.writeArticle(article, image);
+			articleService.writeArticle(article, uploadImage);
 			return new ResponseEntity<Void>(HttpStatus.OK);			
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);

@@ -11,7 +11,7 @@
 	<select id="selectUser" resultType="User" parameterType="string">
 	select * 
 	from user 
-	where userId = #{userId}; 
+	where userId = #{id}; 
 	</select>
 	
 	<insert id="insertUser" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
