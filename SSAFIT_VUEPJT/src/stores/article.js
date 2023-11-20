@@ -7,25 +7,6 @@ const REST_ARTICLE_API = "http://localhost:8080/api/article";
 
 export const useArticleStore = defineStore("article", () => {
 
-  // userId와 날짜로 articleId 가져오기
-  const getArticleId = function (userId, date) {
-    axios({
-      url: `${REST_ARTICLE_API}/getId`,
-      method: "POST",
-      data: {
-        userId: userId,
-        date: date,
-      }
-    })
-      .then((response) => {
-        console.log(response.data)
-        return response.data
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   // 전체 articleList 가져오기
   const articleList = ref([]);
   const getArticleList = function () {
@@ -94,7 +75,6 @@ export const useArticleStore = defineStore("article", () => {
   };
 
   return {
-    getArticleId,
     articleList,
     getArticleList,
     articleList_top4,

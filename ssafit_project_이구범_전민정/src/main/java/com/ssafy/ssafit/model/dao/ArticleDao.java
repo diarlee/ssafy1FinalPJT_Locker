@@ -45,7 +45,7 @@ public interface ArticleDao {
 	List<Article> selectPublic();
 
 	// 달력에 커밋하기
-	Article commit(@Param("userId") String id, @Param("date") String date);
+	Article commit(@Param("id") String id, @Param("date") String date);
 
 
 }

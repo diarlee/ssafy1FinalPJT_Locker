@@ -200,14 +200,16 @@ public class ArticleRestController {
 		// 년 월 일만 추출해서 일치하는 걸로 가져오기
 		String userId = map.get("userId");
 		String date = map.get("date");
+//		System.out.println(userId + " " + date);
 		
 		Article article = articleService.commit(userId, date);
+//		System.out.println(article);
 		
 		if(article != null) {
 			int articleId = article.getArticleId();
 			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("해당하는 값이 없습니다.", HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Integer>(0, HttpStatus.OK);
 		}
 		
 	}
