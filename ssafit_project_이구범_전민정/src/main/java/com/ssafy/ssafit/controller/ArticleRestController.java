@@ -207,7 +207,7 @@ public class ArticleRestController {
 			int articleId = article.getArticleId();
 			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("해당하는 값이 없습니다.", HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
 		}
 		
 	}
