@@ -1,9 +1,12 @@
 package com.ssafy.ssafit.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.ssafit.model.dto.Article;
 import com.ssafy.ssafit.model.dto.User;
@@ -83,11 +88,11 @@ public class ArticleRestController {
 	
 	@PostMapping("/write")
 	@ApiOperation(value = "게시글 등록")
-	public ResponseEntity<?> createArticle(@RequestBody Article article){
+	public ResponseEntity<?> createArticle(@RequestBody Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
 		User user = userService.getUser(article.getUserId());
 		if(user != null) {
 			article.setWriter(user.getUsername());
-			articleService.writeArticle(article);
+			articleService.writeArticle(article, image);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
@@ -97,16 +102,27 @@ public class ArticleRestController {
 	
 	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="게시글 수정")
-	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody Article article){
+	public ResponseEntity<?> updateArticle(@PathVariable int articleId, @RequestBody Article article, @RequestParam(required = true) MultipartFile image) throws IOException{
 		User user = userService.getUser(article.getUserId());
 		if(article.getArticleId() == articleId && user != null) {
-			articleService.writeArticle(article);
+			articleService.writeArticle(article, image);
 			return new ResponseEntity<Void>(HttpStatus.OK);			
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
 	}
+	
+
+    @GetMapping("/image/{imgFileName}")
+    @ApiOperation(value="이미지 가져오기", notes="이거 뭐하는거닞 모르는데 일단 넣기")
+    public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+        Resource image = articleService.loadImage(imgFileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+                .body(image);
+    }
+
 	
 	@DeleteMapping("/delete/{articleId}")
 	@ApiOperation(value="게시글 삭제")
@@ -187,7 +203,6 @@ public class ArticleRestController {
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
-		
 		
 	}
 }

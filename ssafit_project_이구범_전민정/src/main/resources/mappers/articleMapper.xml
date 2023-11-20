@@ -31,8 +31,8 @@
 	</select>
 	
 	<insert id="insertArticle" parameterType="Article">
-		insert into article(userId, title, writer, content, image)
-		values(#{userId}, #{title}, #{writer}, #{content}, #{image});
+		insert into article(userId, title, writer, content, image, orgImage)
+		values(#{userId}, #{title}, #{writer}, #{content}, #{image}, #{orgImage});
 	</insert>
 	
 	<update id="updateArticle" parameterType="Article">

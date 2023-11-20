@@ -1,6 +1,10 @@
 package com.ssafy.ssafit.model.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.ssafit.model.dto.Article;
 
@@ -19,7 +23,10 @@ public interface ArticleService {
 	public Article getArticle(int articleId);
 
 	// 게시글 생성
-	public void writeArticle(Article article);
+	public void writeArticle(Article article, MultipartFile image) throws IOException;
+	
+	// 이거 뭔지 모르겠는데 일단 넣겠읍니다.
+	public Resource loadImage(String imageName);
 
 	// 게시글 수정
 	public void modifyArticle(Article article);

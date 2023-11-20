@@ -2,6 +2,8 @@ package com.ssafy.ssafit.model.dao;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ssafy.ssafit.model.dto.Article;
 
 public interface ArticleDao {

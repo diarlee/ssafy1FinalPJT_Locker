@@ -10,6 +10,7 @@ public class Article {
 	private boolean isChecked;
 	private boolean isPublic;
 	private String image;
+	private String orgImage;
 	private String regDate;
 	private int liked;
 	
@@ -18,7 +19,7 @@ public class Article {
 	}
 
 	public Article(int articleId, String userId, String writer, String title, String content, boolean isChecked, boolean isPublic,
-			String image, String regDate, int liked) {
+			String image, String orgImage, String regDate, int liked) {
 		this.articleId = articleId;
 		this.userId = userId;
 		this.writer = writer;
@@ -27,6 +28,7 @@ public class Article {
 		this.isChecked = isChecked;
 		this.isPublic = isPublic;
 		this.image = image;
+		this.orgImage = orgImage;
 		this.regDate = regDate;
 		this.liked = liked;
 	}
@@ -110,12 +112,20 @@ public class Article {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
+
+	public String getOrgImage() {
+		return orgImage;
+	}
+
+	public void setOrgImage(String orgImage) {
+		this.orgImage = orgImage;
+	}
+
 	@Override
 	public String toString() {
-		return "Article [articleId=" + articleId + ", userId=" + userId + ", writer=" + writer +", title=" + title + ", content=" + content
-				+ ", isChecked=" + isChecked + ", isPublic=" + isPublic + ", image=" + image + ", regDate=" + regDate
-				+ ", liked=" + liked + "]";
+		return "Article [articleId=" + articleId + ", userId=" + userId + ", writer=" + writer + ", title=" + title
+				+ ", content=" + content + ", isChecked=" + isChecked + ", isPublic=" + isPublic + ", image=" + image
+				+ ", orgImage=" + orgImage + ", regDate=" + regDate + ", liked=" + liked + "]";
 	}
 	
 	
