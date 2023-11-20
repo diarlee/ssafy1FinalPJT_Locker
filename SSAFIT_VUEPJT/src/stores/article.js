@@ -54,8 +54,8 @@ export const useArticleStore = defineStore("article", () => {
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      headers: {'Content-Type': 'multipart/form-data'},
-      data: formData
+      headers: {'Content-Type': `multipart/form-data`},
+      data: formData,
     })
       .then(() => {
         router.push({ name: "home" });

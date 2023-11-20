@@ -46,7 +46,7 @@ const formData = new FormData();
 const userId = ref(userStore.loginId);
 const title = ref("");
 const content = ref("");
-const isPublic = ref("");
+const isPublic = ref(true);
 
 // const article = ref({
 //   userId: userStore.loginId,
@@ -57,7 +57,7 @@ const isPublic = ref("");
 // })
 
 const appendImage = (e) => {
-  article.append("image", e.target.files[0]);
+  formData.append("image", e.target.files[0]);
 };
 
 const getIsPublic = computed(() => {
@@ -68,7 +68,7 @@ const createArticle = function () {
   formData.append("userId", userId.value);
   formData.append("title", title.value),
   formData.append("content", content.value),
-  formData.append("isPublic", isPublic.value),
+  formData.append("isPublic", isPublic.value)
   articleStore.createArticle(formData);
 };
 </script>
