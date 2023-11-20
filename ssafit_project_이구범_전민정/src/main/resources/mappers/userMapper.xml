@@ -18,4 +18,10 @@
 	insert into user (userId, username, email, password)
 	values (#{userId}, #{username}, #{email}, #{password})
 	</insert>
+	
+	<update id="updateScore" parameterType="String">
+		update user
+		set score = score + 3
+		where userId = #{id}
+	</update>
 </mapper>

@@ -53,4 +53,22 @@ public class VideoServiceImpl implements VideoService {
 		return videoDao.selectOne(videoId);
 	}
 
+	@Override
+	public void addVideo(Video video) {
+		// TODO Auto-generated method stub
+		videoDao.insertVideo(video);
+	}
+
+	@Override
+	public void modifyVideo(Video video) {
+		// TODO Auto-generated method stub
+		videoDao.updateVideo(video);
+	}
+
+	@Override
+	public void removeVideo(String videoId) {
+		// TODO Auto-generated method stub
+		videoDao.deleteVideo(videoId);
+	}
+
 }

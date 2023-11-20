@@ -156,6 +156,8 @@ public class ArticleRestController {
 		
 		if(userId.equals("master")) {
 			articleService.checkIt(articleId);
+			Article article = articleService.getArticle(articleId);
+			userService.scores(article.getUserId());
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);

@@ -13,5 +13,8 @@ public interface UserDao {
 
 	// 회원 가입
 	public void insertUser(User user);
+
+	// 점수 증가
+	public void updateScore(String id);
 	
 }
