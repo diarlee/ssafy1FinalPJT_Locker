@@ -163,12 +163,12 @@ a {
 }
 
 .userInfo_articleList-container > .userInfo {
-  flex-grow: 2;
+  flex-grow: 1;
   height: 220px;
 }
 
 .userInfo_articleList-container > .articleList1{
-  flex-grow: 8;
+  flex-grow: 9;
   height: 200px;
 }
 

@@ -9,9 +9,20 @@ export const useArticleStore = defineStore("article", () => {
 
   // userId와 날짜로 articleId 가져오기
   const getArticleId = function (userId, date) {
-    axios.get(`${REST_ARTICLE_API/getId}`).then((response) => {
-      return response.data
+    axios({
+      url: `${REST_ARTICLE_API}/getId`,
+      method: "POST",
+      data: {
+        userId: userId,
+        date: date,
+      }
     })
+      .then((response) => {
+        return response.data
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   // 전체 articleList 가져오기
@@ -39,17 +50,12 @@ export const useArticleStore = defineStore("article", () => {
   };
 
   // article 등록
-  const createArticle = function (article) {
+  const createArticle = function (formData) {
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      data: {
-        userId: article.value.userId,
-        image: article.value.image,
-        title: article.value.title,
-        content: article.value.content,
-        isPublic: article.value.isPublic,
-      },
+      headers: {'Content-Type': 'multipart/form-data'},
+      data: formData
     })
       .then(() => {
         router.push({ name: "home" });

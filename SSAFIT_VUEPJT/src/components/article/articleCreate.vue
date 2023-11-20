@@ -4,19 +4,21 @@
       <h2>게시글 업로드</h2>
       <form>
         <div class="input-box">
-          <input type="text" v-model="article.image">
+          <input type="file" @change="appendImage" />
           <label for="">이미지</label>
         </div>
         <div class="input-box">
-          <input type="text" name="" required="" v-model="article.title"/>
+          <input type="text" name="" required="" v-model="title" />
           <label>title</label>
         </div>
         <div class="input-box">
-          <input type="text" name="" required="" v-model="article.content"/>
+          <input type="text" name="" required="" v-model="content" />
           <label>content</label>
         </div>
         <div class="input-button">
-          <button @click="article.isPublic = !article.isPublic">{{ getIsPublic }}</button>
+          <button @click="isPublic = !isPublic">
+            {{ getIsPublic }}
+          </button>
         </div>
         <a @click="createArticle">
           <span></span>
@@ -34,33 +36,44 @@
 import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { RouterView, RouterLink } from "vue-router";
-import { useUsersStore } from "@/stores/users"
+import { useUsersStore } from "@/stores/users";
 import { useArticleStore } from "@/stores/article";
 
 const userStore = useUsersStore();
 const articleStore = useArticleStore();
 
-const article = ref({
-  userId: userStore.loginId,
-  image: "",
-  title: "",
-  content: "",
-  isPublic: true,
-})
+const formData = new FormData();
+const userId = ref(userStore.loginId);
+const title = ref("");
+const content = ref("");
+const isPublic = ref("");
+
+// const article = ref({
+//   userId: userStore.loginId,
+//   title: "",
+//   image: "",
+//   content: "",
+//   isPublic: true,
+// })
+
+const appendImage = (e) => {
+  article.append("image", e.target.files[0]);
+};
 
 const getIsPublic = computed(() => {
-  return article.value.isPublic == true ? "private" : "public"
-})
+  return isPublic.value == true ? "private" : "public";
+});
 
 const createArticle = function () {
-  // console.log("ing")
-    articleStore.createArticle(article)
-}
+  formData.append("userId", userId.value);
+  formData.append("title", title.value),
+  formData.append("content", content.value),
+  formData.append("isPublic", isPublic.value),
+  articleStore.createArticle(formData);
+};
 </script>
 
 <style scoped>
-
-
 .articleCreate-container {
   margin: 0;
   padding: 0;

@@ -1,14 +1,14 @@
 <template>
     <div class="userInfo-container">
         <div class="userGrade">
-            <div v-if="0 <= store.score <= 30">1</div>
-            <div v-else-if="store.score <= 100">2</div>
-            <div v-else-if="store.score <= 200">3</div>
-            <div v-else-if="store.score <= 365 ">4</div>
-            <div v-else>5</div>
+            <img v-if="0 <= store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
+            <img v-else-if="store.score <= 100" src="@/assets/img/silverKey.png" alt="">
+            <img v-else-if="store.score <= 500" src="@/assets/img/goldKey.png" alt="">
+            <img v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">
+            <img v-else src="@/assets/img/diaKey.png">
         </div>
-        <RouterLink v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
-        <RouterLink v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">인증하기</RouterLink>
+        <RouterLink class="router" v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
+        <RouterLink class="router" v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">인증하기</RouterLink>
     </div>
 </template>
 
@@ -23,5 +23,21 @@ const store = useUsersStore();
 <style scoped>
 .userInfo-container {
     border: solid 1px;
+    display: flex;
+    flex-direction: column;
 }
+
+.userGrade {
+    flex-grow: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+}
+
+.router {
+    text-align: right;
+}
+
 </style>
