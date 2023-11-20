@@ -18,6 +18,7 @@ export const useArticleStore = defineStore("article", () => {
       }
     })
       .then((response) => {
+        console.log(response.data)
         return response.data
       })
       .catch((err) => {
@@ -93,6 +94,7 @@ export const useArticleStore = defineStore("article", () => {
   };
 
   return {
+    getArticleId,
     articleList,
     getArticleList,
     articleList_top4,

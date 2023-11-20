@@ -204,7 +204,7 @@ public class ArticleRestController {
 		if(articleId > 0) {
 			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
 		}
 		
 	}

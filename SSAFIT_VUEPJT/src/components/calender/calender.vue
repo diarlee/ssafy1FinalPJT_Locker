@@ -28,8 +28,10 @@
 import { ref, onMounted } from "vue";
 // import { RouterView, RouterLink } from "vue-router";
 import { useArticleStore } from "@/stores/article";
+import { useUsersStore } from '@/stores/users'
 
-const store = useArticleStore()
+const articleStore = useArticleStore()
+const userStore = useUsersStore
 
 onMounted(() => {
   buildCalendar();
@@ -74,11 +76,14 @@ function buildCalendar() {
     // 둥근 사각형 모양으로 집어넣기
     // nowColumn.innerText = leftPad(nowDay.getDate()); // 추가한 열에 날짜 입력
 
-    const date = nowDay.getDate();
-    const articleId = ref("")
-    const getArticleId= function (userId, date) {
-        articleId.value = store.getArticleId(userId, date)
+    const date = `${nowMonth.getFullYear()}-${nowMonth.getMonth()}-${nowDay.getDate()}`
+    // console.log(date)
+    const articleId = ref()
+    const getArticleId= function () {
+        articleId.value = articleStore.getArticleId(userStore.loginId, date)
       };
+    getArticleId();
+    console.log(articleId.value)
 
     nowColumn.innerHTML = `<a href=”/article/detail/${articleId.value}”>1</a>`
     if (nowDay.getDay() == 6) {
