@@ -30,7 +30,10 @@ public interface ArticleDao {
 	void deleteArticle(int articleId);
 
 	// 게시글 좋아요 누르기
-	void updateLike(int articleId);
+	void plusLike(int articleId);
+	
+	// 게시글 좋아요 취소하기
+	void minusLike(int articleId);
 
 	// 운동 인증하기
 	void updateCheck(int articleId);
