@@ -201,12 +201,13 @@ public class ArticleRestController {
 		String userId = map.get("userId");
 		String date = map.get("date");
 		
-		int articleId = articleService.commit(userId, date);
+		Article article = articleService.commit(userId, date);
 		
-		if(articleId > 0) {
+		if(article != null) {
+			int articleId = article.getArticleId();
 			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<String>("해당하는 값이 없습니다.", HttpStatus.NO_CONTENT);
 		}
 		
 	}
