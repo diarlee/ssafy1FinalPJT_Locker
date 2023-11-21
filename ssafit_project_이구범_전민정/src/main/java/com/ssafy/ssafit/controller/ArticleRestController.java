@@ -146,7 +146,7 @@ public class ArticleRestController {
 	// 이거 좀 복잡할지도... 더 생각해보기
 	@PutMapping("/like/{articleId}")
 	@ApiOperation(value="좋아요 누르기 기능")
-	public ResponseEntity<?> likeIt(@PathVariable int articleId, @RequestBody String userId){
+	public ResponseEntity<?> likeIt(@PathVariable int articleId, String userId){
 		
 		if(heartService.selectHeart(userId, articleId) == null) {
 			Heart heart = new Heart();
@@ -186,7 +186,7 @@ public class ArticleRestController {
 	
 	@PutMapping("/public")
 	@ApiOperation(value="게시글 전체 공개 설정")
-	public ResponseEntity<?> isPublic(@RequestBody int articleId){
+	public ResponseEntity<?> isPublic(int articleId){
 			articleService.isPublic(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
