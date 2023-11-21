@@ -74,7 +74,7 @@ public class UserRestController {
 		} else {
 			session.setAttribute("loginUser", user);
 			System.out.println(user);
-			return new ResponseEntity<Void>(HttpStatus.OK);
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}
 	

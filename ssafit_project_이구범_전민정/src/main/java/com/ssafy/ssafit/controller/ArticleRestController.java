@@ -202,7 +202,7 @@ public class ArticleRestController {
 		}
 	}
 	
-	@GetMapping("/noCheck")
+	@GetMapping("/notCheck")
 	@ApiOperation(value="인증 안 된 게시글 목록 가져오기")
 	public ResponseEntity<?> notChecked(){
 		List<Article> articles = articleService.getNotChecked();

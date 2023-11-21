@@ -8,6 +8,7 @@ const REST_USER_API = `http://localhost:8080/api`
 export const useUsersStore = defineStore("users", () => {
   const loginStatus = ref(false);
   const loginId = ref("");
+  const score = ref(-1);
 
   const signinFunc = (userId, password, username, email) => {
     // console.log(userId, password, username, email);
@@ -47,9 +48,10 @@ export const useUsersStore = defineStore("users", () => {
         pwd: password
       }
     })
-      .then(() => {
+      .then((response) => {
         loginStatus.value = !loginStatus.value
         loginId.value = userId
+        score.value = response.data.score
         // sessionStorage.setItem("", response.data[""])
         console.log("로그인 성공");
         router.push({ name: 'home' });
@@ -65,6 +67,7 @@ export const useUsersStore = defineStore("users", () => {
     axios.get(`${REST_USER_API}/logout`)
       .then(() => {
         loginStatus.value = !loginStatus.value;
+        loginId.value = "";
         console.log("로그아웃 성공");
         router.push({ name: 'home' });
       })
@@ -74,5 +77,9 @@ export const useUsersStore = defineStore("users", () => {
 
   };
 
-  return { loginStatus, loginId, signinFunc, loginFunc, logoutFunc };
+  // user 정보 불러오기
+  const getUserInfo = () => {
+  }
+
+  return { loginStatus, loginId, signinFunc, loginFunc, logoutFunc, getUserInfo };
 }, {persist: true}); // pinia로 login 상태 local storage에 저장

@@ -1,7 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainView from "@/views/MainView.vue";
+import MainView from "@/views/mainView.vue";
 import Signin from "@/components/user/signin.vue";
 import Login from "@/components/user/login.vue";
+import Master from "@/views/masterView.vue"
+import ArticleList from "@/views/articleView.vue"
+import ArticleCreate from "@/components/article/articleCreate.vue"
+import ArticleDetail from "@/components/article/articleDetail.vue"
+import ArticleUpdate from "@/components/article/articleUpdate.vue"
+import VideoList from "@/views/videoView.vue"
 import VideoDetail from "@/components/video/videoDetail.vue";
 import ReviewCreate from "@/components/review/reviewCreate.vue";
 import ReviewDetail from "@/components/review/reviewDetail.vue";
@@ -26,6 +32,36 @@ const router = createRouter({
       component: Login,
     },
     {
+      path: "/master",
+      name: "master",
+      component: Master,
+    },
+    {
+      path: "/article/all",
+      name: "articleList",
+      component: ArticleList,
+    },
+    {
+      path: "/article/write",
+      name: "articleCreate",
+      component: ArticleCreate,
+    },
+    {
+      path: "/article/detail/:articleId",
+      name: "articleDetail",
+      component: ArticleDetail,
+    },
+    {
+      path: "/article/modify/:articleId",
+      name: "articleUpdate",
+      component: ArticleUpdate,
+    },
+    {
+      path: "/video/:videoType",
+      name: "videoList",
+      component: VideoList,
+    },
+    {
       path: "/video/detail/:id",
       name: "videoDetail",
       component: VideoDetail,
@@ -45,6 +81,8 @@ const router = createRouter({
       name: "reviewUpdate",
       component: ReviewUpdate,
     },
+
+
     // {
     //   path: "/review",
     //   name: "review",
@@ -67,7 +105,7 @@ const router = createRouter({
     //     },
     //   ],
     // },
-    
+
   ],
 });
 
