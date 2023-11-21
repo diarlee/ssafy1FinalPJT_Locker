@@ -95,7 +95,7 @@ public class ArticleRestController {
 	@ApiOperation(value = "게시글 등록")
 	public ResponseEntity<?> createArticle(Article article, @RequestParam(required = true) MultipartFile uploadImage) throws IOException{
 		User user = userService.getUser(article.getUserId());
-		if(user != null) { 
+		if(user != null) {
 			article.setWriter(user.getUsername());
 			articleService.writeArticle(article, uploadImage);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
@@ -223,10 +223,8 @@ public class ArticleRestController {
 		// 년 월 일만 추출해서 일치하는 걸로 가져오기
 		String userId = map.get("userId");
 		String date = map.get("date");
-//		System.out.println(userId + " " + date);
 		
 		Article article = articleService.commit(userId, date);
-//		System.out.println(article);
 		
 		if(article != null) {
 			int articleId = article.getArticleId();
