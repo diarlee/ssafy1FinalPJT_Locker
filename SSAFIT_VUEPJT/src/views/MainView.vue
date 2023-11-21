@@ -130,6 +130,7 @@ onMounted(() => {
 
 <style scoped>
 * {
+  /* background: linear-gradient(to right, #485563, #29323c); */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
