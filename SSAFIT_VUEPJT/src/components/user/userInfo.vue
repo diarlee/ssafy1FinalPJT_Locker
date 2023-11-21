@@ -23,7 +23,7 @@ const store = useUsersStore();
 
 <style scoped>
 .userInfo-container {
-    width: inherit;
+    width: 28%;
     border: solid 1px;
     border-radius: 2rem;
     display: flex;
