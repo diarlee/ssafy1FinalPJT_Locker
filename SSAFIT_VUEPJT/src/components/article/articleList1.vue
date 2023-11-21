@@ -1,7 +1,7 @@
 <template>
     <div class="articleList1-container">
         <div class="articleList1">
-            <div class="articleList" v-for="article in store.articleList_top4"> 
+            <div class="articleList" v-for="article in store.articleList_top4">
                 <RouterLink :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}">{{ article }}</RouterLink>
             </div>
         </div>
@@ -34,5 +34,6 @@ onMounted(() => {
 
 .articleList1 .articleList {
     width: 20%;
+    border: 1px solid;
 }
 </style>
