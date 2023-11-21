@@ -1,12 +1,12 @@
 <template style="margin: 0px; overflow: hidden">
   <div class="background-container">
-    <div class="main-image-container" style="width: 100%">
-      <!-- <img
+    <!-- <div class="main-image-container" style="width: 100%">
+      <img
         class="main-image object-fit-cover"
         src="https://watermark.lovepik.com/photo/20211126/large/lovepik-gym-picture_501088658.jpg"
         alt="main image"
-      /> -->
-    </div>
+      />
+    </div> -->
     <div class="container">
       <div class="userInfo_articleList-container">
         <userInfo class="userInfo"/>
@@ -154,9 +154,7 @@ a {
   align-items: center;
   left: 0;
   right: 0;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin: 20px 0 50px 0;
   width: 1400px;
 }
 

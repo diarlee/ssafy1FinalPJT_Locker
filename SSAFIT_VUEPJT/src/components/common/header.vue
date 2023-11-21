@@ -18,7 +18,7 @@
           <RouterLink :to="{ name: 'home' }">LOCKER</RouterLink>
           <!-- <a class="navbar-brand" id="page-name" href="./main?act=main">SSAFIT</a> -->
           </div>
-            <div class="nav justify-content-center">
+            <div class="nav justify-content-center" style="padding: 0;">
                 <ul class="nav nav-underline">
                   <li class="nav-item">
                     <RouterLink class="nav-link" :to="{ name: 'home' }">HOME</RouterLink>
@@ -86,6 +86,10 @@ a {
 }
 
 a:hover {
+  color:rgb(186, 41, 41);
+}
+
+button:hover {
   color:rgb(186, 41, 41);
 }
 
