@@ -13,12 +13,15 @@
         <articleList1 class="articleList1" />
       </div>
       <div class="calender_articleList-container">
-        <articleList2 class="articleList2" />
-        <calender class="calender" />
-      </div>
-      <div class="more">
+        <div class="articleList-more"><articleList2 class="articleList2" />
+          <div class="more">
         <RouterLink type="button" class="moreButton" :to="{name: 'articleList'}">+더보기</RouterLink>
       </div>
+        </div>
+        
+        <calender class="calender" />
+      </div>
+      
       <br>
       <br>
       <div class="video-box">
@@ -159,27 +162,33 @@ a {
 
 .userInfo_articleList-container {
   width: 100%;
+  height: 240px;
   display: flex;
 }
 
 .userInfo_articleList-container > .userInfo {
-  flex-grow: 1;
   height: 220px;
 }
 
 .userInfo_articleList-container > .articleList1{
-  flex-grow: 9;
   height: 200px;
 }
 
 .calender_articleList-container {
   width: 100%;
+  height: 240px;
   display: flex;
+}
+
+.calender_articleList-container > .articleList-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .calender_articleList-container > .calender {
   flex-grow: 1;
-  height: 220px;
+  height: 240px;
 }
 
 

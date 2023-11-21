@@ -6,7 +6,6 @@ import axios from "axios";
 const REST_ARTICLE_API = "http://localhost:8080/api/article";
 
 export const useArticleStore = defineStore("article", () => {
-
   // 전체 articleList 가져오기
   const articleList = ref([]);
   const getArticleList = function () {
@@ -37,7 +36,7 @@ export const useArticleStore = defineStore("article", () => {
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { "Content-Type": "multipart/form-data" },
       data: formData,
     })
       .then(() => {
@@ -61,8 +60,8 @@ export const useArticleStore = defineStore("article", () => {
     axios({
       url: `${REST_ARTICLE_API}/modify/${article.articleId}`,
       method: "PUT",
-      headers: { 'Content-Type': 'multipart/form-data' },
-      data: formData
+      headers: { "Content-Type": "multipart/form-data" },
+      data: formData,
     })
       .then(() => {
         router.push({
@@ -81,9 +80,12 @@ export const useArticleStore = defineStore("article", () => {
       url: `${REST_ARTICLE_API}/public`,
       method: "PUT",
       data: {
-        articleId: articleId
-      }
+        articleId: articleId,
+      },
     })
+      .then(() => {
+        // window.location.reload()
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -91,30 +93,29 @@ export const useArticleStore = defineStore("article", () => {
 
   // 좋아요 누르기
   const updateHeart = function (articleId, userId) {
-  axios({
-    url: `${REST_ARTICLE_API}/like/${articleId}`,
-    method: "PUT",
-    data: {
-      userId: userId
-    }
-  })
-    .catch((err) => {
+    axios({
+      url: `${REST_ARTICLE_API}/like/${articleId}`,
+      method: "PUT",
+      data: {
+        userId: userId,
+      },
+    }).catch((err) => {
       console.log(err);
     });
-};
+  };
 
-return {
-  articleList,
-  getArticleList,
-  articleList_top4,
-  getArticleList_top4,
-  articleList_top4to8,
-  getArticleList_top4to8,
-  createArticle,
-  article,
-  getArticle,
-  updateArticle,
-  updateHeart,
-  updatePublic
-};
+  return {
+    articleList,
+    getArticleList,
+    articleList_top4,
+    getArticleList_top4,
+    articleList_top4to8,
+    getArticleList_top4to8,
+    createArticle,
+    article,
+    getArticle,
+    updateArticle,
+    updateHeart,
+    updatePublic,
+  };
 });

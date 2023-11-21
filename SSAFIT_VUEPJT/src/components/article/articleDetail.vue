@@ -6,8 +6,8 @@
         <div class="date">{{ articleStore.article.regDate }}</div>
         <div class="image">{{ articleStore.article.image }}</div>
         <div class="content">{{ articleStore.article.content }}</div>
-        <button @click="changeStatus">{{ articleStore.article.public }}</button>
-        <button class="heart" @click="clickHeart">하트 {{ articleStore.article.liked }}</button>
+        <button @click="changeStatus">{{ currentStatus }}</button>
+        <button class="heart" @click="clickHeart">하트 {{ currentHeart }}</button>
         <RouterLink :to="{name: 'articleUpdate', params: {articleId: route.params.articleId}}">수정</RouterLink>
     </div>
 </template>
@@ -17,7 +17,7 @@ import { RouterView, RouterLink } from "vue-router";
 import { useRoute, useRouter } from "vue-router";
 import { useArticleStore } from "@/stores/article";
 import { useUsersStore } from "@/stores/users";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import axios from "axios";
 
 const articleStore = useArticleStore();
@@ -26,12 +26,20 @@ const userStore = useUsersStore();
 const route = useRoute();
 const router = useRouter();
 
+const currentStatus = computed (() => {
+    return articleStore.article.public
+})
+
+const currentHeart = computed (() => {
+    return articleStore.article.liked
+})
+
 const changeStatus = function () {
     articleStore.updatePublic(route.params.articleId)
 }
 
 const clickHeart = function () {
-    articleStore.updateHeart(route.params.articleId, userStore.loginId.value)
+    articleStore.updateHeart(route.params.articleId, userStore.loginId)
 }
 
 onMounted(() => {

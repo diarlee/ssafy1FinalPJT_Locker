@@ -27,8 +27,12 @@ onMounted(() => {
     border: solid 1px;
 }
 
-.articleList {
+.articleList1 {
     display: flex;
+    justify-content: space-around;
+}
 
+.articleList1 .articleList {
+    width: 20%;
 }
 </style>
