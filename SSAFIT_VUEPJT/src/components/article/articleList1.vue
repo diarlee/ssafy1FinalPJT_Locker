@@ -1,12 +1,11 @@
 <template>
-    <div class="articleList1-container">
-        <div class="articleList1">
-            <div class="articleList" v-for="article in store.articleList_top4"> 
+  <div class="articleList1-container">
+    <div class="articleList1">
+            <div class="articleList" v-for="article in store.articleList_top4">
                 <RouterLink :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}">{{ article }}</RouterLink>
             </div>
         </div>
-
-    </div>
+  </div>
 </template>
 
 <script setup>
@@ -17,22 +16,14 @@ import { onMounted } from "vue";
 const store = useArticleStore();
 
 onMounted(() => {
-    store.getArticleList_top4();
+  store.getArticleList_top4();
 });
-
 </script>
 
 <style scoped>
-.articleList1-container{
-    border: solid 1px;
+.articleList1-container {
+  border: solid 1px;
+  font-family: consolas;
 }
 
-.articleList1 {
-    display: flex;
-    justify-content: space-around;
-}
-
-.articleList1 .articleList {
-    width: 20%;
-}
 </style>

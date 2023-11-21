@@ -9,21 +9,26 @@
     </div> -->
     <div class="container">
       <div class="userInfo_articleList-container">
-        <userInfo class="userInfo"/>
+        <userInfo class="userInfo" />
         <articleList1 class="articleList1" />
       </div>
       <div class="calender_articleList-container">
-        <div class="articleList-more"><articleList2 class="articleList2" />
+        <div class="articleList-more">
+          <articleList2 class="articleList2" />
           <div class="more">
-        <RouterLink type="button" class="moreButton" :to="{name: 'articleList'}">+더보기</RouterLink>
-      </div>
+            <RouterLink
+              type="button"
+              class="moreButton"
+              :to="{ name: 'articleList' }"
+              >+더보기</RouterLink
+            >
+          </div>
         </div>
-        
         <calender class="calender" />
       </div>
-      
-      <br>
-      <br>
+
+      <br />
+      <br />
       <div class="video-box">
         <div>
           <p class="fw-bold text-left fs-4">운동할 때 보면좋은</p>
@@ -64,7 +69,11 @@
         </div>
       </div>
       <div class="more">
-        <RouterLink type="button" :to="{name: 'videoList', params: {videoType: 'guide'}}">+더보기</RouterLink>
+        <RouterLink
+          type="button"
+          :to="{ name: 'videoList', params: { videoType: 'guide' } }"
+          >+더보기</RouterLink
+        >
       </div>
       <div class="mt-5 video-box">
         <div>
@@ -106,7 +115,11 @@
         </div>
       </div>
       <div class="more">
-        <RouterLink type="button" :to="{name: 'videoList', params: {videoType: 'music'}}">+더보기</RouterLink>
+        <RouterLink
+          type="button"
+          :to="{ name: 'videoList', params: { videoType: 'music' } }"
+          >+더보기</RouterLink
+        >
       </div>
     </div>
   </div>
@@ -166,10 +179,11 @@ a {
 }
 
 .userInfo_articleList-container > .userInfo {
+  width: 35%;
   height: 220px;
 }
 
-.userInfo_articleList-container > .articleList1{
+.userInfo_articleList-container > .articleList1 {
   height: 200px;
 }
 
@@ -180,21 +194,24 @@ a {
 }
 
 .calender_articleList-container > .articleList-more {
+  flex-grow: 8;
+  width: 265%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .calender_articleList-container > .calender {
-  flex-grow: 1;
+  flex-grow: 2;
   height: 240px;
+  display: flex;
+  justify-content: center;
 }
 
-
-.calender_articleList-container > .articleList1 {
+/* .calender_articleList-container > .articleList1 {
   flex-grow: 9;
   height: 200px;
-}
+} */
 
 .articleList2 {
   width: 100%;
@@ -208,7 +225,6 @@ a {
   display: flex;
   justify-content: center;
 }
-
 
 #page-name {
   font-weight: bold;
