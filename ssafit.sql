@@ -124,14 +124,10 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`heart` (
   PRIMARY KEY (`heartId`),
   CONSTRAINT `fk_article_id`
     FOREIGN KEY (`articleId`)
-    REFERENCES `ssafit`.`article` (`articleId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `ssafit`.`article` (`articleId`),
   CONSTRAINT `fk_user_id`
     FOREIGN KEY (`userId`)
-    REFERENCES `ssafit`.`user` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `ssafit`.`user` (`userId`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
