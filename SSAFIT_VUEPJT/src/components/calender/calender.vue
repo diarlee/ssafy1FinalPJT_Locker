@@ -1,26 +1,28 @@
 <template>
   <div class="calender-container">
-    <table class="Calendar">
-      <thead>
-        <tr>
-          <td @click="prevCalendar" style="cursor: pointer">&#60;</td>
-          <td colspan="5">
-            <span id="calYear"></span>년 <span id="calMonth"></span>월
-          </td>
-          <td @click="nextCalendar" style="cursor: pointer">&#62;</td>
-        </tr>
-        <tr>
-          <td>sun</td>
-          <td>mon</td>
-          <td>tue</td>
-          <td>wed</td>
-          <td>thu</td>
-          <td>fri</td>
-          <td>sat</td>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div>
+      <table class="Calendar">
+        <thead>
+          <tr class="header">
+            <td @click="prevCalendar" style="cursor: pointer">&#60;</td>
+            <td class="yyyymm" colspan="5">
+              <span id="calYear"></span>년 <span id="calMonth"></span>월
+            </td>
+            <td @click="nextCalendar" style="cursor: pointer">&#62;</td>
+          </tr>
+          <tr class="days">
+            <td>sun</td>
+            <td>mon</td>
+            <td>tue</td>
+            <td>wed</td>
+            <td>thu</td>
+            <td>fri</td>
+            <td>sat</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -90,10 +92,14 @@ function buildCalendar() {
     })
       .then((response) => {
         articleId.value = response.data;
+        nowColumn.style.border = "1px solid";
+        nowColumn.style.borderRadius = "1rem";
+
         if (articleId.value == 0) {
-          nowColumn.innerHTML = 0;
+          nowColumn.innerHTML = `<img src="src/assets/img/lock.png" overflow: hidden;>`;
         } else {
-          nowColumn.innerHTML = `<a href=”/article/detail/${articleId.value}”>1</a>`;
+          nowColumn.style.translate = "2px";
+          nowColumn.innerHTML = `<a href=article/detail/${articleId.value} ><img src="src/assets/img/unlock4.png" ></a>`;
         }
       })
       .catch((err) => {
@@ -170,7 +176,8 @@ function leftPad(value) {
 
 <style scoped>
 .calender-container {
-  border: solid 1px;
+  border: solid 1px green;
+  border-radius: 2rem;
   display: flex;
   align-items: center;
 }
@@ -185,6 +192,9 @@ td {
   margin: 0 auto;
 }
 
+.header {
+}
+
 .Calendar > thead > tr:first-child > td {
   font-weight: bold;
   height: 35px;
@@ -192,12 +202,16 @@ td {
 }
 
 .Calendar > thead > tr:last-child > td {
-  background-color: silver;
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
   color: white;
   height: 10px;
 }
 
-.pastDay {
+/* .pastDay {
   background-color: lightgray;
 }
 
@@ -216,5 +230,5 @@ td {
   background-color: #3e85ef;
   color: #fff;
   cursor: pointer;
-}
+} */
 </style>

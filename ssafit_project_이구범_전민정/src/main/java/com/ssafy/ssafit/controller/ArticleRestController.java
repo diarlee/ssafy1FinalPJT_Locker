@@ -147,6 +147,7 @@ public class ArticleRestController {
 	@PutMapping("/like/{articleId}")
 	@ApiOperation(value="좋아요 누르기 기능")
 	public ResponseEntity<?> likeIt(@PathVariable int articleId, @RequestBody Map<String, String> map){
+		System.out.println(map.get("userId"));
 		
 		String userId = map.get("userId");
 		

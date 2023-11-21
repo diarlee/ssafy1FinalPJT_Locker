@@ -7,6 +7,7 @@
             <img v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">
             <img v-else src="@/assets/img/diaKey.png">
         </div>
+        <div></div>
         <RouterLink class="router" v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
         <RouterLink class="router" v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">인증하기</RouterLink>
     </div>
@@ -22,7 +23,9 @@ const store = useUsersStore();
 
 <style scoped>
 .userInfo-container {
+    width: inherit;
     border: solid 1px;
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
 }
@@ -33,7 +36,6 @@ const store = useUsersStore();
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: inherit;
 }
 
 .router {

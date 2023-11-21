@@ -21,7 +21,7 @@
 		select * 
 		from article
 		order by regDate desc
-		limit 4, 8;
+		limit 5, 8;
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Article">
