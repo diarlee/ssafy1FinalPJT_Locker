@@ -7,24 +7,6 @@ const REST_ARTICLE_API = "http://localhost:8080/api/article";
 
 export const useArticleStore = defineStore("article", () => {
 
-  // userId와 날짜로 articleId 가져오기
-  const getArticleId = function (userId, date) {
-    axios({
-      url: `${REST_ARTICLE_API}/getId`,
-      method: "POST",
-      data: {
-        userId: userId,
-        date: date,
-      }
-    })
-      .then((response) => {
-        return response.data
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   // 전체 articleList 가져오기
   const articleList = ref([]);
   const getArticleList = function () {
@@ -51,11 +33,12 @@ export const useArticleStore = defineStore("article", () => {
 
   // article 등록
   const createArticle = function (formData) {
+    // console.log(formData);
     axios({
       url: `${REST_ARTICLE_API}/write`,
       method: "POST",
-      headers: {'Content-Type': 'multipart/form-data'},
-      data: formData
+      headers: { 'Content-Type': 'multipart/form-data' },
+      data: formData,
     })
       .then(() => {
         router.push({ name: "home" });
@@ -74,16 +57,17 @@ export const useArticleStore = defineStore("article", () => {
   };
 
   // article 수정
-  const updateArticle = function (article) {
+  const updateArticle = function (articleId, formData) {
     axios({
       url: `${REST_ARTICLE_API}/modify/${article.articleId}`,
       method: "PUT",
-      data: {},
+      headers: { 'Content-Type': 'multipart/form-data' },
+      data: formData
     })
       .then(() => {
         router.push({
           name: "articleDetail",
-          params: { article: article.articleId },
+          params: { articleId: articleId },
         });
       })
       .catch((err) => {
@@ -91,16 +75,46 @@ export const useArticleStore = defineStore("article", () => {
       });
   };
 
-  return {
-    articleList,
-    getArticleList,
-    articleList_top4,
-    getArticleList_top4,
-    articleList_top4to8,
-    getArticleList_top4to8,
-    createArticle,
-    article,
-    getArticle,
-    updateArticle,
+  // 공개상태 변경
+  const updatePublic = function (articleId) {
+    axios({
+      url: `${REST_ARTICLE_API}/public`,
+      method: "PUT",
+      data: {
+        articleId: articleId
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  // 좋아요 누르기
+  const updateHeart = function (articleId, userId) {
+  axios({
+    url: `${REST_ARTICLE_API}/like/${articleId}`,
+    method: "PUT",
+    data: {
+      userId: userId
+    }
+  })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+return {
+  articleList,
+  getArticleList,
+  articleList_top4,
+  getArticleList_top4,
+  articleList_top4to8,
+  getArticleList_top4to8,
+  createArticle,
+  article,
+  getArticle,
+  updateArticle,
+  updateHeart,
+  updatePublic
+};
 });

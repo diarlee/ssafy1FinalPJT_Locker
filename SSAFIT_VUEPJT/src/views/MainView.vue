@@ -1,11 +1,11 @@
 <template style="margin: 0px; overflow: hidden">
   <div class="background-container">
     <div class="main-image-container" style="width: 100%">
-      <img
+      <!-- <img
         class="main-image object-fit-cover"
         src="https://watermark.lovepik.com/photo/20211126/large/lovepik-gym-picture_501088658.jpg"
         alt="main image"
-      />
+      /> -->
     </div>
     <div class="container">
       <div class="userInfo_articleList-container">
