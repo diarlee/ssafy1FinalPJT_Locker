@@ -20,13 +20,13 @@
             {{ getIsPublic }}
           </button>
         </div>
-        <a @click="updateArticle">
+        <button @click="updateArticle">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           수정
-        </a>
+        </button>
         <RouterLink :to="{name: 'articleDetail', params: {articleId: route.params.articleId}}">취소</RouterLink>
       </form>
     </div>

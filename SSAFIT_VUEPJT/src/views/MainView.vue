@@ -175,7 +175,7 @@ a {
 
 .userInfo_articleList-container {
   width: 100%;
-  height: 240px;
+  height: 33vh;
   display: flex;
 }
 
