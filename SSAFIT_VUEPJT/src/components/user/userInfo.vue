@@ -1,17 +1,23 @@
 <template>
     <div class="userInfo-container">
-        <div class="userGrade">
-            <div>
-                <img v-if="0 <= store.score && store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
-                <img v-else-if="store.score <= 100" src="@/assets/img/silverKey.png" alt="">
-                <img v-else-if="store.score <= 500" src="@/assets/img/goldKey.png" alt="">
-                <img v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">
-                <img v-else src="@/assets/img/diaKey.png">
-            </div>
-            <div>
-                <!-- <p> {{ store.loginId }} 님</p> -->
-                <RouterLink class="router" v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
-                <RouterLink class="router" v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">Check In</RouterLink>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img class="img-fluid rounded-start" v-if="0 <= store.score && store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
+                    <img class="img-fluid rounded-start" v-else-if="store.score <= 100" src="@/assets/img/silverKey.png" alt="">
+                    <img class="img-fluid rounded-start" v-else-if="store.score <= 500" src="@/assets/img/goldKey.png" alt="">
+                    <img class="img-fluid rounded-start" v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">
+                    <img class="img-fluid rounded-start" v-else src="@/assets/img/diaKey.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"> {{ store.username }} 님</h5>
+                        <p class="card-text"> 내 점수: {{ store.score }} 점</p>
+                        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                        <RouterLink class="router" v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
+                        <RouterLink class="router" v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">UPLOAD</RouterLink>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,11 +35,11 @@ const store = useUsersStore();
 .userInfo-container {
     width: inherit;
     /* border: solid 1.35px #52796F; */
-    border-radius: 2rem;
+    /* border-radius: 2px; */
     display: flex;
     flex-direction: column;
 }
-
+/* 
 .userGrade {
     padding: 5px;
     flex-grow: 9;
@@ -41,9 +47,10 @@ const store = useUsersStore();
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
-img {
+.img-fluid {
+    padding: 30px 0px 0px 10px;
     width: 100px;
     height: 100px;
 }
@@ -52,8 +59,13 @@ img {
     margin: 10px 0 0 0;
 } */
 
+.card-body {
+    padding: 16px 0 16px 0;
+}
+
+
 .router {
-    margin: 30px 0 0 0;
+    margin: 0 0 0 0;
     text-align: right;
     text-decoration: none;
     color: #52796F;

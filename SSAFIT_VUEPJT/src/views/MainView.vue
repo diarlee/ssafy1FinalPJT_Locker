@@ -11,13 +11,8 @@
       <div class="calendar-user-article">
         <div class="calendar-userInfo-container">
           <div><calender class="calendar" /></div>
-          <div class="userInfo-more-container">
+          <div class="userInfo-container">
             <userInfo class="userInfo" />
-            <RouterLink
-                type="button"
-                class="moreButton"
-                :to="{ name: 'articleList' }"
-                >more</RouterLink>
           </div>
         </div>
         <div class="articleList-container">
@@ -181,14 +176,12 @@ a {
   padding: 5px;
 }
 
-.userInfo-more-container {
+.userInfo-container {
+  width: 100%;
   height: 40%;
-  display: flex;
-  flex-direction: row;
 }
 
 .userInfo {
-  width: 53%;
   height: 100%;
   margin: 10px 0 0 0;
 }

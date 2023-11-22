@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="youTube-container">
+        <Search/>
         <br>
         <br>
         <br>
@@ -11,7 +12,7 @@
         <br>
         <br>
         <br>
-        <Snowing/>
+        <!-- <Snowing/> -->
         <br>
         <br>
         <br>
@@ -23,6 +24,7 @@
 </template>
 
 <script setup>
+// import Search from "@/components/video/youtubeSearch.vue"
 import Snowing from "@/components/common/snowing.vue"
 </script>
 

@@ -35,12 +35,12 @@ const clickHeart = function (articleId) {
 };
 
 onMounted(() => {
-  if (self.name != "reload") {
-  self.name = "reload";
-  self.location.reload(true);
-} else self.name = "";
+//   if (self.name != "reload") {
+//   self.name = "reload";
+//   self.location.reload(true);
+// } else self.name = "";
 
-  articleStore.getArticleList();
+  articleStore.getPublicArticles();
 });
 </script>
 

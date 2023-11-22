@@ -33,6 +33,7 @@ export const useArticleStore = defineStore("article", () => {
   // 전체공개된 articleList 가져오기
   const publicArticles = ref([]);
   const getPublicArticles = function () {
+    console.log("ing")
     axios.get(`${REST_ARTICLE_API}/isPublic`).then((response) => {
       publicArticles.value = response.data;
     });
