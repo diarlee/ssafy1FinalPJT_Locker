@@ -135,7 +135,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO user (userId, username, email, password)
-VALUES ("ssafy", "admin", "ssafy@naver.com", "1234"),
+VALUES ("master", "admin", "ssafy@naver.com", "9999"),
+("ssafy", "ssafy", "ssafy@naver.com", "1234"),
 ("test", "tester", "test@naver.com", "1234");
 
 INSERT INTO video

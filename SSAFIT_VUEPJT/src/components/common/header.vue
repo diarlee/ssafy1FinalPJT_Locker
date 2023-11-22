@@ -33,6 +33,9 @@
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
               </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'articleList' }">ARTICLE</RouterLink>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                   USER </a>
