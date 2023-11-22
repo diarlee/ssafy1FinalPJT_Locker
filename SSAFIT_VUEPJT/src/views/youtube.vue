@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-// import Search from "@/components/video/youtubeSearch.vue"
+import Search from "@/components/video/youtubeSearch.vue"
 import Snowing from "@/components/common/snowing.vue"
 </script>
 
