@@ -1,53 +1,86 @@
 <template>
-    <div class="master-container">
-        <div v-for="article in notCheckedArticles">
-            <div>{{ article }}
-            <button @click="doApprove(article.articleId)">승인하기</button>
-            </div>
-        </div>
-    </div>
+  <div class="master-container">
+    <h1>관리자 페이지</h1>
+    <br />
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#articleId</th>
+          <th scope="col">userId</th>
+          <th scope="col">title</th>
+          <th scope="col">regDate</th>
+          <th scope="col">liked</th>
+          <th scope="col">public</th>
+          <th scope="col">checked</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr
+          v-for="article in articleStore.articleList"
+          :class="{ 'table-active': !article.checked }"
+        >
+          <th scope="row"><RouterLink class="link"
+            :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}"
+          >{{ article.articleId }}</RouterLink></th>
+          <td>{{ article.userId }}</td>
+          <td>{{ article.title }}</td>
+          <td>{{ article.regDate }}</td>
+          <td>{{ article.liked }}</td>
+          <td>{{ article.public }}</td>
+          <td v-if="article.checked == true">승인완료</td>
+          <td v-else>
+            <button @click="doApprove(article.articleId)">승인</button>
+            <button @click="doDelete(article.articleId)">삭제</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+// import { ref, computed } from "vue";
 import axios from "axios";
-import { useUsersStore } from "@/stores/users"
+import { useUsersStore } from "@/stores/users";
+import { useArticleStore } from "@/stores/article";
 import { onMounted } from "vue";
-import router from "@/router";
+import { RouterLink, RouterView } from "vue-router";
+// import router from "@/router";
+
+const userStore = useUsersStore();
+const articleStore = useArticleStore();
 
 const REST_ARTICLE_API = "http://localhost:8080/api/article";
 
-const notCheckedArticles = ref([]);
-const getNotChecked = function () {
-    axios.get(`${REST_ARTICLE_API}/notCheck`)
-        .then((response) => {
-            notCheckedArticles.value = response.data;
-            // console.log(notCheckedArticles.value)
-        })
+const doApprove = function (articleId) {
+  axios({
+    url: `${REST_ARTICLE_API}/check`,
+    method: "PUT",
+    data: {
+      userId: userStore.loginId,
+      articleId: articleId,
+    },
+  })
+    .then(() => {
+      // router.push({ name: "home" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
-const userStore = useUsersStore();
-
-const doApprove = function (articleId) {
-    axios({
-      url: `${REST_ARTICLE_API}/check`,
-      method: "PUT",
-      data: {
-        userId: userStore.loginId,
-        articleId: articleId
-      },
-    })
-      .then(() => {
-        // router.push({ name: "home" });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const doDelete = function (articleId) {
+  axios.delete(`${REST_ARTICLE_API}/delete/${articleId}`).then(() => {
+    window.location.reload();
+  });
+};
 
 onMounted(() => {
-    getNotChecked()
+  articleStore.getArticleList();
 });
 </script>
 
-<style></style>
+<style>
+.link {
+  color: black;
+}</style>
