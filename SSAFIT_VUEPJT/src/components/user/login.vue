@@ -3,13 +3,13 @@
       <form class="login-form">
         <div class="mb-3">
           <!-- <label for="userId" class="col-form-label">아이디</label> -->
-          <input type="text" class="form-control" id="userId" v-model="userId" placeholder="  Username"/>
+          <input type="text" class="form-control" id="userId" v-model="userId" placeholder="  UserId"/>
         </div>
         <div class="mb-3">
           <!-- <label for="password" class="col-form-label">비밀번호</label> -->
           <input type="text" class="form-control" id="password" name="title" v-model="password" placeholder="  Password"/>
         </div>
-        <button type="submit" class="btn" @click.prevent="login">CHECK IN</button>
+        <button type="submit" class="btn" @click.prevent="login">Check In</button>
         <!-- <RouterLink class="btn" :to="{ name: 'home' }">취소</RouterLink> -->
       </form>
   </div>
@@ -31,6 +31,13 @@ const login = () => {
 </script>
 
 <style scoped>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
 
 a {
   text-decoration: none;

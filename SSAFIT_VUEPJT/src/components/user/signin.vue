@@ -1,51 +1,26 @@
 <template>
-  <div>
-    <div>회원가입 페이지 입니다.</div>
-    <div>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-        crossorigin="anonymous"
-      />
-    </div>
-    <div>
-      <div class="container">
-        <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">
-          <form class="reviewform" method="post" action="main" style="width: 80%; margin: auto">
-            <div class="text-center">
-              <span class="material-symbols-outlined">dialogs</span>
-              <h2 class="d-inline mb-3 fs-4 fw-semibold">회원가입</h2>
-              <span class="material-symbols-outlined">dialogs</span>
-            </div>
-            <hr class="mb-3" />
-
-            <div class="mb-3">
-              <label for="userId" class="col-form-label">아이디</label>
-              <input type="text" class="form-control" id="userId" v-model="userId" />
-            </div>
-            <div class="mb-3">
-              <label for="password" class="col-form-label">비밀번호</label>
-              <input type="text" class="form-control" id="password" name="title" v-model="password" />
-            </div>
-            <div class="mb-3">
-              <label for="username" class="col-form-label">이름</label>
-              <input type="text" class="form-control" id="username" name="title" v-model="username" />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="col-form-label">이메일</label>
-              <input type="text" class="form-control" id="email" name="title" v-model="email" />
-            </div>
-
-            <!-- <RouterLink class="w-20 me-2 btn btn-outline-primary" :to="{ name: 'login' }" @click="signin">회원가입</RouterLink> -->
-            <button class="w-20 me-2 btn btn-outline-primary" @click.prevent="signin">회원가입</button>
-            <RouterLink class="w-20 btn btn-outline-danger" :to="{ name: 'home' }">취소</RouterLink>
-            <!-- <button type="button" onclick="location.href='./main?act=reviewList&videoId=${videoId}&url=${url }'" class="w-20 btn btn-outline-danger">취소</button> -->
-          </form>
+  <div class="container">
+      <form class="regist-form">
+        <div class="mb-3">
+          <!-- <label for="userId" class="col-form-label">아이디</label> -->
+          <input type="text" class="form-control" id="userId" v-model="userId" placeholder="  UserId"/>
         </div>
-      </div>
-    </div>
+        <div class="mb-3">
+          <!-- <label for="password" class="col-form-label">비밀번호</label> -->
+          <input type="text" class="form-control" id="password" name="title" v-model="password" placeholder="  Password"/>
+        </div>
+        <div class="mb-3">
+          <!-- <label for="username" class="col-form-label">이름</label> -->
+          <input type="text" class="form-control" id="username" name="title" v-model="username" placeholder="  UserName"/>
+        </div>
+        <div class="mb-3">
+          <!-- <label for="email" class="col-form-label">이메일</label> -->
+          <input type="text" class="form-control" id="email" name="title" v-model="email" placeholder="  Email"/>
+        </div>
+        <button class="btn" @click.prevent="signin">Sign Up</button>
+        <!-- <RouterLink class="w-20 btn btn-outline-danger" :to="{ name: 'home' }">취소</RouterLink> -->
+        <!-- <button type="button" onclick="location.href='./main?act=reviewList&videoId=${videoId}&url=${url }'" class="w-20 btn btn-outline-danger">취소</button> -->
+      </form>
   </div>
 </template>
 
@@ -75,24 +50,33 @@ const signin = () => {
 }
 
 a {
-  text-decoration: none !important;
+  text-decoration: none;
+}
+
+.btn {
+  background: #52796f;
+  color: white !important;  
+  padding: 10px;
+}
+
+.btn:hover {
+  background: rgb(186, 41, 41) !important;
 }
 
 .container {
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 70px;
+  margin-bottom: 150px;
+  width: 700px;
+}
+
+.regist-form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  left: 0;
-  right: 0;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
-  width: 1400px;
-}
-
-.container-fluid {
-  padding: 0 20px 0 20px !important;
 }
 
 #page-name {
@@ -100,27 +84,15 @@ a {
   font-size: 2rem;
 }
 
-.main-image {
-  width: 100%;
-  height: 200px;
-}
-
-.search-box {
-  width: 100%;
-  padding: 10px;
+.mb-3 {
+  width: 70%;
+  padding: 0 0 10px 0;
 }
 
 input {
   width: 100%;
+  height: 60px;
 }
 
-.video-list img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
 
-.video-box {
-  width: 100%;
-}
 </style>
