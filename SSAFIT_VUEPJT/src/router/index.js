@@ -3,6 +3,8 @@ import MainView from "@/views/mainView.vue";
 import Signin from "@/components/user/signin.vue";
 import Login from "@/components/user/login.vue";
 import Master from "@/views/masterView.vue"
+import KeysInfoView from "@/views/keysInfoView.vue"
+import SearchView from "@/views/searchView.vue"
 import ArticleList from "@/views/articleView.vue"
 import ArticleCreate from "@/components/article/articleCreate.vue"
 import ArticleDetail from "@/components/article/articleDetail.vue"
@@ -35,6 +37,16 @@ const router = createRouter({
       path: "/master",
       name: "master",
       component: Master,
+    },
+    {
+      path: "/keysInfo",
+      name: "keysInfo",
+      component: KeysInfoView,
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: SearchView,
     },
     {
       path: "/article/all",

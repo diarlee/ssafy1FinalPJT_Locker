@@ -100,7 +100,7 @@ public class ArticleRestController {
 			articleService.writeArticle(article, uploadImage);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else {
-			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
 	
@@ -109,11 +109,11 @@ public class ArticleRestController {
 	@ApiOperation(value="게시글 수정")
 	public ResponseEntity<?> updateArticle(@PathVariable int articleId, Article article, @RequestParam(required = true) MultipartFile uploadImage) throws IOException{
 		User user = userService.getUser(article.getUserId());
-		if(article.getArticleId() == articleId && user != null) {
+		if(article.getArticleId() == articleId && user != null && user.getUserId().equals(article.getUserId())) {
 			articleService.writeArticle(article, uploadImage);
-			return new ResponseEntity<Void>(HttpStatus.OK);			
+			return new ResponseEntity<Integer>(1, HttpStatus.OK);			
 		} else {
-			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
 		}
 		
 	}
@@ -139,7 +139,7 @@ public class ArticleRestController {
 			articleService.removeArticle(articleId);
 			return new ResponseEntity<Void>(HttpStatus.OK);			
 		} else {
-			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
 		}	
 	}
 	
