@@ -1,9 +1,13 @@
 <template>
     <div class="articleDetail-container">
+        <div class="title">
+            <h3>{{ articleStore.article.title }}</h3>
+        </div>
+        <div class="writer-date">
+            <div class="writer">{{ articleStore.article.writer }}</div>
+            <div class="date">{{ articleStore.article.regDate }}</div>
+        </div>
         <div class="check">{{ articleStore.article.checked }}</div>
-        <div class="title">{{ articleStore.article.title }}</div>
-        <div class="writer">{{ articleStore.article.writer }}</div>
-        <div class="date">{{ articleStore.article.regDate }}</div>
         <div class="image">{{ articleStore.article.image }}</div>
         <div class="content">{{ articleStore.article.content }}</div>
         <button @click="changeStatus">{{ currentStatus }}</button>
@@ -47,4 +51,27 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.articleDetail-container {
+    margin: 20px 0 20px 0;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+.writer-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.writer {
+    padding: 0 10px 0 0;
+}
+
+
+</style>
