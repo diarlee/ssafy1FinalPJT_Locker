@@ -2,7 +2,7 @@
     <div class="userInfo-container">
         <div class="userGrade">
             <div>
-                <img v-if="0 <= store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
+                <img v-if="0 <= store.score && store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
                 <img v-else-if="store.score <= 100" src="@/assets/img/silverKey.png" alt="">
                 <img v-else-if="store.score <= 500" src="@/assets/img/goldKey.png" alt="">
                 <img v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">

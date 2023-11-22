@@ -68,8 +68,10 @@ export const useUsersStore = defineStore("users", () => {
       .then(() => {
         loginStatus.value = !loginStatus.value;
         loginId.value = "";
+        score.value = 0;
         console.log("로그아웃 성공");
-        router.push({ name: 'home' });
+        window.location.reload(true);
+        // router.push({ name: 'home' });
       })
       .catch((err) => {
         console.log(err)
