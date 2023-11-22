@@ -20,7 +20,7 @@
     <header>
       <nav>
         <div class="container-fluid">
-          <div style="font-size: 100px; font-family: 'Orbitron', sans-serif">
+          <div style="font-size: 100px; font-family: 'Orbitron', sans-serif;">
             <RouterLink :to="{ name: 'home' }">LOCKER</RouterLink>
             <!-- <a class="navbar-brand" id="page-name" href="./main?act=main">SSAFIT</a> -->
           </div>
@@ -31,7 +31,7 @@
                 <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'search' }">VIDEO</RouterLink>
+                <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
@@ -42,12 +42,9 @@
                   <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">등급 정보</RouterLink></li>
                 </ul>
               </li>
-<<<<<<< HEAD
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
               </li>
-=======
->>>>>>> 5f974a4f9231e410be307934b8bbbfd9e48696a9
             </ul>
             <div class="nav nav-underline" v-if="!store.loginStatus">
               <li class="nav-item">
