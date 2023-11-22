@@ -6,6 +6,7 @@ const REST_VIDEO_API = `http://localhost:8080/api/video`
 
 export const useVideoStore = defineStore('video', () => {
 
+    const searched = ref(false)
     const youtubeList = ref([])
     const searchVideo = function(keyword){
         const URL = 'https://www.googleapis.com/youtube/v3/search';
@@ -18,12 +19,13 @@ export const useVideoStore = defineStore('video', () => {
                 key: API_KEY,
                 part: 'snippet',
                 q: keyword,
-                type: video,
-                maxResults: 10
+                type: 'video',
+                maxResults: 20
             }
         })
         .then((response) => {
             youtubeList.value = response.data.items
+            searched.value = true;
         })
     }
 
@@ -43,5 +45,5 @@ export const useVideoStore = defineStore('video', () => {
         });
     };
 
-    return  { youtubeList, searchVideo, videoList, getVideoList, video, getVideo };
+    return  { searched, youtubeList, searchVideo, videoList, getVideoList, video, getVideo };
 });

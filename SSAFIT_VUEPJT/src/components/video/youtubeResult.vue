@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="youTubeResult-container">
 
     </div>
 </template>

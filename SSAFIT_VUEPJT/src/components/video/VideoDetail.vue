@@ -1,89 +1,50 @@
 <template>
   <div class="container">
-    <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">
+      <div class="text-center">
+        <iframe
+          width="560"
+          height="315"
+          :src="videoStore.video.url"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
       <form class="reviewform" style="width: 80%; margin: auto">
-        <div class="text-center">
-          <span class="material-symbols-outlined">dialogs</span>
-          <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 목록</h2>
-          <span class="material-symbols-outlined">dialogs</span>
-        </div>
-
-        <hr class="mb-3" />
-        <div class="text-center">
-          <iframe
-            width="560"
-            height="315"
-            :src="videoStore.video.url"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-
-        <hr class="mb-3" />
-
-        <div class="d-flex justify-content-between">
-          <RouterLink
+          <table class="table">
+            <thead>
+              <tr style="text-align: center;">
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">조회수</th>
+                <th scope="col">작성시간</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="review in reviewStore.reviewList" style="text-align: center;">
+                  <td>{{ review.reviewId }}</td>
+                  <td>
+                  <RouterLink :to="{ name: 'reviewDetail', params: { reviewId: `${review.reviewId}`, videoId: route.params.id, }, }" style="cursor: pointer; color: black;">{{ review.title }}</RouterLink>
+                  </td>
+                  <td>{{ review.writer }}</td>
+                  <td>{{ review.viewCnt }}</td>
+                  <td>{{ review.regDate }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </form>
+      <div class="btn-container">
+        <RouterLink
             type="button"
-            class="w-20 me-2 btn btn-outline-primary"
+            class="btn"
             :to="{
               name: 'reviewCreate',
               param: { id: route.params.id },
-            }"
-            >글 작성</RouterLink
-          >
-          <div
-            style="border-bottom: solid gray 1px"
-            class="d-flex align-items-center"
-          >
-            <span class="material-symbols-outlined align-items-center"
-              >search</span
-            >
-
-            <input
-              style="border: none; background-color: transparent"
-              placeholder="제목,내용으로 검색"
-            />
-          </div>
-        </div>
-
-        <hr class="mb-3" />
-
-        <div class="d-flex justify-content-center">
-          <table style="width: 95%">
-            <tr>
-              <th class="border-bottom p-3">번호</th>
-              <th class="border-bottom p-3">제목</th>
-              <th class="border-bottom p-3">작성자</th>
-              <th class="border-bottom p-3">조회수</th>
-              <th class="border-bottom p-3">작성시간</th>
-            </tr>
-            <div v-for="review in reviewStore.reviewList">
-              <RouterLink
-                :to="{
-                  name: 'reviewDetail',
-                  params: {
-                    reviewId: `${review.reviewId}`,
-                    videoId: route.params.id,
-                  },
-                }"
-                style="cursor: pointer; text-decoration: underline"
-                class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
-              >
-                <tr>
-                  <td class="p-3">{{ review.reviewId }}</td>
-                  <td class="p-3">{{ review.title }}</td>
-                  <td class="p-3">{{ review.writer }}</td>
-                  <td class="p-3">{{ review.viewCnt }}</td>
-                  <td class="p-3">{{ review.regDate }}</td>
-                </tr>
-              </RouterLink>
-            </div>
-          </table>
-        </div>
-      </form>
-    </div>
+            }">글 작성
+        </RouterLink>
+      </div>
   </div>
 </template>
 
@@ -114,11 +75,6 @@ onMounted(() => {
   box-sizing: border-box;
   list-style: none;
 }
-
-a {
-  text-decoration: none !important;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -127,9 +83,35 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
-  width: 1400px;
+  margin-top: 70px;
+  margin-bottom: 140px;
+  width: 1000px;
+}
+
+.text-center {
+  margin-bottom: 20px;
+}
+
+.reviewform {
+  padding-top: 50px;
+}
+
+a:link {
+  text-decoration: none ;
+}
+
+a:hover {
+  color: rgb(186, 41, 41) !important;
+}
+
+.btn {
+  margin-top: 70px;
+  background: #52796f;
+  color: #ffffff;
+}
+.btn:hover {
+  background: rgb(186, 41, 41);
+  color: #ffffff !important;
 }
 
 #page-name {

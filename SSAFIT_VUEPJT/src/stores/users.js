@@ -8,6 +8,7 @@ const REST_USER_API = `http://localhost:8080/api`
 export const useUsersStore = defineStore("users", () => {
   const loginStatus = ref(false);
   const loginId = ref("");
+  const username = ref("")
   const score = ref(0);
 
   const signinFunc = (userId, password, username, email) => {
@@ -51,7 +52,9 @@ export const useUsersStore = defineStore("users", () => {
       .then((response) => {
         loginStatus.value = !loginStatus.value
         loginId.value = userId
+        username.value = response.data.username
         score.value = response.data.score
+
         // sessionStorage.setItem("", response.data[""])
         console.log("로그인 성공");
         router.push({ name: 'home' });
@@ -83,5 +86,5 @@ export const useUsersStore = defineStore("users", () => {
   const getUserInfo = () => {
   }
 
-  return { loginStatus, loginId, score, signinFunc, loginFunc, logoutFunc, getUserInfo };
+  return { loginStatus, loginId, username, score, signinFunc, loginFunc, logoutFunc, getUserInfo };
 }, {persist: true}); // pinia로 login 상태 local storage에 저장
