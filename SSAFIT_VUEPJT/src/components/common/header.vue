@@ -1,59 +1,93 @@
 <template>
   <div>
     <title>SSAFIT</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
     <header>
       <nav>
         <div class="container-fluid">
-          <div style="font-size: 100px; font-family: 'Orbitron', sans-serif;">
-          <RouterLink :to="{ name: 'home' }">LOCKER</RouterLink>
-          <!-- <a class="navbar-brand" id="page-name" href="./main?act=main">SSAFIT</a> -->
+          <div style="font-size: 100px; font-family: 'Orbitron', sans-serif">
+            <RouterLink :to="{ name: 'home' }">LOCKER</RouterLink>
+            <!-- <a class="navbar-brand" id="page-name" href="./main?act=main">SSAFIT</a> -->
           </div>
-            <div class="nav justify-content-center" style="padding: 0;">
-                <ul class="nav nav-underline">
-                  <li class="nav-item">
-                    <RouterLink class="nav-link" :to="{ name: 'home' }">HOME</RouterLink>
-                    <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
+          <div class="nav justify-content-center" style="padding: 0">
+            <ul class="nav nav-underline">
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'home' }"
+                  >HOME</RouterLink
+                >
+                <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  사용자
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/user/likeList.html">찜</a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 사용자 </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="/user/likeList.html">찜</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/user/follow.html">팔로우</a>
-                      </li>
-                    </ul>
+                  <li>
+                    <a class="dropdown-item" href="/user/follow.html">팔로우</a>
                   </li>
                 </ul>
-              <div class="nav nav-underline" v-if="!store.loginStatus">
-                <li class="nav-item">
-                  <RouterLink class="nav-link" :to="{ name: 'signin' }">회원가입</RouterLink>
-                    <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
-                </li>
-                <li class="nav-item">
-                  <RouterLink class="nav-link" :to="{ name: 'login' }">로그인</RouterLink>
-                    <!-- <a class="nav-link" href="/user/login.html">로그인</a> -->
-                </li>
-              </div>
-              <div class="nav nav-underline" v-else>
-                <li class="nav-item">
-                  <button class="nav-link" type="submit" @click="logout">로그아웃</button>
-                    <!-- <RouterLink class="nav-link" :to="{ name: 'home' }" @click="logout">로그아웃</RouterLink> -->
-                    <!-- <a class="nav-link" href="/user/login.html">로그아웃</a> -->
-                </li>
-              </div>
+              </li>
+            </ul>
+            <div>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'keysInfo' }"
+                  >등급 정보</RouterLink>
+              </li>
             </div>
+            <div>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'search' }"
+                  >동영상 검색</RouterLink>
+              </li>
+            </div>
+            <div class="nav nav-underline" v-if="!store.loginStatus">
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'signin' }"
+                  >회원가입</RouterLink
+                >
+                <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'login' }"
+                  >로그인</RouterLink
+                >
+                <!-- <a class="nav-link" href="/user/login.html">로그인</a> -->
+              </li>
+            </div>
+            <div class="nav nav-underline" v-else>
+              <li class="nav-item">
+                <button class="nav-link" type="submit" @click="logout">
+                  로그아웃
+                </button>
+                <!-- <RouterLink class="nav-link" :to="{ name: 'home' }" @click="logout">로그아웃</RouterLink> -->
+                <!-- <a class="nav-link" href="/user/login.html">로그아웃</a> -->
+              </li>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -78,7 +112,7 @@ const logout = () => {
   box-sizing: border-box;
   list-style: none;
   background-color: #ffffff;
-  color: #52796F;
+  color: #52796f;
 }
 
 a {
@@ -86,11 +120,11 @@ a {
 }
 
 a:hover {
-  color:rgb(186, 41, 41);
+  color: rgb(186, 41, 41);
 }
 
 button:hover {
-  color:rgb(186, 41, 41);
+  color: rgb(186, 41, 41);
 }
 
 .container-fluid {
@@ -99,7 +133,7 @@ button:hover {
 }
 
 .nav-link {
-  color: #354F52;
+  color: #354f52;
   font-size: 18px;
 }
 
@@ -111,6 +145,4 @@ button:hover {
 input {
   width: 100%;
 }
-
-
 </style>
