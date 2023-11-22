@@ -42,6 +42,7 @@ onMounted(() => {
 <style scoped>
 .articleList1-container {
   font-family: consolas;
+  margin: 0 10px 0 0;
 }
 
 .r:link {

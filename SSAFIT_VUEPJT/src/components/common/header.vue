@@ -27,53 +27,32 @@
           <div class="nav justify-content-center" style="padding: 0">
             <ul class="nav nav-underline">
               <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'home' }"
-                  >HOME</RouterLink
-                >
+                <RouterLink class="nav-link" :to="{ name: 'home' }">HOME</RouterLink>
                 <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
               </li>
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  사용자
-                </a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  USER </a>
                 <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="/user/likeList.html">찜</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/user/follow.html">팔로우</a>
-                  </li>
+                  <li><a class="dropdown-item" href="/user/likeList.html">찜</a></li>
+                  <!-- <li><a class="dropdown-item" href="/user/follow.html">팔로우</a></li> -->
+                  <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">등급 정보</RouterLink></li>
                 </ul>
               </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'search' }">VIDEO</RouterLink>
+              </li>
             </ul>
-            <div>
-              <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'keysInfo' }"
-                  >등급 정보</RouterLink>
-              </li>
-            </div>
-            <div>
-              <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'search' }"
-                  >동영상 검색</RouterLink>
-              </li>
-            </div>
             <div class="nav nav-underline" v-if="!store.loginStatus">
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'signin' }"
-                  >회원가입</RouterLink
+                  >Sign Up</RouterLink
                 >
                 <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
               </li>
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'login' }"
-                  >로그인</RouterLink
+                  >Check In</RouterLink
                 >
                 <!-- <a class="nav-link" href="/user/login.html">로그인</a> -->
               </li>
@@ -81,13 +60,14 @@
             <div class="nav nav-underline" v-else>
               <li class="nav-item">
                 <button class="nav-link" type="submit" @click="logout">
-                  로그아웃
+                  Check Out
                 </button>
                 <!-- <RouterLink class="nav-link" :to="{ name: 'home' }" @click="logout">로그아웃</RouterLink> -->
                 <!-- <a class="nav-link" href="/user/login.html">로그아웃</a> -->
               </li>
             </div>
           </div>
+
         </div>
       </nav>
     </header>
