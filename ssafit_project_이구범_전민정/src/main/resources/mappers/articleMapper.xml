@@ -20,8 +20,8 @@
 	<select id="selectTopeight" resultType="Article">
 		select * 
 		from article
-		order by regDate desc
-		limit 4, 4;
+		order by liked desc
+		limit 4;
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Article">

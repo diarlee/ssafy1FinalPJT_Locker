@@ -4,7 +4,7 @@
       <table class="Calendar">
         <thead>
           <tr class="header">
-            <td @click="prevCalendar" style="cursor: pointer"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            <td @click="prevCalendar" style="cursor: pointer; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" color="green" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                 <path
                   d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
@@ -12,7 +12,7 @@
             <td class="yyyymm" colspan="5">
               <span id="calYear"></span>년 <span id="calMonth"></span>월
             </td>
-            <td @click="nextCalendar" style="cursor: pointer"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            <td @click="nextCalendar" style="cursor: pointer; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" color="green" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                 <path
                   d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
@@ -100,8 +100,8 @@ function buildCalendar() {
     })
       .then((response) => {
         articleId.value = response.data;
-        nowColumn.style.border = "1px solid";
-        nowColumn.style.borderRadius = "1rem";
+        // nowColumn.style.border = "0.5px solid";
+        // nowColumn.style.borderRadius = "1rem";
 
         if (articleId.value == 0) {
           nowColumn.innerHTML = `<img src="src/assets/img/lock.png" overflow: hidden;>`;
@@ -195,7 +195,7 @@ function leftPad(value) {
 td {
   width: 50px;
   height: 50px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .Calendar {
@@ -203,7 +203,9 @@ td {
   margin: 0 auto;
 }
 
-.header {}
+/* .header {
+
+} */
 
 .Calendar>thead>tr:first-child>td {
   font-weight: bold;
@@ -220,6 +222,10 @@ td {
   color: white;
   height: 10px;
 }
+
+/* .days {
+  justify-content: space-evenly;
+} */
 
 /* .pastDay {
   background-color: lightgray;
