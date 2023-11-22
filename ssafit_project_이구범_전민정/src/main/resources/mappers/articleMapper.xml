@@ -79,7 +79,7 @@
 	<select id="selectNoCheck" resultType="Article">
 		select *
 		from article
-		where isChecked = 0;
+		where isChecked = 1;
 	</select>
 	
 	<select id="commit" parameterType="map" resultType ="Article">
