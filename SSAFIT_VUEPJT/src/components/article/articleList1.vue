@@ -4,22 +4,22 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <!-- <th scope="col">#</th> -->
             <th scope="col"> 제목 </th>
             <th scope="col"> 쓰니 </th>
-            <th scope="col"> 등록일 </th>
-            <th scope="col"> 좋아요 </th>
+            <th scope="col" style="text-align: center;"> 등록일 </th>
+            <!-- <th scope="col"> 좋아요 </th> -->
           </tr>
         </thead>
         <tbody>
           <tr v-for="article in store.articleList_top4">
-            <th scope="row"> {{ article.articleId }} </th>
+            <!-- <th scope="row"> {{ article.articleId }} </th> -->
             <td>
               <RouterLink class="r" :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}">{{ article.title }}</RouterLink>
             </td>
             <td> {{ article.writer }} </td>
             <td> {{ article.regDate }} </td>
-            <td> {{ article.liked }} </td>
+            <!-- <td> {{ article.liked }} </td> -->
           </tr>
         </tbody>
       </table>
@@ -48,6 +48,14 @@ onMounted(() => {
 .r:link {
   /* color: #52796F; */ /* color 미적용, 이미 작업이 수행된 링크는 적용이 안됨  */
   text-decoration: none;
+}
+
+.r {
+  color: black !important;
+}
+
+.r:hover {
+  color: rgb(186, 41, 41) !important;
 }
 
 </style>

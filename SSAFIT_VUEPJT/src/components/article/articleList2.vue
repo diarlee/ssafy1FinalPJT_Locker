@@ -4,22 +4,24 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <!-- <th scope="col">#</th> -->
             <th scope="col">제목</th>
             <th scope="col">쓰니</th>
-            <th scope="col">등록일</th>
+            <!-- <th scope="col">등록일</th> -->
             <th scope="col">좋아요</th>
+            <th scopr="col">인증</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="article in store.articleList_top4to8">
-            <th scope="row"> {{ article.articleId }} </th>
+            <!-- <th scope="row"> {{ article.articleId }} </th> -->
             <td>
-              <RouterLink :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}">{{ article.title }}</RouterLink>
+              <RouterLink class="r" :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}">{{ article.title }}</RouterLink>
             </td>
             <td> {{ article.writer }} </td>
-            <td> {{ article.regDate }} </td>
-            <td> {{ article.liked }} </td>
+            <!-- <td> {{ article.regDate }} </td> -->
+            <td style="text-align: center;"> {{ article.liked }} </td>
+            <td> {{ article.checked }} </td>
           </tr>
         </tbody>
       </table>
@@ -44,8 +46,16 @@ onMounted(() => {
   font-family: consolas;
 }
 
-a:link {
+.r:link {
   text-decoration: none;
+}
+
+.r {
+  color: black !important;
+}
+
+.r:hover {
+  color: rgb(186, 41, 41) !important;
 }
 
 </style>

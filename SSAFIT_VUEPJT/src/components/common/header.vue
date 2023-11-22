@@ -30,6 +30,9 @@
                 <RouterLink class="nav-link" :to="{ name: 'home' }">HOME</RouterLink>
                 <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
               </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'search' }">VIDEO</RouterLink>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                   USER </a>
@@ -39,22 +42,25 @@
                   <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">등급 정보</RouterLink></li>
                 </ul>
               </li>
+<<<<<<< HEAD
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
               </li>
+=======
+>>>>>>> 5f974a4f9231e410be307934b8bbbfd9e48696a9
             </ul>
             <div class="nav nav-underline" v-if="!store.loginStatus">
-              <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'signin' }"
-                  >Sign Up</RouterLink
-                >
-                <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
-              </li>
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'login' }"
                   >Check In</RouterLink
                 >
                 <!-- <a class="nav-link" href="/user/login.html">로그인</a> -->
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'signin' }"
+                  >Sign Up</RouterLink
+                >
+                <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
               </li>
             </div>
             <div class="nav nav-underline" v-else>
