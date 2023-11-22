@@ -22,11 +22,11 @@
         </div>
         <div class="articleList-container">
           <div class="latestArticle">
-            <p class="article-description"> 최신순</p>
+            <p class="article-description"> Latest</p>
             <articleList1 class="articleList1" />
           </div>
           <div class="heartArticle">
-            <p class="article-description"> 좋아요순</p>
+            <p class="article-description"> Best</p>
             <articleList2 class="articleList2" />
           </div>
         </div>
@@ -154,13 +154,14 @@ a {
   left: 0;
   right: 0;
   margin: 20px 0 50px 0;
-  width: 1400px;
-  /* width: 100%; */
+  /* width: 1400px; */
+  width: 100%;
 }
 
 .calendar-user-article {
   display: flex;
   flex-direction: row;
+  /* width: 100%; */
 }
 
 .calendar-userInfo-container {
@@ -194,7 +195,7 @@ a {
 
 .moreButton {
   margin: 10px 0 0 10px;
-  border: 1.35px solid #52796F;
+  /* border: 1.35px solid #52796F; */
   border-radius: 25px;
   height: 47%;
   width: 47%;

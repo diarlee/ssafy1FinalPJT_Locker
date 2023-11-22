@@ -185,7 +185,7 @@ function leftPad(value) {
 <style scoped>
 .calender-container {
   width: inherit;
-  border: solid 1.35px #52796F;
+  /* border: solid 1.35px #52796F; */
   border-radius: 2rem;
   display: flex;
   align-items: center;
