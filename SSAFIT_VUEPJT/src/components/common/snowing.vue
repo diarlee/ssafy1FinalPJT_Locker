@@ -1,6 +1,5 @@
 <template>
   <div class="headerLower-container">
-    <!-- <img src="@/assets/img/winterRunning_image.jpg" alt=""> -->
     <canvas width="100%"></canvas>
   </div>
 </template>
@@ -104,11 +103,11 @@ onMounted(() => {
 }
 
 canvas {
-  position: absolute;
-  top: 50%;
+  /* position: absolute; */
+  /* top: 80%; */
   left: 0;
   width: 100%;
-  height: 400px;
+  height: 30vh;
   margin-top: -200px;
   overflow: hidden;
 }
