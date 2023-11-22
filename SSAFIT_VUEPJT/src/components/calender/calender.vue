@@ -4,7 +4,7 @@
       <table class="Calendar">
         <thead>
           <tr class="header">
-            <td @click="prevCalendar" style="cursor: pointer; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            <td @click="prevCalendar" style="cursor: pointer; border-radius: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" color="green" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                 <path
                   d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
@@ -12,7 +12,7 @@
             <td class="yyyymm" colspan="5">
               <span id="calYear"></span>년 <span id="calMonth"></span>월
             </td>
-            <td @click="nextCalendar" style="cursor: pointer; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            <td @click="nextCalendar" style="cursor: pointer; border-radius: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" color="green" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                 <path
                   d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
@@ -185,7 +185,7 @@ function leftPad(value) {
 <style scoped>
 .calender-container {
   width: inherit;
-  border: solid 1px green;
+  border: solid 1.35px #52796F;
   border-radius: 2rem;
   display: flex;
   align-items: center;
