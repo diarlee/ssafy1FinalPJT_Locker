@@ -8,25 +8,26 @@
       />
     </div> -->
     <div class="container">
-      <div class="userInfo_articleList-container">
+      <div class="calendar-user-article">
+      <div class="calendar-userInfo-container">
+        <calender class="calendar" />
         <userInfo class="userInfo" />
-        <articleList1 class="articleList1" />
       </div>
-      <div class="calender_articleList-container">
-        <div class="articleList-more">
+      <div class="articleList-more-container">
+        <div class="articleList-container">
+        <articleList1 class="articleList1" />
           <articleList2 class="articleList2" />
-          <div class="more">
+        </div>
+        <div class="more">
             <RouterLink
               type="button"
               class="moreButton"
               :to="{ name: 'articleList' }"
-              >+더보기</RouterLink
+              >more</RouterLink
             >
-          </div>
         </div>
-        <calender class="calender" />
       </div>
-
+      </div>
       <br />
       <br />
       <div class="video-box">
@@ -72,7 +73,7 @@
         <RouterLink
           type="button"
           :to="{ name: 'videoList', params: { videoType: 'guide' } }"
-          >+더보기</RouterLink
+          >more</RouterLink
         >
       </div>
       <div class="mt-5 video-box">
@@ -118,7 +119,7 @@
         <RouterLink
           type="button"
           :to="{ name: 'videoList', params: { videoType: 'music' } }"
-          >+더보기</RouterLink
+          >more</RouterLink
         >
       </div>
     </div>
@@ -172,28 +173,47 @@ a {
   width: 1400px;
 }
 
-.userInfo_articleList-container {
-  width: 100%;
-  height: 33vh;
+.calendar-user-article {
   display: flex;
+  flex-direction: row;
 }
 
-.userInfo_articleList-container > .userInfo {
-  width: 35%;
-  height: 220px;
+.calendar-userInfo-container {
+  width: 350px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.calendar {
+  /* flex-grow: 2; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.userInfo_articleList-container > .articleList1 {
+.userInfo {
+  width: 45%;
+  height: 270px;
+  margin: 10px 0 0 0;
+}
+.articleList-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+}
+
+.articleList1 {
+  width: 50%;
+  height: 200px;
+}
+.articleList2 {
+  width: 50%;
   height: 200px;
 }
 
-.calender_articleList-container {
-  width: 100%;
-  height: 240px;
-  display: flex;
-}
-
-.calender_articleList-container > .articleList-more {
+.articleList-container > .articleList-more {
   flex-grow: 8;
   width: 265%;
   display: flex;
@@ -201,29 +221,20 @@ a {
   justify-content: space-around;
 }
 
-.calender_articleList-container > .calender {
-  flex-grow: 2;
-  height: 240px;
-  display: flex;
-  justify-content: center;
-}
 
 /* .calender_articleList-container > .articleList1 {
   flex-grow: 9;
   height: 200px;
 } */
 
-.articleList2 {
-  width: 100%;
-  height: 200px;
-}
 
 .more {
   width: 100%;
   height: 30px;
-  border: 1px solid;
+  /* border: 1px solid; */
   display: flex;
   justify-content: center;
+  margin: 10px;
 }
 
 #page-name {
