@@ -1,21 +1,18 @@
 <template>
   <div class="allArticle-container">
     <magic-grid>
-      <div class="article" v-for="article in articleStore.articleList">
-        <RouterLink
-          :to="{
-            name: 'articleDetail',
-            params: { articleId: `${article.articleId}` },
-          }"
-        >
+      <div class="card" style="width: 12%;" v-for="article in articleStore.articleList">
+        <RouterLink :to="{ name: 'articleDetail', params: { articleId: `${article.articleId}` },}" style="color: black;">
           <!-- test image -->
-          <img src="https://source.unsplash.com/random/?workout" alt="" />
-          <div class="main">{{ article.title }}</div>
-          <div class="main">{{ article.content }}</div>
-          <div>{{ article.regDate }}</div>
+          <img class="card-img-top" src="https://source.unsplash.com/random/?workout" alt="" />
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <div class="card-text">{{ article.content }}</div>
+            <!-- <div>{{ article.regDate }}</div> -->
+          </div>
         </RouterLink>
-        <button @click="clickHeart(article.articleId)">
-          {{ article.liked }}
+        <button class="btn" @click="clickHeart(article.articleId)">
+          ♡ {{ article.liked }}
         </button>
       </div>
     </magic-grid>
@@ -41,21 +38,26 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.article {
-  border: 1px solid;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  width: 12%;
-  /* height: 500px; */
+.allArticle-container {
+  margin: 0 0 20px 0;
 }
 
-.article img {
-  width: 90%;
-  height: 200px;
+
+a:link {
+  text-decoration: none;
 }
 
-.article .main {
+a:hover {
+  /* color: rgb(186, 41, 41) !important; */
+  color: #52796f !important;
+}
+
+.btn:hover {
+  color:rgb(186, 41, 41) !important;
+}
+
+.card .main {
   word-break: break-word;
 }
+
 </style>
