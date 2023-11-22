@@ -36,6 +36,8 @@
       </tbody>
     </table>
   </div>
+  <br>
+  <br>
 </template>
 
 <script setup>

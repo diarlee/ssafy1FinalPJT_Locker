@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-
+import {useVideoStore} from "@/stores/video"
 </script>
 
 <style scoped>

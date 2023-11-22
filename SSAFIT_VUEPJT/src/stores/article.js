@@ -14,7 +14,7 @@ export const useArticleStore = defineStore("article", () => {
     });
   };
 
-  // 최근 생성된 articleList 4개 가져오기
+  // 최신순 article 4개
   const articleList_top4 = ref([]);
   const getArticleList_top4 = function () {
     axios.get(`${REST_ARTICLE_API}/top4`).then((response) => {
@@ -22,11 +22,19 @@ export const useArticleStore = defineStore("article", () => {
     });
   };
 
-  // 최근 5 ~ 8순위로 생성된 articleList
+  // 좋아요 순 article 4개
   const articleList_top4to8 = ref([]);
   const getArticleList_top4to8 = function () {
     axios.get(`${REST_ARTICLE_API}/top4to8`).then((response) => {
       articleList_top4to8.value = response.data;
+    });
+  };
+
+  // 전체공개된 articleList 가져오기
+  const publicArticles = ref([]);
+  const getPublicArticles = function () {
+    axios.get(`${REST_ARTICLE_API}/isPublic`).then((response) => {
+      publicArticles.value = response.data;
     });
   };
 
@@ -111,6 +119,8 @@ export const useArticleStore = defineStore("article", () => {
     getArticleList_top4,
     articleList_top4to8,
     getArticleList_top4to8,
+    publicArticles,
+    getPublicArticles,
     createArticle,
     article,
     getArticle,

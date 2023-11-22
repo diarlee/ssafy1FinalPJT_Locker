@@ -1,7 +1,7 @@
 <template>
   <div class="allArticle-container">
     <magic-grid>
-      <div class="card" style="width: 12%;" v-for="article in articleStore.articleList">
+      <div class="card" style="width: 12%;" v-for="article in articleStore.publicArticles">
         <RouterLink :to="{ name: 'articleDetail', params: { articleId: `${article.articleId}` },}" style="color: black;">
           <!-- test image -->
           <img class="card-img-top" src="https://source.unsplash.com/random/?workout" alt="" />
@@ -33,7 +33,7 @@ const clickHeart = function (articleId) {
 };
 
 onMounted(() => {
-  articleStore.getArticleList();
+  articleStore.getPublicArticles();
 });
 </script>
 

@@ -5,6 +5,28 @@ import axios from 'axios'
 const REST_VIDEO_API = `http://localhost:8080/api/video`
 
 export const useVideoStore = defineStore('video', () => {
+
+    const youtubeList = ref([])
+    const searchVideo = function(keyword){
+        const URL = 'https://www.googleapis.com/youtube/v3/search';
+        const API_KEY = 'AIzaSyDoEB5mHHa--IDlOiozgvsxGsGf1X7RSeU';
+
+        axios({
+            url: URL,
+            method: "GET",
+            params: {
+                key: API_KEY,
+                part: 'snippet',
+                q: keyword,
+                type: video,
+                maxResults: 10
+            }
+        })
+        .then((response) => {
+            youtubeList.value = response.data.items
+        })
+    }
+
     const videoList = ref([]);
     const getVideoList = function () {
         axios.get(REST_VIDEO_API)
@@ -21,5 +43,5 @@ export const useVideoStore = defineStore('video', () => {
         });
     };
 
-    return  { videoList, getVideoList, video, getVideo };
+    return  { youtubeList, searchVideo, videoList, getVideoList, video, getVideo };
 });

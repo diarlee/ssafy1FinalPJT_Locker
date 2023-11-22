@@ -40,7 +40,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'search' }">VIDEO</RouterLink>
+                <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
               </li>
             </ul>
             <div class="nav nav-underline" v-if="!store.loginStatus">
