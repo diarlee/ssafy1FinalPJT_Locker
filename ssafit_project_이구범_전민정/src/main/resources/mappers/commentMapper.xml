@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="insertComment" parameterType="ArticleComment">
-		insert into articleComment(articleId, userId, content)
-		values(#{articleId}, #{userId}, #{content})
+		insert into articleComment(articleId, userId, writer, content)
+		values(#{articleId}, #{userId}, #{writer} ,#{content})
 	</insert>
 	
 	<update id="updateComment" parameterType="ArticleComment">

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="text-wrap fw-bold">
+      <button class="btn btn-delete" @click="deleteVideo">삭제</button>
       <div class="text-center">
         <iframe
           width="560"
@@ -11,9 +12,9 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
-        <div class="mt-1 mb-1 d-flex text-wrap">
+        <!-- <div class="mt-1 mb-1 d-flex text-wrap">
           {{ videoStore.video.title }}
-        </div>
+        </div> -->
         <div class="justify-content-between d-flex">
           <span> 조회수 {{ videoStore.video.viewCnt }} </span>
           <span class="fw-normal text-body-secondary">{{
@@ -21,7 +22,6 @@
           }}</span>
         </div>
       </div>
-      <button @click="deleteVideo" v-show="userStore.loginId == 'master'">삭제</button>
     </div>
     <form class="reviewform" style="width: 80%; margin: auto">
       <table class="table">
@@ -187,6 +187,12 @@ a:hover {
 .btn:hover {
   background: rgb(186, 41, 41);
   color: #ffffff !important;
+}
+
+.btn-delete {
+  background: #ffffff;
+  color: #52796f;
+  margin-bottom: 10px;
 }
 
 #page-name {

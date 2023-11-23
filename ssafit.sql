@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`articleComment` (
   `commentId` INT NOT NULL AUTO_INCREMENT,
   `articleId` INT NOT NULL,
   `userId` VARCHAR(45) NOT NULL,
+  `writer` VARCHAR(45),
   `content` VARCHAR(255) NOT NULL,
   `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`commentId`),
