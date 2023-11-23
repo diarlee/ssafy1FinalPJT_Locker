@@ -3,7 +3,7 @@
       <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">
         <form
           class="reviewform"
-          @submit.prevent="createReview"
+          @submit.prevent="createComment"
           style="width: 80%; margin: auto"
         >
           <div class="text-center">

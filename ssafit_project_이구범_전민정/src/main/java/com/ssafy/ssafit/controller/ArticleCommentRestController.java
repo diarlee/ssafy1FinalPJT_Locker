@@ -1,6 +1,7 @@
 package com.ssafy.ssafit.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -77,7 +78,10 @@ public class ArticleCommentRestController {
 	
 	@DeleteMapping("/delete/{articleId}")
 	@ApiOperation(value="게시글 삭제")
-	public ResponseEntity<?> removeArticle(int commentId, @PathVariable int articleId){
+	public ResponseEntity<?> removeArticle(@RequestBody Map<String, Integer> map, @PathVariable int articleId){
+		
+		int commentId = map.get("commentId");
+		
 		ArticleComment comment = commentService.getOne(commentId);
 		User user = userService.getUser(comment.getUserId());
 		

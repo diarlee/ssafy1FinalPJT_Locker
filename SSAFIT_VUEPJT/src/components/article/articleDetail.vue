@@ -10,7 +10,7 @@
     <div class="check">{{ articleStore.article.checked }}</div>
     <div class="image">{{ articleStore.article.image }}</div>
     <div class="content">{{ articleStore.article.content }}</div>
-    <button @click="changeStatus">{{ currentStatus }}</button>
+    <button @click="changeArticleStatus">{{ currentStatus }}</button>
     <button class="heart" @click="clickHeart">하트 {{ currentHeart }}</button>
     <RouterLink
       :to="{
@@ -42,13 +42,13 @@
           <td>{{ comment.regDate }}</td>
           <td>
             <button
-              @click.prevent="changeStatus(comment.commentId)"
+              @click.prevent="goToUpdate(comment.commentId)"
               v-show="comment.userId == userStore.loginId"
             >
               수정
             </button>
             <button
-              @click="deleteComment(comment.commentId)"
+              @click.prevent="removeComment(comment.commentId)"
               v-show="comment.userId == userStore.loginId"
             >
               삭제
@@ -96,13 +96,22 @@ const currentHeart = computed(() => {
   return articleStore.article.liked;
 });
 
-const changeStatus = function () {
+const changeArticleStatus = function () {
   articleStore.updatePublic(route.params.articleId);
 };
 
 const clickHeart = function () {
   articleStore.updateHeart(route.params.articleId, userStore.loginId);
 };
+
+const goToUpdate = function (commentId) {
+    commentStore.status = commentId
+    // console.log(commentStore.status)
+}
+
+const removeComment = function (commentId) {
+    commentStore.deleteComment(commentId, route.params.articleId)
+}
 
 onMounted(() => {
   articleStore.getArticle(route.params.articleId);
@@ -129,5 +138,22 @@ onMounted(() => {
 
 .writer {
   padding: 0 10px 0 0;
+}
+
+.btn {
+  margin-top: 70px;
+  background: #52796f;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background: rgb(186, 41, 41);
+  color: #ffffff !important;
+}
+
+.btn-delete {
+  background: #ffffff;
+  color: #52796f;
+  margin-bottom: 10px;
 }
 </style>
