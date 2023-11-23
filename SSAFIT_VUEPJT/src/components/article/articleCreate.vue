@@ -80,16 +80,16 @@ const createArticle = function () {
   justify-content: center;
   align-items: center;
 }
-
 .btn {
-  color:#52796f !important;
-  background: white;
+  color: #ffffff !important;
+  background: #52796f ;
 }
 
 .btn:hover {
-  color: #ffffff !important;
-  background: #52796f !important;
+  color:#52796f !important;
+  background: white !important;
 }
+
 .mb-3 {
   width: 56%;
   padding: 5px 0 5px 0;
