@@ -1,12 +1,9 @@
 <template style="margin: 0px; overflow: hidden">
   <div class="background-container">
-    <div class="container">
       <div class="calendar-user-article">
         <div class="calendar-userInfo-container">
           <div><calender class="calendar" /></div>
-          <div class="userInfo-container">
-            <userInfo class="userInfo" />
-          </div>
+          <div><userInfo class="userInfo" /></div>
         </div>
         <div class="articleList-container">
           <div class="latestArticle">
@@ -19,12 +16,10 @@
           </div>
         </div>
       </div>
-
       <div class="video-box-container">
-        <guideList></guideList>
-        <musicList></musicList>
+        <guideList style="margin: 0 0 30px 0;"></guideList>
+        <musicList style="margin: 30px 0 0 0;"></musicList>
       </div>
-    </div>
   </div>
 </template>
 
@@ -62,78 +57,58 @@ a {
 }
 
 .background-container {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  left: 0;
-  right: 0;
-  margin: 20px 0 50px 0;
-  /* width: 1400px; */
-  width: 100%;
 }
 
 .calendar-user-article {
+  width: 90%;
+  height: 100%;
+  margin: 0 50px 0 50px; 
   display: flex;
   flex-direction: row;
-  /* width: 100%; */
+  justify-content: space-between;
 }
 
 .calendar-userInfo-container {
   width: 400px;
-  height: 450px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 20px 0 0;
+  margin: 2.25px 10px 0 10px;
 }
 
 .calendar {
-  /* flex-grow: 2; */
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: 5px;
-}
-
-.userInfo-container {
-  width: 100%;
-  height: 40%;
+  /* padding: 3px; */
 }
 
 .userInfo {
-  height: 100%;
   margin: 10px 0 0 0;
 }
-
-/* .moreButton {
-  margin: 10px 0 0 10px;
-  border: 1.35px solid #52796F;
-  border-radius: 25px;
-  height: 47%;
-  width: 47%;
-  text-align: center;
-} */
 
 .articleList-container {
   width: 100%;
   height: 400px;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
+  margin-left: 10px;
 }
 
 .latestArticle {
-  margin: 0 10px 0 0;
+  width: 50%;
+  height: 200px;
+  margin: 0 10px 0 10px;
 }
 
 .heartArticle {
+  width: 50%;
+  height: 200px;
   margin: 0 0 0 10px;
 }
 
@@ -141,27 +116,6 @@ a {
   font-size: 25px;
 }
 
-.articleList1 {
-  width: 100%;
-  height: 200px;
-}
-.articleList2 {
-  width: 100%;
-  height: 200px;
-}
-
-/* .articleList-container > .articleList-more {
-  flex-grow: 8;
-  width: 265%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-} */
-
-/* .calender_articleList-container > .articleList1 {
-  flex-grow: 9;
-  height: 200px;
-} */
 
 #page-name {
   font-weight: bold;
@@ -173,6 +127,8 @@ input {
 }
 
 .video-box-container {
-  width: 100%;
+  width: 90%;
+  margin-bottom: 50px;
 }
+
 </style>

@@ -68,10 +68,10 @@ const createArticle = function () {
 
 <style scoped>
 .articleCreate-container {
-  margin: 100px;
+  margin: 70px 0 140px;
   padding: 0;
   font-family: sans-serif;
-  height: 1000px;
+  height: 100%;
 }
 
 .articleCreate-box {
@@ -80,16 +80,17 @@ const createArticle = function () {
   justify-content: center;
   align-items: center;
 }
-
 .btn {
-  color:#52796f !important;
-  background: white;
+  color: #ffffff !important;
+  background: #52796f ;
+  margin-top: 5px;
 }
 
 .btn:hover {
-  color: #ffffff !important;
-  background: #52796f !important;
+  color:#52796f !important;
+  background: white !important;
 }
+
 .mb-3 {
   width: 56%;
   padding: 5px 0 5px 0;
