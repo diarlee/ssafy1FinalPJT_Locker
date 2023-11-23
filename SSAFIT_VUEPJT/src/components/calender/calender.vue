@@ -19,13 +19,20 @@
               </svg></td>
           </tr>
           <tr class="days">
-            <td>sun</td>
-            <td>mon</td>
-            <td>tue</td>
-            <td>wed</td>
-            <td>thu</td>
-            <td>fri</td>
-            <td>sat</td>
+            <!-- <td>SUN</td>
+            <td>MON</td>
+            <td>TUE</td>
+            <td>WED</td>
+            <td>THU</td>
+            <td>FRI</td>
+            <td>SAT</td> -->
+            <td>일</td>
+            <td>월</td>
+            <td>화</td>
+            <td>수</td>
+            <td>목</td>
+            <td>금</td>
+            <td>토</td>
           </tr>
         </thead>
         <tbody></tbody>
@@ -214,18 +221,19 @@ td {
 }
 
 .Calendar>thead>tr:last-child>td {
-  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  background: #52796F;
+  background: -webkit-linear-gradient(top left, #52796F 0%, #52796F 100%);
+  background: -moz-linear-gradient(top left, #52796F 0%, #52796F 100%);
+  background: -o-linear-gradient(top left, #52796F 0%, #52796F 100%);
+  background: linear-gradient(to bottom right, #52796F 0%, #7fa199 100%);
   color: white;
-  height: 10px;
+  height: 30px;
 }
 
-/* .days {
-  justify-content: space-evenly;
-} */
+.days {
+  text-align: center;
+  font-size: 13.5px;
+}
 
 /* .pastDay {
   background-color: lightgray;
