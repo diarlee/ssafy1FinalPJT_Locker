@@ -29,9 +29,9 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public List<Video> getByPart(String part) {
+	public List<Video> getByType(String type) {
 		// TODO Auto-generated method stub
-		return videoDao.selectByPart(part);
+		return videoDao.selectByType(type);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public interface VideoDao {
 	public List<Video> selectAll();
 
 	// 부위별 영상 조회
-	public List<Video> selectByPart(String part);
+	public List<Video> selectByType(String type);
 
 	// 조회수 가장 많은 영상 조회
 	public Video selectVideo();

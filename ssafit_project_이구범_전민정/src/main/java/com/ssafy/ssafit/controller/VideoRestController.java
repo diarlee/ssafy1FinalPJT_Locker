@@ -39,10 +39,10 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/{part}")
-	@ApiOperation(value="부위별 영상", notes="부위별 영상 조회하기")
-	public ResponseEntity<?> getByPart(@PathVariable String part) {
-		List<Video> list = videoService.getByPart(part);
+	@GetMapping("/{type}")
+	@ApiOperation(value="타입별 영상", notes="타입별 영상 조회하기")
+	public ResponseEntity<?> getByPart(@PathVariable String type) {
+		List<Video> list = videoService.getByType(type);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {

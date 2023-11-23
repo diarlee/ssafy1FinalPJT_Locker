@@ -4,7 +4,7 @@ public class Video {
 	private String videoId;
 	private String userId;
 	private String title;
-	private String fitPartName;
+	private String type;
 	private String channelName;
 	private int viewCnt;
 	private String url;
@@ -13,12 +13,12 @@ public class Video {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Video(String videoId, String userId, String title, String fitPartName, String channelName, int viewCnt,
+	public Video(String videoId, String userId, String title, String type, String channelName, int viewCnt,
 			String url) {
 		this.videoId = videoId;
 		this.userId = userId;
 		this.title = title;
-		this.fitPartName = fitPartName;
+		this.type = type;
 		this.channelName = channelName;
 		this.viewCnt = viewCnt;
 		this.url = url;
@@ -48,12 +48,12 @@ public class Video {
 		this.title = title;
 	}
 
-	public String getFitPartName() {
-		return fitPartName;
+	public String getType() {
+		return type;
 	}
 
-	public void setFitPartName(String fitPartName) {
-		this.fitPartName = fitPartName;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getChannelName() {
@@ -82,7 +82,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [videoId=" + videoId + ", userId=" + userId + ", title=" + title + ", fitPartName=" + fitPartName
+		return "Video [videoId=" + videoId + ", userId=" + userId + ", title=" + title + ", type=" + type
 				+ ", channelName=" + channelName + ", viewCnt=" + viewCnt + ", url=" + url + "]";
 	}
 }
