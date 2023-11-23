@@ -1,12 +1,5 @@
 <template style="margin: 0px; overflow: hidden">
   <div class="background-container">
-    <!-- <div class="main-image-container" style="width: 100%">
-      <img
-        class="main-image object-fit-cover"
-        src="https://watermark.lovepik.com/photo/20211126/large/lovepik-gym-picture_501088658.jpg"
-        alt="main image"
-      />
-    </div> -->
     <div class="container">
       <div class="calendar-user-article">
         <div class="calendar-userInfo-container">
@@ -15,108 +8,42 @@
         </div>
         <div class="articleList-container">
           <div class="latestArticle">
-            <p class="article-description"> Latest</p>
+            <p class="article-description">Latest</p>
             <articleList1 class="articleList1" />
           </div>
           <div class="heartArticle">
-            <p class="article-description"> Best</p>
+            <p class="article-description">Best</p>
             <articleList2 class="articleList2" />
           </div>
         </div>
       </div>
-    
-      <div class="video-box-container">
-        <div class="video-box1">
-          <div>
-            <p class="fw-bold text-left fs-4">운동할 때 보면좋은</p>
-          </div>
-          <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-            <RouterLink
-              v-for="video in store.videoList"
-              :to="{ name: 'videoDetail', params: { id: `${video.videoId}` } }"
-              style="cursor: pointer; width: 30%">
-              <div class="text-wrap fw-bold">
-                <div class="text-center">
-                  <iframe
-                      width="100%"
-                      height="auto"
-                      :src="video.url"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen></iframe>
-                </div>
-                <div class="mt-1 mb-1 d-flex text-wrap">{{ video.title }}</div>
-                <div class="justify-content-between d-flex">
-                  <span class="p-1 rounded-pill fw-bold bg-primary w-auto text-white">
-                      {{ video.fitPartName }}
-                  </span>
-                  <span class="fw-normal text-body-secondary">{{ video.channelName }}</span>
-                </div>
-              </div>
-            </RouterLink>
-          </div>
-          <div class="more">
-            <RouterLink
-              type="button"
-              :to="{ name: 'videoList', params: { videoType: 'guide' } }"
-              >more</RouterLink
-            >
-          </div>
-        </div>
-        <div class="video-box2">
-          <div><p class="fw-bold text-left fs-4">운동할 때 듣기좋은</p></div>
-          <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-            <RouterLink
-              v-for="video in store.videoList"
-              :to="{ name: 'videoDetail', params: { id: `${video.videoId}` } }"
-              style="cursor: pointer; width: 30%">
-              <div class="text-wrap fw-bold">
-                <div class="text-center">
-                  <iframe
-                        width="100%"
-                        height="auto"
-                        :src="video.url"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="mt-1 mb-1 d-flex text-wrap">{{ video.title }}</div>
-                <div class="justify-content-between d-flex">
-                  <span class="p-1 rounded-pill fw-bold bg-primary w-auto text-white">{{ video.fitPartName }}</span>
-                  <span class="fw-normal text-body-secondary">{{ video.channelName }}</span>
-                </div>
-              </div>
-            </RouterLink>
-          </div>
-          <div class="more">
-            <RouterLink
-                type="button"
-                :to="{ name: 'videoList', params: { videoType: 'music' } }"
-                >more</RouterLink>
-          </div>
-        </div>
-      </div>
 
+      <div class="video-box-container">
+        <guideList></guideList>
+        <musicList></musicList>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import { useVideoStore } from "@/stores/video";
-import { onMounted } from "vue";
+// import { RouterLink, RouterView } from "vue-router";
+// import { onMounted } from "vue";
 import userInfo from "@/components/user/userInfo.vue";
 import calender from "@/components/calender/calender.vue";
 import articleList1 from "@/components/article/articleList1.vue";
 import articleList2 from "@/components/article/articleList2.vue";
+import guideList from "@/components/video/videoGuideList.vue";
+import musicList from "@/components/video/videoMusicList.vue";
+// import { ref } from "vue";
+// import { useVideoStore } from "@/stores/video";
+// import { onMounted } from "vue";
 
-const store = useVideoStore();
+// const store = useVideoStore();
 
-onMounted(() => {
-  store.getVideoList();
-});
+// onMounted(() => {
+//   store.getMusicList4();
+// });
 </script>
 
 <style scoped>
@@ -174,6 +101,18 @@ a {
   margin: 10px 0 0 0;
 }
 
+<<<<<<< HEAD
+=======
+/* .moreButton {
+  margin: 10px 0 0 10px;
+  border: 1.35px solid #52796F;
+  border-radius: 25px;
+  height: 47%;
+  width: 47%;
+  text-align: center;
+} */
+
+>>>>>>> 311a858ebf264f2a7f0a8abdd64786748a1d0567
 .articleList-container {
   width: 100%;
   height: 400px;
@@ -198,6 +137,7 @@ a {
   font-size: 25px;
 }
 
+<<<<<<< HEAD
 .more {
   width: 100%;
   height: 30px;
@@ -207,6 +147,30 @@ a {
   margin: 10px;
 }
 
+=======
+.articleList1 {
+  width: 100%;
+  height: 200px;
+}
+.articleList2 {
+  width: 100%;
+  height: 200px;
+}
+
+/* .articleList-container > .articleList-more {
+  flex-grow: 8;
+  width: 265%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} */
+
+/* .calender_articleList-container > .articleList1 {
+  flex-grow: 9;
+  height: 200px;
+} */
+
+>>>>>>> 311a858ebf264f2a7f0a8abdd64786748a1d0567
 #page-name {
   font-weight: bold;
   font-size: 2rem;
@@ -216,21 +180,7 @@ input {
   width: 100%;
 }
 
-.video-list img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
 .video-box-container {
   width: 100%;
-}
-
-.video-box1 {
-  height: 50%;
-}
-
-.video-box2 {
-  height: 50%;
 }
 </style>
