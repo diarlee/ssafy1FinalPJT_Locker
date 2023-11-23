@@ -125,7 +125,7 @@ const deleteVideo = function () {
 
 const changeStatus = function (reviewId) {
   reviewStore.status = reviewId
-  console.log(reviewStore.status)
+  // console.log(reviewStore.status)
 }
 
 const deleteReview = function (reviewId) {
