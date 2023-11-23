@@ -1,26 +1,26 @@
 <template>
   <div class="articleCreate-container">
     <form class="articleCreate-box">
-        <div class="mb-3">
-          <input class="form-control" type="file" @change="appendImage" />
+      <div class="form-check form-switch">
+        <!-- <button class="btn" @click="isPublic = !isPublic">
+          {{ getIsPublic }}
+        </button> -->
+        <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckDefault"  @click="isPublic = !isPublic">
+        <label class="form-check-label" for="flexSwitchCheckDefault">{{ getIsPublic }}</label>
+      </div>
+      <div class="mb-3">
+        <input class="form-control" type="file" @change="appendImage" />
+      </div>
+      <div class="mb-3 input-box">
+        <input class="form-control" type="text" name="" required="" v-model="title" placeholder="title"/>
         </div>
-        <div class="mb-3 input-box">
-          <input class="form-control" type="text" name="" required="" v-model="title" placeholder="title"/>
-        </div>
-        <div class="mb-3">
+      <div class="mb-3">
+        <textarea class="form-control" rows="3" name="" required="" v-model="content" placeholder="content"></textarea>
           <!-- <input class="form-control" type="text" name="" required="" v-model="content" placeholder="content"/> -->
-          <textarea class="form-cotrol" id="exampleFrimControlTextarea1" rows="3" v-model="content" placeholder="content"></textarea>
-        </div>
-        <div class="btn-container">
-          <div class="public-button">
-            <button class="btn" @click="isPublic = !isPublic">
-              {{ getIsPublic }}
-            </button>
-          </div>
-          <div class="create-button">
-            <a class="btn" @click="createArticle">등록</a>
-          </div>
-        </div>
+      </div>
+      <div class="create-button">
+        <a class="btn" @click="createArticle">등록</a>
+      </div>
     </form>
   </div>
 </template>
@@ -81,15 +81,9 @@ const createArticle = function () {
   align-items: center;
 }
 
-.btn-container {
-  display: flex;
-  flex-direction: row !important;
-}
-
 .btn {
   color:#52796f !important;
   background: white;
-  margin: 5px;
 }
 
 .btn:hover {
@@ -98,8 +92,10 @@ const createArticle = function () {
 }
 .mb-3 {
   width: 56%;
-  padding: 0 0 10px 0;
+  padding: 5px 0 5px 0;
 }
+
+
 
 
 </style>
