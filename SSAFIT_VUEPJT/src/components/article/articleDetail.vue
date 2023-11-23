@@ -43,16 +43,16 @@
     <div class="comment-box shadow rounded bg-light">
       <div v-for="comment in commentStore.commentList">
         <div class="cmt-status">
-          <div class="cmtId"> # {{ comment.commentId }} 번 댓글</div>
+          <div class="cmtId"> # {{ comment.commentId }}. {{ comment.writer }} 님</div>
           <div class="writer-date">
-            <div class="cmtWiter">{{ comment.writer }}</div>
+            <!-- <div class="cmtWiter"></div> -->
             <div class="cmtDate">{{ comment.regDate }}</div>
           </div>
         </div>
         <div class="cmt-content">
           <div class="content">{{ comment.content }}</div>
           <div class="btn-cmt">
-            <button class="btn-cmt-update"
+            <button class="btn btn-cmt-update"
                 @click.prevent="goToUpdate(comment.commentId)"
                 v-show="comment.userId == userStore.loginId"
               >
@@ -68,7 +68,7 @@
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
               </svg>
               </button>
-              <button class="btn-cmt-delete"
+              <button class="btn btn-cmt-delete"
                 @click.prevent="removeComment(comment.commentId)"
                 v-show="comment.userId == userStore.loginId"
               >
@@ -272,7 +272,7 @@ onMounted(() => {
 }
 
 .comment-box {
-  width: 90%;
+  width: 87%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -294,10 +294,23 @@ onMounted(() => {
   margin: 20px;
 }
 .btn-cmt-update{
-  margin: 0 2px 0 2px;
+  color: #52796f;
+  margin: 0 1px 0 1px;
+}
+
+.btn-cmt-update:hover {
+  color: #ffffff;
+  background: #52796f;
 }
 .btn-cmt-delete {
-  margin: 0 2px 0 2px;
+  color: #52796f;
+  margin: 0 1px 0 1px;
 }
+
+.btn-cmt-delete:hover {
+  background: black;
+  color: #ffffff;
+}
+
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">  
+    <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 90%">  
       <form
         @submit.prevent="createReview"
         style="width: 80%; margin: auto">
@@ -67,16 +67,13 @@ a {
 }
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  left: 0;
-  right: 0;
-  margin: auto;
-  margin-top: 100px;
+  margin-top: 30px;
   margin-bottom: 200px;
-  width: 1400px;
 }
 
 .reviewform {
