@@ -6,8 +6,8 @@
           </div>
           <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
             <RouterLink
-              v-for="video in videoStore.guideList"
-              :to="{ name: 'videoDetail', params: { id: `${video.videoId}` } }"
+              v-for="video in store.guideList4"
+              :to="{ name: 'videoDetail', params: { videoType: `guide`, id: `${video.videoId}` } }"
               style="cursor: pointer; width: 30%">
               <div class="text-wrap fw-bold">
                 <div class="text-center">
@@ -22,8 +22,8 @@
                 </div>
                 <div class="mt-1 mb-1 d-flex text-wrap">{{ video.title }}</div>
                 <div class="justify-content-between d-flex">
-                  <span class="p-1 rounded-pill fw-bold bg-primary w-auto text-white">
-                      {{ video.fitPartName }}
+                  <span>
+                      조회수 {{ video.viewCnt }}
                   </span>
                   <span class="fw-normal text-body-secondary">{{ video.channelName }}</span>
                 </div>
@@ -42,23 +42,36 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+// import { ref } from "vue";
 import { useVideoStore } from "@/stores/video";
-import { useUsersStore } from "@/stores/users";
 import { onMounted } from "vue";
 
-const videoStore = useVideoStore();
-const userStore = useUsersStore();
-
-
-
-
+const store = useVideoStore();
 
 onMounted(() => {
-  videoStore.getGuideList();
+  store.getGuideList4();
 });
 </script>
 
 <style scoped>
+.video-box1 {
+  height: 50%;
+}
+
+.video-list img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+.more {
+  width: 100%;
+  height: 30px;
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
 
 </style>

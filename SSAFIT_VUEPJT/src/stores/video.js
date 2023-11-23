@@ -30,24 +30,23 @@ export const useVideoStore = defineStore(
       });
     };
 
-    const videoList = ref([]);
-    const getVideoList = function () {
-      axios.get(REST_VIDEO_API).then((response) => {
-        videoList.value = response.data;
-      });
-    };
-
-    const guideList = ref([]);
-    const getGuideList = function () {
-      axios.get(REST_VIDEO_API).then((response) => {
-        guideList.value = response.data
+    const guideList4 = ref([])
+    const getGuideList4 = function () {
+      axios.get(`${REST_VIDEO_API}/four/guide`).then((response) => {
+        guideList4.value = response.data
       })
     }
 
-    const musicList = ref([]);
-    const getMusicList = function () {
-      axios.get(REST_VIDEO_API).then((response) => {
-        musicList.value = response.data
+    const musicList4 = ref([]);
+    const getMusicList4 = function () {
+      axios.get(`${REST_VIDEO_API}/four/music`).then((response) => {
+        musicList4.value = response.data
+      })
+    }
+    const videoListByType = ref([]);
+    const getVideosByType = function (type) {
+      axios.get(`${REST_VIDEO_API}/${type}`).then((response) => {
+        videoListByType.value = response.data
       })
     }
 
@@ -78,6 +77,13 @@ export const useVideoStore = defineStore(
         });
     };
 
+    const videoList = ref([]);
+    const getVideoList = function () {
+      axios.get(REST_VIDEO_API).then((response) => {
+        videoList.value = response.data;
+      });
+    };
+
     const video = ref({});
     const getVideo = function (videoId) {
       axios.get(`${REST_VIDEO_API}/one/${videoId}`).then((response) => {
@@ -91,10 +97,12 @@ export const useVideoStore = defineStore(
       searchVideo,
       videoList,
       getVideoList,
-      guideList,
-      getGuideList,
-      musicList,
-      getMusicList,
+      guideList4,
+      getGuideList4,
+      musicList4,
+      getMusicList4,
+      videoListByType,
+      getVideosByType,
       createVideo,
       video,
       getVideo,

@@ -74,7 +74,7 @@ const router = createRouter({
       component: VideoList,
     },
     {
-      path: "/video/detail/:id",
+      path: "/video/:videoType/detail/:id",
       name: "videoDetail",
       component: VideoDetail,
     },

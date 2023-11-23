@@ -102,6 +102,7 @@ public class VideoRestController {
 	@DeleteMapping("/delete/{videoId}")
 	@ApiOperation(value="추천 영상 삭제하기")
 	public ResponseEntity<?> deleteVideo(@PathVariable String videoId){
+		System.out.println(videoId);
 		videoService.removeVideo(videoId);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

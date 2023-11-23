@@ -60,7 +60,6 @@ import { useUsersStore } from "@/stores/users"
 import { useReviewStore } from "@/stores/review";
 
 const route = useRoute();
-const router = useRouter();
 const userStore = useUsersStore();
 const reviewStore = useReviewStore();
 
