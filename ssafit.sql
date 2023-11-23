@@ -8,7 +8,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema ssafit
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `ssafit` DEFAULT CHARACTER SET utf8mb3 ;
+CREATE SCHEMA IF NOT EXISTS `ssafit` DEFAULT CHARACTER SET utf8mb4 ;
 
 USE `ssafit` ;
 -- -----------------------------------------------------
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`user` (
   `score` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`userId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
