@@ -28,77 +28,8 @@
       </div>
     
       <div class="video-box-container">
-        <div class="video-box1">
-          <div>
-            <p class="fw-bold text-left fs-4">운동할 때 보면좋은</p>
-          </div>
-          <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-            <RouterLink
-              v-for="video in store.videoList"
-              :to="{ name: 'videoDetail', params: { id: `${video.videoId}` } }"
-              style="cursor: pointer; width: 30%">
-              <div class="text-wrap fw-bold">
-                <div class="text-center">
-                  <iframe
-                      width="100%"
-                      height="auto"
-                      :src="video.url"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen></iframe>
-                </div>
-                <div class="mt-1 mb-1 d-flex text-wrap">{{ video.title }}</div>
-                <div class="justify-content-between d-flex">
-                  <span class="p-1 rounded-pill fw-bold bg-primary w-auto text-white">
-                      {{ video.fitPartName }}
-                  </span>
-                  <span class="fw-normal text-body-secondary">{{ video.channelName }}</span>
-                </div>
-              </div>
-            </RouterLink>
-          </div>
-          <div class="more">
-            <RouterLink
-              type="button"
-              :to="{ name: 'videoList', params: { videoType: 'guide' } }"
-              >more</RouterLink
-            >
-          </div>
-        </div>
-        <div class="video-box2">
-          <div><p class="fw-bold text-left fs-4">운동할 때 듣기좋은</p></div>
-          <div class="shadow pe-3 ps-3 pt-4 pb-4 d-flex video-list w-100 justify-content-around">
-            <RouterLink
-              v-for="video in store.videoList"
-              :to="{ name: 'videoDetail', params: { id: `${video.videoId}` } }"
-              style="cursor: pointer; width: 30%">
-              <div class="text-wrap fw-bold">
-                <div class="text-center">
-                  <iframe
-                        width="100%"
-                        height="auto"
-                        :src="video.url"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="mt-1 mb-1 d-flex text-wrap">{{ video.title }}</div>
-                <div class="justify-content-between d-flex">
-                  <span class="p-1 rounded-pill fw-bold bg-primary w-auto text-white">{{ video.fitPartName }}</span>
-                  <span class="fw-normal text-body-secondary">{{ video.channelName }}</span>
-                </div>
-              </div>
-            </RouterLink>
-          </div>
-          <div class="more">
-            <RouterLink
-                type="button"
-                :to="{ name: 'videoList', params: { videoType: 'music' } }"
-                >more</RouterLink>
-          </div>
-        </div>
+        <guideList></guideList>
+        <!-- <musicList></musicList> -->
       </div>
 
     </div>
@@ -113,12 +44,11 @@ import userInfo from "@/components/user/userInfo.vue";
 import calender from "@/components/calender/calender.vue";
 import articleList1 from "@/components/article/articleList1.vue";
 import articleList2 from "@/components/article/articleList2.vue";
+import guideList from "@/components/video/videoGuideList.vue"
+import musicList from "@/components/video/videoMusicList.vue"
 
 const store = useVideoStore();
 
-onMounted(() => {
-  store.getVideoList();
-});
 </script>
 
 <style scoped>

@@ -37,6 +37,20 @@ export const useVideoStore = defineStore(
       });
     };
 
+    const guideList = ref([]);
+    const getGuideList = function () {
+      axios.get(REST_VIDEO_API).then((response) => {
+        guideList.value = response.data
+      })
+    }
+
+    const musicList = ref([]);
+    const getMusicList = function () {
+      axios.get(REST_VIDEO_API).then((response) => {
+        musicList.value = response.data
+      })
+    }
+
     const createVideo = function (video) {
       console.log(video);
       axios({
@@ -77,6 +91,10 @@ export const useVideoStore = defineStore(
       searchVideo,
       videoList,
       getVideoList,
+      guideList,
+      getGuideList,
+      musicList,
+      getMusicList,
       createVideo,
       video,
       getVideo,
