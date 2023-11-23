@@ -68,10 +68,10 @@ const createArticle = function () {
 
 <style scoped>
 .articleCreate-container {
-  margin: 100px;
+  margin: 70px 0 140px;
   padding: 0;
   font-family: sans-serif;
-  height: 1000px;
+  height: 100%;
 }
 
 .articleCreate-box {
@@ -83,6 +83,7 @@ const createArticle = function () {
 .btn {
   color: #ffffff !important;
   background: #52796f ;
+  margin-top: 5px;
 }
 
 .btn:hover {

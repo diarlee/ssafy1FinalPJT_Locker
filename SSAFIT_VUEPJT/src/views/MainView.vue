@@ -1,6 +1,5 @@
 <template style="margin: 0px; overflow: hidden">
   <div class="background-container">
-    <div class="container">
       <div class="calendar-user-article">
         <div class="calendar-userInfo-container">
           <div><calender class="calendar" /></div>
@@ -17,12 +16,10 @@
           </div>
         </div>
       </div>
-
       <div class="video-box-container">
-        <guideList></guideList>
-        <musicList></musicList>
+        <guideList style="margin: 0 0 30px 0;"></guideList>
+        <musicList style="margin: 30px 0 0 0;"></musicList>
       </div>
-    </div>
   </div>
 </template>
 
@@ -66,24 +63,18 @@ a {
   align-items: center;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  margin: 20px 0 50px 0;
-  /* width: 100%; */
-}
-
 .calendar-user-article {
+  width: 90%;
+  height: 100%;
+  margin: 0 50px 0 50px; 
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .calendar-userInfo-container {
   width: 400px;
-  height: 450px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin: 2.25px 10px 0 10px;
@@ -101,18 +92,6 @@ a {
   margin: 10px 0 0 0;
 }
 
-<<<<<<< HEAD
-=======
-/* .moreButton {
-  margin: 10px 0 0 10px;
-  border: 1.35px solid #52796F;
-  border-radius: 25px;
-  height: 47%;
-  width: 47%;
-  text-align: center;
-} */
-
->>>>>>> 311a858ebf264f2a7f0a8abdd64786748a1d0567
 .articleList-container {
   width: 100%;
   height: 400px;
@@ -137,40 +116,7 @@ a {
   font-size: 25px;
 }
 
-<<<<<<< HEAD
-.more {
-  width: 100%;
-  height: 30px;
-  /* border: 1px solid; */
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
 
-=======
-.articleList1 {
-  width: 100%;
-  height: 200px;
-}
-.articleList2 {
-  width: 100%;
-  height: 200px;
-}
-
-/* .articleList-container > .articleList-more {
-  flex-grow: 8;
-  width: 265%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-} */
-
-/* .calender_articleList-container > .articleList1 {
-  flex-grow: 9;
-  height: 200px;
-} */
-
->>>>>>> 311a858ebf264f2a7f0a8abdd64786748a1d0567
 #page-name {
   font-weight: bold;
   font-size: 2rem;
@@ -181,6 +127,8 @@ input {
 }
 
 .video-box-container {
-  width: 100%;
+  width: 90%;
+  margin-bottom: 50px;
 }
+
 </style>
