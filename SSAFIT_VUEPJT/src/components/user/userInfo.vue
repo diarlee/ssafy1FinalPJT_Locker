@@ -44,7 +44,7 @@ const store = useUsersStore();
 }
 
 .col-md-4 {
-    width: 40%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,7 +53,7 @@ const store = useUsersStore();
 }
 
 .col-md-8 {
-    width: 60%;
+    width: 55%;
 }
 .card-body {
     padding: 16px 0 16px 0;
