@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`video` (
   `title` VARCHAR(255) NOT NULL,
   `type` VARCHAR(32) NOT NULL,
   `channelName` VARCHAR(32) NOT NULL,
-  `viewCnt` INT NOT NULL,
+  `viewCnt` INT NOT NULL default 0,
   `url` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`videoId`),
   CONSTRAINT `fk_video_user`

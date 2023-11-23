@@ -68,6 +68,7 @@ public class VideoRestController {
 	@PostMapping("/insert")
 	@ApiOperation(value="추천 영상 등록하기")
 	public ResponseEntity<?> insertVideo(@RequestBody Video video){
+//		System.out.println(video);
 		if(video != null) {
 			videoService.addVideo(video);
 			return new ResponseEntity<Void>(HttpStatus.OK);
