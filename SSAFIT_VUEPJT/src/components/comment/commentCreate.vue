@@ -1,40 +1,26 @@
 <template>
     <div class="container">
-      <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">
+      <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 100%">
         <form
-          class="reviewform"
           @submit.prevent="createComment"
           style="width: 80%; margin: auto"
         >
-          <div class="text-center">
-            <span class="material-symbols-outlined">dialogs</span>
-            <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 등록</h2>
-            <span class="material-symbols-outlined">dialogs</span>
-          </div>
-  
-          <hr class="mb-3" />
-  
-          <div class="mb-4">
-            <label for="inputContent" class="col-form-label">내용</label>
-            <textarea
+          <div class="reviewform">
+            <textarea class="form-control"
               v-model="comment.content"
               name="content"
-              class="form-control"
               rows="3"
               placeholder="내용을 입력하세요"
             ></textarea>
+            <div class="btn-container">
+              <button type="submit" class="btn-regist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                  </svg> 등록하기
+              </button>
+            </div>
           </div>
-  
-          <button type="submit" class="w-20 me-2 btn btn-outline-primary">
-            등록
-          </button>
-          <!-- <RouterLink
-            class="w-20 btn btn-outline-danger"
-            :to="{
-              name: 'videoDetail',
-              params: { id: route.params.id },
-            }"
-            >취소</RouterLink> -->
         </form>
       </div>
     </div>
@@ -77,16 +63,13 @@
   }
   
   .container {
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    left: 0;
-    right: 0;
-    margin: auto;
     margin-top: 100px;
     margin-bottom: 200px;
-    width: 1400px;
   }
   
   #page-name {
@@ -96,6 +79,12 @@
   
   input {
     width: 100%;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
   }
   </style>
   
