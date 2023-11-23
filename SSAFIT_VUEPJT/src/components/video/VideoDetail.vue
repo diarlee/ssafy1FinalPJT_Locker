@@ -21,7 +21,7 @@
           }}</span>
         </div>
       </div>
-      <button @click="deleteVideo">삭제</button>
+      <button @click="deleteVideo" v-show="userStore.loginId == 'master'">삭제</button>
     </div>
     <form class="reviewform" style="width: 80%; margin: auto">
       <table class="table">
