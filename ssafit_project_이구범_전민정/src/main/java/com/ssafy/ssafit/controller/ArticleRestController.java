@@ -148,14 +148,14 @@ public class ArticleRestController {
 	}
 	
 
-//    @GetMapping("/image/{imgFileName}")
-//    @ApiOperation(value="이미지 가져오기", notes="이거 뭐하는거닞 모르는데 일단 넣기")
-//    public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
-//        Resource image = articleService.loadImage(imgFileName);
-//        return ResponseEntity.ok()
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
-//                .body(image);
-//    }
+    @GetMapping("/image/{imgFileName}")
+    @ApiOperation(value="이미지 가져오기", notes="이거 뭐하는거닞 모르는데 일단 넣기")
+    public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+        Resource image = articleService.loadImage(imgFileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+                .body(image);
+    }
 
 	
 	@DeleteMapping("/delete/{articleId}")

@@ -135,28 +135,32 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO user (userId, username, email, password)
-VALUES ("master", "admin", "ssafy@naver.com", "9999"),
-("ssafy", "ssafy", "ssafy@naver.com", "1234"),
-("test", "tester", "test@naver.com", "1234");
+INSERT INTO user (userId, username, email, password, score)
+VALUES ("master", "admin", "ssafy@naver.com", 9999, 10000),
+("cha",	"차은우",	"cha@ssafy.com", 1234, 30),
+("harin", "해린", "harin@ssafy.com", 1234, 100),
+("hwang", "hwangminheon", "hwang@ssafy.com", 1234, 500),
+("karina",	"카리나",	 "karina@ssafy.com", 1234, 1000),
+("son", "손흥민",	 "son@ssafy.com", 1234, 0),
+("suzy", "수지", "suzy@ssafy.com", 1234, 0);
 
 INSERT INTO video
-VALUES  ("gMaB-fG4u4g", "ssafy", "전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]", "운동", "ThankyouBUBU", 0,
-            "https://www.youtube.com/embed/gMaB-fG4u4g"),
-        ("swRNeYw1JkY", "ssafy", "하루 15분! 전신 칼로리 불태우는 다이어트 운동", "운동", "ThankyouBUBU", 0,
-            "https://www.youtube.com/embed/swRNeYw1JkY"),
-        ("54tTYO-vU2E", "ssafy", "상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]", "운동", "ThankyouBUBU", 0,
-            "https://www.youtube.com/embed/54tTYO-vU2E"),
-        ("QqqZH3j_vH0", "ssafy", "상체비만 다이어트 최고의 운동 [상체 핵매운맛]", "운동", "ThankyouBUBU", 0,
-            "https://www.youtube.com/embed/QqqZH3j_vH0"),
-        ("tzN6ypk6Sps", "ssafy", "하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]", "운동", "김강민", 0,
-            "https://www.youtube.com/embed/tzN6ypk6Sps"),
-        ("u5OgcZdNbMo", "ssafy", "저는 하체 식주의자 입니다", "운동", "GYM종국", 0,
-            "https://www.youtube.com/embed/u5OgcZdNbMo"),
-        ("PjGcOP-TQPE", "ssafy", "11자복근 복부 최고의 운동 [복근 핵매운맛]", "운동", "ThankyouBUBU", 0,
-            "https://www.youtube.com/embed/PjGcOP-TQPE"),
-        ("7TLk7pscICk", "ssafy", "(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)", "운동", "SomiFit", 0,
-            "https://www.youtube.com/embed/7TLk7pscICk");
+VALUES  
+("5MACh6ylf8g", "master", "운동할때 들으려고 모은 &#39;레전드&#39; 운동노래 모음🎵 [Playlist]", "music", "핏블리 FITVELY", 5, "https://www.youtube.com/embed/5MACh6ylf8g"),
+("5pz-VRjffXU", "master", "90%는 잘못된 방법으로 &#39;랫풀다운&#39; 하고 있습니다! (등넓이 가장 빠르게 넓히는 렛풀다운 그립)", "guide", "보통사람을 위한 운동채널",	111, "https://www.youtube.com/embed/5pz-VRjffXU"),
+("8nPjlT1VnMA", "master", "'따라갈 생각하지 말고 뛰어넘을 생각해' 운동노래 쇠힙 Playlist", "music", "쥅쥅",	1, "https://www.youtube.com/embed/8nPjlT1VnMA"),
+("9kkYi5BsJnE", "master", "𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 운동할 때 텐션🔥 끌어 올려주는 I 걸그룹 케이팝 플레이리스트", "music",	"𝐀𝐦𝐛𝐢𝐞𝐧𝐜𝐞 𝐕𝐢𝐞𝐰 : 휴식공간",	333, "https://www.youtube.com/embed/9kkYi5BsJnE"),
+("9WhpAVOSyl8", "master", "하루 딱6분! 다리라인 살리는 운동 [허벅지&amp;엉덩이]", "guide", "Thankyou BUBU",	0, "https://www.youtube.com/embed/9WhpAVOSyl8"),
+("asJZXgbU8J0", "master", "어깨 넓어지려면, 하루라도 빨리 &#39;이 운동&#39;시작하세요!!! (프레임 넓혀주는 등운동 루틴/턱걸이/랫풀다운)", "guide", "보통사람을 위한 운동채널", 1, "https://www.youtube.com/embed/asJZXgbU8J0"),
+("Hx8Lc_0hUaI", "master", "운동할 시간이 없다는 사람에게 보여주세요... 제발", "guide", "김종국 GYM JONG KOOK", 2, "https://www.youtube.com/embed/Hx8Lc_0hUaI"),
+("sup4aPc-IvM", "master", "운동할때 듣기좋은 노래모음 2023(광고X) 진짜 괜찮은 헬스음악, 운동 효과보장!", "music", "운동 음악[Workout Music]", 0, "https://www.youtube.com/embed/sup4aPc-IvM"),
+("tzN6ypk6Sps", "master", "하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]	운동", "김강민", 0,	"https://www.youtube.com/embed/tzN6ypk6Sps"),
+("U-pNUI_gk9c", "master", "𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 🎧 유산소 40분 걸그룹 플레이리스트 | 운동할 때 듣는 음악 운동플리 🔥 K-pop Playlist | 2023년 걸그룹 플리",	"music", "찡모먼 ⟡", 555,	"https://www.youtube.com/embed/U-pNUI_gk9c"),
+("u5OgcZdNbMo", "master", "저는 하체 식주의자 입니다", "guide", "GYM종국", 222, "https://www.youtube.com/embed/u5OgcZdNbMo"),
+("VhC7ujGgnwk", "master", "운동 할때 듣기 좋은 노래 💪 신나는 팝송 플리 모음 | Design making tutorial",	"music", "Blue rain", 0, "https://www.youtube.com/embed/VhC7ujGgnwk"),
+("VhrSqPx9npY", "master", "여러분! 공 하나만 있어도 드리블 연습 겁나 잘 할 수 있어!", "guide",	"전태풍 Taepoong Chon", 444, "https://www.youtube.com/embed/VhrSqPx9npY"),
+("ySCSNVnAeFU", "master", "[가슴루틴] 윗가슴 부터 채우는 가슴운동 루틴 순서/셋트/무게", "guide",	"핏블리 FITVELY", 0, "https://www.youtube.com/embed/ySCSNVnAeFU");
+
 
 INSERT INTO review(videoId, userId, title, writer, content, viewCnt)
 VALUES 

@@ -3,8 +3,7 @@
     <magic-grid>
       <div class="card" style="width: 12%;" v-for="article in articleStore.publicArticles">
         <RouterLink :to="{ name: 'articleDetail', params: { articleId: `${article.articleId}` },}" style="color: black;">
-          <!-- test image -->
-          <img class="card-img-top" src="https://source.unsplash.com/random/?workout" alt="" />
+          <img class="card-img-top" v-bind="articleStore.getImage(article.image)" :src="articleStore.image" alt="" />
           <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <div class="card-text">{{ article.content }}</div>
@@ -35,12 +34,13 @@ const clickHeart = function (articleId) {
 };
 
 onMounted(() => {
-//   if (self.name != "reload") {
-//   self.name = "reload";
-//   self.location.reload(true);
-// } else self.name = "";
+  if (self.name != "reload") {
+  self.name = "reload";
+  self.location.reload(true);
+} else self.name = "";
 
   articleStore.getPublicArticles();
+
 });
 </script>
 

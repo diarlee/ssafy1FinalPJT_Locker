@@ -108,9 +108,22 @@ export const useArticleStore = defineStore("article", () => {
       data: {
         userId: userId,
       },
-    }).catch((err) => {
+      
+    })
+    .then(() => {
+      window.location.reload()
+    })
+    .catch((err) => {
       console.log(err);
     });
+  };
+
+  // 이미지 가져오기
+  const image = ref("");
+  const getImage = function (imgFileName) {
+    axios.get(`${REST_ARTICLE_API}/image/${imgFileName}`).then((response) => {
+      image.value = response.data;
+    })
   };
 
   return {
@@ -128,5 +141,7 @@ export const useArticleStore = defineStore("article", () => {
     updateArticle,
     updateHeart,
     updatePublic,
+    image,
+    getImage
   };
 });
