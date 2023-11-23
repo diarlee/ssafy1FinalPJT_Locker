@@ -45,28 +45,13 @@ public class ReviewRestController {
 	}
 
 	@GetMapping("/review/{videoId}")
-	@ApiOperation(value = "리뷰 조회", notes = "영상 아이디에 해당하는 모든 리뷰 조회하기")
+	@ApiOperation(value = "영상 내 모든 리뷰", notes = "영상 아이디에 해당하는 모든 리뷰 조회하기")
 	public ResponseEntity<?> getList(@PathVariable String videoId) {
 		List<Review> list = reviewService.getList(videoId);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
 			return new ResponseEntity<List<Review>>(list, HttpStatus.OK);
-		}
-	}
-
-	@GetMapping("/review/detail/{id}")
-	@ApiOperation(value = "리뷰 상세 조회", notes = "리뷰 상세 조회하기")
-	public ResponseEntity<?> getReview(@PathVariable int id) {
-		Review review = reviewService.getReview(id);
-		if (review == null) {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		} else {
-			if (id == review.getReviewId()) {
-				int viewCnt = review.getViewCnt();
-				reviewService.modifyViewCnt(viewCnt, id);
-			}
-			return new ResponseEntity<Review>(review, HttpStatus.OK);
 		}
 	}
 
@@ -88,7 +73,7 @@ public class ReviewRestController {
 			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
-
+	
 	@PutMapping("/review/modify/{reviewId}")
 	@ApiOperation(value = "리뷰 수정", notes = "리뷰 수정하기")
 	public ResponseEntity<?> modifyReview(@RequestBody Review review, @PathVariable int reviewId) {

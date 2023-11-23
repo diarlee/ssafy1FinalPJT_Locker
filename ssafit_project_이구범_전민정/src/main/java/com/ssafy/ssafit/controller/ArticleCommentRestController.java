@@ -35,7 +35,7 @@ public class ArticleCommentRestController {
 	private UserService userService;
 	
 	@GetMapping("/all/{articleId}")
-	@ApiOperation(value="댓글 보여줘잉")
+	@ApiOperation(value="게시글 내 모든댓글")
 	public ResponseEntity<?> getList(@PathVariable int articleId){
 		List<ArticleComment> list = commentService.getComment(articleId);
 		
@@ -77,7 +77,7 @@ public class ArticleCommentRestController {
 	}
 	
 	@DeleteMapping("/delete/{articleId}")
-	@ApiOperation(value="게시글 삭제")
+	@ApiOperation(value="댓글 삭제")
 	public ResponseEntity<?> removeArticle(@RequestBody Map<String, Integer> map, @PathVariable int articleId){
 		
 		int commentId = map.get("commentId");

@@ -1,35 +1,27 @@
 <template>
     <div class="articleCreate-container">
-    <div class="articleCreate-box">
-      <h2>게시글 업로드</h2>
-      <form>
-        <div class="input-box">
-          <input type="file" @change="appendImage" />
-          <label for="">이미지</label>
-        </div>
-        <div class="input-box">
-          <input type="text" name="" required="" v-model="title" />
-          <label>title</label>
-        </div>
-        <div class="input-box">
-          <input type="text" name="" required="" v-model="content" />
-          <label>content</label>
-        </div>
-        <div class="input-button">
-          <button @click="isPublic = !isPublic">
+      <form class="articleCreate-box">
+        <div class="form-check form-switch">
+          <!-- <button @click="isPublic = !isPublic">
             {{ getIsPublic }}
-          </button>
+          </button> -->
+          <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckDefault"  @click="isPublic = !isPublic">
+          <label class="form-check-label" for="flexSwitchCheckDefault">{{ getIsPublic }}</label>
         </div>
-        <button @click="updateArticle">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          수정
-        </button>
-        <RouterLink :to="{name: 'articleDetail', params: {articleId: route.params.articleId}}">취소</RouterLink>
+        <div class="mb-3">
+          <input class="form-control" type="file" @change="appendImage" />
+        </div>
+        <div class="mb-3 input-box">
+          <input class="form-control" type="text" name="" required="" v-model="title" placeholder="title" />
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" rows="3" name="" required="" v-model="content" placeholder="content"></textarea>
+        </div>
+        <div class="buttons">
+          <button class="btn" @click="updateArticle">수정</button>
+          <RouterLink class="btn btn-cancel" :to="{name: 'articleDetail', params: {articleId: route.params.articleId}}">취소</RouterLink>
+        </div>
       </form>
-    </div>
   </div>
 </template>
 
@@ -68,4 +60,45 @@ const updateArticle = function () {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.articleCreate-container {
+  margin: 70px 0 140px;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+.articleCreate-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  color: #ffffff !important;
+  background: #52796f ;
+  margin: 5px 2px 0 2px;
+}
+
+/* .btn-cancel {
+  color: rgb(186, 41, 41) !important; 
+  background: #ffffff;
+  border: 0.3px solid rgb(186, 41, 41);
+} */
+
+.btn:hover {
+  color:#52796f !important;
+  background: white;
+}
+/* 
+.btn-cancel:hover {
+  color: #ffffff !important;
+  background: rgb(186, 41, 41);
+} */
+.mb-3{
+  width: 56%;
+  padding: 5px 0 5px 0;
+}
+
+
+</style>

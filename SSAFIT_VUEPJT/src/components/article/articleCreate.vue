@@ -13,7 +13,7 @@
       </div>
       <div class="mb-3 input-box">
         <input class="form-control" type="text" name="" required="" v-model="title" placeholder="title"/>
-        </div>
+      </div>
       <div class="mb-3">
         <textarea class="form-control" rows="3" name="" required="" v-model="content" placeholder="content"></textarea>
           <!-- <input class="form-control" type="text" name="" required="" v-model="content" placeholder="content"/> -->
@@ -95,8 +95,5 @@ const createArticle = function () {
   width: 56%;
   padding: 5px 0 5px 0;
 }
-
-
-
 
 </style>

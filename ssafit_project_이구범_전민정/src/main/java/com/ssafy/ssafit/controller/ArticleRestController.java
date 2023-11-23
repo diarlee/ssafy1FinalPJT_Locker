@@ -57,7 +57,7 @@ public class ArticleRestController {
 	}
 	
 	@GetMapping("/top4")
-	@ApiOperation(value = "top4 게시글 조회")
+	@ApiOperation(value = "최신순 4개")
 	public ResponseEntity<?> getTopfour(){
 		List<Article> article = articleService.getTopFour();
 		
@@ -69,7 +69,7 @@ public class ArticleRestController {
 	}
 	
 	@GetMapping("/top4to8")
-	@ApiOperation(value = "top5 - 8 게시글 조회")
+	@ApiOperation(value = "좋아요 순 4 개")
 	public ResponseEntity<?> getTopfourTo(){
 		List<Article> article = articleService.getTopEight();
 		
@@ -80,16 +80,35 @@ public class ArticleRestController {
 		}
 	}
 	
-	@GetMapping("/detail/{articleId}")
-	@ApiOperation(value = "게시글 상세 조회")
-	public ResponseEntity<?> getArticle(@PathVariable int articleId){
-		Article article = articleService.getArticle(articleId);
-		if(article != null) {
-			return new ResponseEntity<Article>(article, HttpStatus.OK);
+	@GetMapping("/isPublic")
+	@ApiOperation(value="전체공개 게시글 목록 가져오기")
+	public ResponseEntity<?> getPublic(){
+		List<Article> articles = articleService.getPublic();
+		if( articles != null ) {
+			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@PostMapping("/getId")
+	@ApiOperation(value="id와 날짜 기준 게시글 가져오기")
+	public ResponseEntity<?> getArticleByDate(@RequestBody Map<String, String> map){
+		// 년 월 일만 추출해서 일치하는 걸로 가져오기
+		String userId = map.get("userId");
+		String date = map.get("date");
+		
+		Article article = articleService.commit(userId, date);
+		
+		if(article != null) {
+			int articleId = article.getArticleId();
+			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Integer>(0, HttpStatus.OK);
+		}
+		
+	}
+	
 	
 	@PostMapping("/write")
 	@ApiOperation(value = "게시글 등록")
@@ -104,6 +123,16 @@ public class ArticleRestController {
 		}
 	}
 	
+	@GetMapping("/detail/{articleId}")
+	@ApiOperation(value = "게시글 상세 조회")
+	public ResponseEntity<?> getArticle(@PathVariable int articleId){
+		Article article = articleService.getArticle(articleId);
+		if(article != null) {
+			return new ResponseEntity<Article>(article, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
 	
 	@PutMapping("/modify/{articleId}")
 	@ApiOperation(value="게시글 수정")
@@ -119,14 +148,14 @@ public class ArticleRestController {
 	}
 	
 
-    @GetMapping("/image/{imgFileName}")
-    @ApiOperation(value="이미지 가져오기", notes="이거 뭐하는거닞 모르는데 일단 넣기")
-    public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
-        Resource image = articleService.loadImage(imgFileName);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
-                .body(image);
-    }
+//    @GetMapping("/image/{imgFileName}")
+//    @ApiOperation(value="이미지 가져오기", notes="이거 뭐하는거닞 모르는데 일단 넣기")
+//    public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+//        Resource image = articleService.loadImage(imgFileName);
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+//                .body(image);
+//    }
 
 	
 	@DeleteMapping("/delete/{articleId}")
@@ -143,7 +172,6 @@ public class ArticleRestController {
 		}	
 	}
 	
-	// 이거 좀 복잡할지도... 더 생각해보기
 	@PutMapping("/like/{articleId}")
 	@ApiOperation(value="좋아요 누르기 기능")
 	public ResponseEntity<?> likeIt(@PathVariable int articleId, @RequestBody Map<String, String> map){
@@ -171,7 +199,7 @@ public class ArticleRestController {
 	
 	
 	@PutMapping("/check")
-	@ApiOperation(value="게시글 인증 기능")
+	@ApiOperation(value="게시글 승인")
 	public ResponseEntity<?> checkIt(@RequestBody Map<String, String> map){
 		
 		String userId = map.get("userId");
@@ -195,43 +223,4 @@ public class ArticleRestController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/isPublic")
-	@ApiOperation(value="전체공개 게시글 목록 가져오기")
-	public ResponseEntity<?> getPublic(){
-		List<Article> articles = articleService.getPublic();
-		if( articles != null ) {
-			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
-	@GetMapping("/notCheck")
-	@ApiOperation(value="인증 안 된 게시글 목록 가져오기")
-	public ResponseEntity<?> notChecked(){
-		List<Article> articles = articleService.getNotChecked();
-		if( articles != null ) {
-			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
-	@PostMapping("/getId")
-	@ApiOperation(value="달력 누르면 게시글 가져오기")
-	public ResponseEntity<?> getArticleByDate(@RequestBody Map<String, String> map){
-		// 년 월 일만 추출해서 일치하는 걸로 가져오기
-		String userId = map.get("userId");
-		String date = map.get("date");
-		
-		Article article = articleService.commit(userId, date);
-		
-		if(article != null) {
-			int articleId = article.getArticleId();
-			return new ResponseEntity<Integer>(articleId, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Integer>(0, HttpStatus.OK);
-		}
-		
-	}
 }

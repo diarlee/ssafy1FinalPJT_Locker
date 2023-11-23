@@ -2,15 +2,16 @@
     <div class="userInfo-container">
         <div class="card mb-3">
             <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-md-4" v-show="store.loginStatus">
                     <img class="img-fluid rounded-start" v-if="0 <= store.score && store.score <= 30" src="@/assets/img/bronzeKey.png" alt="">
                     <img class="img-fluid rounded-start" v-else-if="store.score <= 100" src="@/assets/img/silverKey.png" alt="">
                     <img class="img-fluid rounded-start" v-else-if="store.score <= 500" src="@/assets/img/goldKey.png" alt="">
                     <img class="img-fluid rounded-start" v-else-if="store.score <= 1000" src="@/assets/img/plaKey.png" alt="">
                     <img class="img-fluid rounded-start" v-else src="@/assets/img/diaKey.png">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" >
                     <div class="card-body" style="text-align: center;">
+                        <div></div>
                         <h5 class="card-title" v-show="store.loginStatus"> {{ store.username }} 님</h5>
                         <p class="card-text" v-show="store.loginStatus"> 내 점수: {{ store.score }} 점</p>
                         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->

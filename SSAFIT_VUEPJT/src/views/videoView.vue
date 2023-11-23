@@ -1,15 +1,15 @@
 <template>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <RouterLink class="video-list"
       v-for="video in store.videoListByType"
       :to="{ name: 'videoDetail', params: { videoType: route.params.videoType, id: `${video.videoId}` } }"
       style="cursor: pointer;"
     >
-    <div class="col">
-      <div class="card">
+      <div class="col h-100">
+        <div class="card h-100">
             <iframe class="card-img-top"
                 width="100%"
-                height="30%"
+                height="45%"
                 :src="video.url"
                 title="YouTube video player"
                 frameborder="0"
