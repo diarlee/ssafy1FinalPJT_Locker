@@ -15,6 +15,13 @@
 	where type = #{type}; 
 	</select>
 	
+	<select id="selectByTypeFour" resultType="Video" parameterType="string">
+	select * 
+	from video
+	where type = #{type}
+	limit 4;
+	</select>
+	
 	<select id="selectVideo" resultType="Video">
 	select * 
 	from video 

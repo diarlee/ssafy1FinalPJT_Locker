@@ -33,6 +33,12 @@ public class VideoServiceImpl implements VideoService {
 		// TODO Auto-generated method stub
 		return videoDao.selectByType(type);
 	}
+	
+	@Override
+	public List<Video> getByTypeFour(String type) {
+		// TODO Auto-generated method stub
+		return videoDao.selectByTypeFour(type);
+	}
 
 	@Override
 	public Video getVideo() {
@@ -70,5 +76,6 @@ public class VideoServiceImpl implements VideoService {
 		// TODO Auto-generated method stub
 		videoDao.deleteVideo(videoId);
 	}
+
 
 }

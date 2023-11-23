@@ -39,10 +39,21 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/{type}")
+	@GetMapping("/type")
 	@ApiOperation(value="타입별 영상", notes="타입별 영상 조회하기")
-	public ResponseEntity<?> getByPart(@PathVariable String type) {
+	public ResponseEntity<?> getByType(String type) {
 		List<Video> list = videoService.getByType(type);
+		if (list == null || list.size() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/type4")
+	@ApiOperation(value="타입별 영상 4개", notes="타입별 영상 4개 조회하기")
+	public ResponseEntity<?> getByTypeFour(String type) {
+		List<Video> list = videoService.getByTypeFour(type);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		} else {
