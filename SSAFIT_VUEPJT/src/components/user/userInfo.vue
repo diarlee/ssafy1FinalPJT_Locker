@@ -36,33 +36,28 @@ const store = useUsersStore();
     width: inherit;
     /* border: solid 1.35px #52796F; */
     /* border-radius: 2px; */
-    display: flex;
-    flex-direction: column;
 }
-/* 
-.userGrade {
-    padding: 5px;
-    flex-grow: 9;
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-md-4 {
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-} */
-
-.img-fluid {
-    padding: 10px 0px 10px 10px;
-    width: 100px;
-    height: 100px;
+    align-content: center;
+    padding: 7px;
 }
 
-/* p {
-    margin: 10px 0 0 0;
-} */
-
+.col-md-8 {
+    width: 60%;
+}
 .card-body {
     padding: 16px 0 16px 0;
 }
-
 
 .router {
     margin: 0 0 0 0;

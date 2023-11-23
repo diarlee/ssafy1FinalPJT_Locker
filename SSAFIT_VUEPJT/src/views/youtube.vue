@@ -104,15 +104,16 @@
   }
 
   .btn-regist {
-    background: #3a4643;
+    border: 0.5px solid #ffffff;
+    background: #52796f;
     color: #ffffff;
     width: 15%;
   }
 
   .btn-regist:hover {
-    border: 0.5px solid #3a4643;
+    border: 0.5px solid #52796f;
     background: #ffffff;
-    color: #3a4643;
+    color: #52796f;
   }
 
   </style>
