@@ -1,14 +1,10 @@
 <template>
   <div class="container">
-      
+    <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">  
       <form
         @submit.prevent="createReview"
         style="width: 80%; margin: auto">
-        <div class="text-center">
-          <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 등록</h2>
-        </div>
         <div class="reviewform">
-          <div class="mb-3">
             <textarea
               v-model="review.content"
               name="content"
@@ -17,9 +13,8 @@
               placeholder="내용을 입력하세요"
             ></textarea>
             <!-- <button class="btn btn-outline-secondary" type="button" for="button-addon"></button> -->
-          </div>
           <button type="submit" class="btn">
-            등록
+            리뷰 등록
           </button>
         </div>
         <!-- <RouterLink
@@ -31,6 +26,7 @@
           >취소</RouterLink> -->
       </form>
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -85,6 +81,21 @@ a {
 
 .reviewform {
   margin-top: 20px;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+.btn {
+  margin-top: 0;
+  color: #ffffff;
+  background: #52796F;
+}
+
+.btn:hover {
+  color: #52796F;
+  background-color: #ffffff;
 }
 
 #page-name {

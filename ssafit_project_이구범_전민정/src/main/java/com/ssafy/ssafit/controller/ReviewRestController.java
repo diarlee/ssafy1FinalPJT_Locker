@@ -81,11 +81,12 @@ public class ReviewRestController {
 		User user = userService.getUser(review.getUserId());
 		review.setWriter(user.getUsername());
 
-		reviewService.writeReview(review);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
-//		} else {
-//			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-//		}
+		if(user != null && review.getContent() != null) {
+			reviewService.writeReview(review);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);			
+		} else {
+			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 
 	@PutMapping("/review/modify/{reviewId}")
