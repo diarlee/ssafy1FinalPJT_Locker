@@ -7,26 +7,6 @@
         action="main"
         style="width: 80%; margin: auto"
       >
-        <div class="text-center">
-          <span class="material-symbols-outlined">dialogs</span>
-          <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 수정</h2>
-          <span class="material-symbols-outlined">dialogs</span>
-        </div>
-        <hr class="mb-3" />
-
-        <div class="mb-3">
-          <label for="inputTitle" class="col-form-label">제목</label>
-          <input
-            type="text"
-            class="form-control"
-            id="inputEmail3"
-            name="title"
-            v-model="review.title"
-          />
-        </div>
-
-        <div class="mb-4">
-          <label for="inputContent" class="col-form-label">수정할 내용</label>
           <textarea
             class="form-control"
             type="text"
@@ -34,17 +14,13 @@
             rows="3"
             v-model="review.content"
           >
-          </textarea>
-        </div>
-
+        </textarea>
         <button
           type="submit"
           @click.prevent="updateReview"
-          class="w-20 me-2 btn btn-outline-primary"
-        >
-          수정
-        </button>
-        <button @click="goToCreate">취소</button>
+          class="w-20 me-2 btn"
+        > 수정 </button>
+        <button class="btn btn-cancel" @click="goToCreate">취소</button>
       </form>
     </div>
   </div>
@@ -106,6 +82,29 @@ a {
   margin-top: 100px;
   margin-bottom: 200px;
   width: 1400px;
+}
+
+.reviewform {
+  margin-top: 20px;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn {
+  margin-top: 0;
+  color: #ffffff;
+  background: #52796F;
+}
+
+.btn:hover {
+  color: #52796F;
+  background-color: #ffffff;
 }
 
 #page-name {

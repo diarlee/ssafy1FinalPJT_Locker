@@ -1,7 +1,18 @@
 <template>
   <div class="container">
     <div class="text-wrap fw-bold">
-      <button class="btn btn-delete" @click="deleteVideo">삭제</button>
+      <div class="btn-container" style="margin-bottom: 5px;">
+        <RouterLink
+          type="button"
+          class="btn btn-return"
+          :to="{
+            name: 'videoList',
+            param: { videoType: route.params.videoType, id: route.params.id },
+          }" 
+          >돌아가기
+        </RouterLink>
+        <button class="btn btn-delete" @click="deleteVideo" style="margin-left: 2px;">삭제</button>
+      </div>
       <div class="text-center">
         <iframe
           width="560"
@@ -28,7 +39,7 @@
         <thead>
           <tr style="text-align: center">
             <th scope="col">번호</th>
-            <th scope="col">제목</th>
+            <!-- <th scope="col">제목</th> -->
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
             <th scope="col">작성시간</th>
@@ -41,7 +52,7 @@
             style="text-align: center"
           >
             <td>{{ review.reviewId }}</td>
-            <td>
+            <!-- <td>
               <RouterLink
                 :to="{
                   name: 'reviewDetail',
@@ -53,18 +64,18 @@
                 style="cursor: pointer; color: black"
                 >{{ review.title }}</RouterLink
               >
-            </td>
+            </td> -->
             <td>{{ review.writer }}</td>
             <td>{{ review.content }}</td>
             <td>{{ review.regDate }}</td>
             <td>
-              <button
+              <button class="btn btn-modify"
                 @click.prevent="changeStatus(review.reviewId)"
                 v-show="review.userId == userStore.loginId"
-              >
+              style="margin-right: 2px;">
                 수정
               </button>
-              <button
+              <button class="btn btn-delete"
                 @click="deleteReview(review.reviewId)"
                 v-show="review.userId == userStore.loginId"
               >
@@ -75,17 +86,7 @@
         </tbody>
       </table>
     </form>
-    <div class="btn-container">
-      <RouterLink
-        type="button"
-        class="btn"
-        :to="{
-          name: 'videoList',
-          param: { videoType: route.params.videoType, id: route.params.id },
-        }"
-        >돌아가기
-      </RouterLink>
-    </div>
+
     <reviewCreate v-if="reviewStore.status == 'create'"></reviewCreate>
     <reviewUpdate v-else></reviewUpdate>
   </div>
@@ -171,28 +172,24 @@ onMounted(() => {
   padding-top: 50px;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-a:hover {
-  color: rgb(186, 41, 41) !important;
-}
-
 .btn {
-  margin-top: 70px;
   background: #52796f;
   color: #ffffff;
-}
-.btn:hover {
-  background: rgb(186, 41, 41);
-  color: #ffffff !important;
 }
 
 .btn-delete {
   background: #ffffff;
   color: #52796f;
-  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #52796f; 
+}
+
+.btn-delete:hover {
+  background: rgb(186, 41, 41);
+  color: #ffffff !important;
 }
 
 #page-name {
