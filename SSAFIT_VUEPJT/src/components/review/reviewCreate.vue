@@ -40,13 +40,13 @@
         <button type="submit" class="w-20 me-2 btn btn-outline-primary">
           등록
         </button>
-        <RouterLink
+        <!-- <RouterLink
           class="w-20 btn btn-outline-danger"
           :to="{
             name: 'videoDetail',
             params: { id: route.params.id },
           }"
-          >취소</RouterLink>
+          >취소</RouterLink> -->
       </form>
     </div>
   </div>
@@ -73,7 +73,7 @@ const review = ref({
 const createReview = function () {
   review.value.videoId = route.params.id
   review.value.userId = userStore.loginId
-  reviewStore.createReview(review);
+  reviewStore.createReview(review, route.params.videoType);
 };
 </script>
 

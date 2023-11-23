@@ -16,8 +16,10 @@ export const useReviewStore = defineStore("review", () => {
     })
   }
 
+  const status = ref("create");
+
   // review 등록
-  const createReview = function (review) {
+  const createReview = function (review, videoType) {
     // console.log(review.value);
     axios({
       url: `${REST_REVIEW_API}/write`,
@@ -30,7 +32,8 @@ export const useReviewStore = defineStore("review", () => {
       },
     })
       .then(() => {
-        router.push({ name: "videoDetail", params: {id: review.value.videoId }});
+        // router.push({ name: "videoDetail", params: {videoType: videoType, id: review.value.videoId }});
+        location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +50,7 @@ export const useReviewStore = defineStore("review", () => {
   };
 
   // review 수정
-  const updateReview = function (review) {
+  const updateReview = function (review, videoType) {
     axios({
       url: `${REST_REVIEW_API}/modify/${review.value.reviewId}`,
       method: 'PUT',
@@ -60,12 +63,14 @@ export const useReviewStore = defineStore("review", () => {
       }
     })
     .then(() => {
-      router.push({ name: "reviewDetail" , params: {reviewId: review.value.reviewId, videoId: review.value.videoId }});
+      // router.push({ name: "videoDetail" , params: {videoType: videoType, id: review.value.videoId }});
+      // console.log(review.value.reviewId)
+      location.reload()
     })
     .catch((err) => {
       console.log(err)
     })
   };
 
-  return { reviewList, review, getReviewList, createReview, getReview, updateReview };
+  return { reviewList, review, getReviewList, status, createReview, getReview, updateReview };
 });

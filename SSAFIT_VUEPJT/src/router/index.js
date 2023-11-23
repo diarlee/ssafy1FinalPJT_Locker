@@ -5,6 +5,7 @@ import Login from "@/components/user/login.vue";
 import Master from "@/views/masterView.vue"
 import KeysInfoView from "@/views/keysInfoView.vue"
 import YoutubeView from "@/views/youtube.vue"
+import myHeartsView from "@/views/myHeartsView.vue"
 import ArticleList from "@/views/articleView.vue"
 import ArticleCreate from "@/components/article/articleCreate.vue"
 import ArticleDetail from "@/components/article/articleDetail.vue"
@@ -42,6 +43,11 @@ const router = createRouter({
       path: "/keysInfo",
       name: "keysInfo",
       component: KeysInfoView,
+    },
+    {
+      path: "/myHeart",
+      name: "myHeart",
+      component: myHeartsView,
     },
     {
       path: "/youtube",

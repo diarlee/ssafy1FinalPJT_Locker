@@ -1,15 +1,26 @@
 <template>
   <div class="container">
-    <div class="text-center">
-      <iframe
-        width="560"
-        height="315"
-        :src="videoStore.video.url"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+    <div class="text-wrap fw-bold">
+      <div class="text-center">
+        <iframe
+          width="560"
+          height="315"
+          :src="videoStore.video.url"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+        <div class="mt-1 mb-1 d-flex text-wrap">
+          {{ videoStore.video.title }}
+        </div>
+        <div class="justify-content-between d-flex">
+          <span> 조회수 {{ videoStore.video.viewCnt }} </span>
+          <span class="fw-normal text-body-secondary">{{
+            videoStore.video.channelName
+          }}</span>
+        </div>
+      </div>
       <button @click="deleteVideo">삭제</button>
     </div>
     <form class="reviewform" style="width: 80%; margin: auto">
@@ -19,8 +30,9 @@
             <th scope="col">번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
-            <th scope="col">조회수</th>
+            <th scope="col">내용</th>
             <th scope="col">작성시간</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -43,8 +55,22 @@
               >
             </td>
             <td>{{ review.writer }}</td>
-            <td>{{ review.viewCnt }}</td>
+            <td>{{ review.content }}</td>
             <td>{{ review.regDate }}</td>
+            <td>
+              <button
+                @click.prevent="changeStatus(review.reviewId)"
+                v-show="review.userId == userStore.loginId"
+              >
+                수정
+              </button>
+              <button
+                @click="deleteReview(review.reviewId)"
+                v-show="review.userId == userStore.loginId"
+              >
+                삭제
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -54,12 +80,14 @@
         type="button"
         class="btn"
         :to="{
-          name: 'reviewCreate',
-          param: { id: route.params.id },
+          name: 'videoList',
+          param: { videoType: route.params.videoType, id: route.params.id },
         }"
-        >글 작성
+        >돌아가기
       </RouterLink>
     </div>
+    <reviewCreate v-if="reviewStore.status == 'create'"></reviewCreate>
+    <reviewUpdate v-else></reviewUpdate>
   </div>
 </template>
 
@@ -69,8 +97,11 @@ import { RouterView, RouterLink } from "vue-router";
 import { useRoute, useRouter } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { useReviewStore } from "@/stores/review";
-import {useUsersStore} from "@/stores/users"
+import { useUsersStore } from "@/stores/users";
 import axios from "axios";
+import reviewCreate from "@/components/review/reviewCreate.vue";
+import reviewUpdate from "@/components/review/reviewUpdate.vue";
+import { storeToRefs } from "pinia";
 
 const route = useRoute();
 const router = useRouter();
@@ -88,6 +119,19 @@ const deleteVideo = function () {
         name: "videoList",
         params: { videoType: route.params.videoType },
       });
+    });
+};
+
+const changeStatus = function (reviewId) {
+  reviewStore.status = reviewId
+  console.log(reviewStore.status)
+}
+
+const deleteReview = function (reviewId) {
+  axios
+    .delete(`http://localhost:8080/api/review/delete/${reviewId}`)
+    .then(() => {
+      location.reload();
     });
 };
 
