@@ -9,10 +9,10 @@
 	limit 3;
 	</select>
 	
-	<select id="selectByPart" resultType="Video" parameterType="string">
+	<select id="selectByType" resultType="Video" parameterType="string">
 	select * 
 	from video
-	where fitPartName = #{fitPartName}; 
+	where type = #{type}; 
 	</select>
 	
 	<select id="selectVideo" resultType="Video">
@@ -35,8 +35,8 @@
 	</select>
 	
 	<insert id="insertVideo" parameterType="Video">
-		insert into video(videoId, userId, title, fitPartName, channelName, url)
-		values(#{videoId}, #{userId}, #{title}, #{fitPartName}, #{channelName}, #{url});
+		insert into video(videoId, userId, title, type, channelName, url)
+		values(#{videoId}, #{userId}, #{title}, #{type}, #{channelName}, #{url});
 	</insert>
 	
 	<update id="updateVideo" parameterType="Video">

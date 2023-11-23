@@ -9,7 +9,7 @@ public interface VideoService {
 	public List<Video> getList();
 
 	// 부위별 영상 조회
-	public List<Video> getByPart(String part);
+	public List<Video> getByType(String type);
 
 	// 조회수 가장 많은 영상 조회
 	public Video getVideo();

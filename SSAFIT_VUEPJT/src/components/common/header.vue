@@ -35,15 +35,20 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  USER </a>
+                  ARTICLE </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/user/likeList.html">찜</a></li>
-                  <!-- <li><a class="dropdown-item" href="/user/follow.html">팔로우</a></li> -->
-                  <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">등급 정보</RouterLink></li>
+                  <li><RouterLink class="dropdown-item" :to="{ name: 'articleList' }">ALL</RouterLink></li>
+                  <li><RouterLink class="dropdown-item" :to="{ name: 'articleCreate' }">CREATE</RouterLink></li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  USER </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/user/likeList.html">HEART</a></li>
+                  <!-- <li><a class="dropdown-item" href="/user/follow.html">팔로우</a></li> -->
+                  <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">MY PAGE</RouterLink></li>
+                </ul>
               </li>
             </ul>
             <div class="nav nav-underline" v-if="!store.loginStatus">
@@ -104,6 +109,7 @@ a {
 
 a:hover {
   color: rgb(186, 41, 41);
+  background-color: #ffffff;
 }
 
 button:hover {
