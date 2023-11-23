@@ -61,20 +61,6 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/one/{videoId}")
-	@ApiOperation(value="영상 하나 선택", notes="영상 하나 선택하기")
-	public ResponseEntity<?> getVideo(@PathVariable String videoId) {
-		Video video = videoService.getVideoOne(videoId);
-		if (video == null) {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		} else {
-			if(videoId.equals(video.getVideoId())) {
-				int viewCnt = video.getViewCnt();
-				videoService.modifyViewCnt(viewCnt, videoId);
-			}
-			return new ResponseEntity<Video>(video, HttpStatus.OK);
-		}
-	}
 	
 	@PostMapping("/insert")
 	@ApiOperation(value="추천 영상 등록하기")
@@ -85,6 +71,21 @@ public class VideoRestController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@GetMapping("/one/{videoId}")
+	@ApiOperation(value="영상 상세보기", notes="영상 상세 페이지")
+	public ResponseEntity<?> getVideo(@PathVariable String videoId) {
+		Video video = videoService.getVideoOne(videoId);
+		if (video == null) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		} else {
+			if(videoId.equals(video.getVideoId())) {
+				int viewCnt = video.getViewCnt();
+				videoService.modifyViewCnt(viewCnt, videoId);
+			}
+			return new ResponseEntity<Video>(video, HttpStatus.OK);
 		}
 	}
 	

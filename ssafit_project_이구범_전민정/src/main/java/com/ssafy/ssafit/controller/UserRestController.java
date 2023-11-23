@@ -111,10 +111,4 @@ public class UserRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-//	public ResponseEntity<?> logout(@RequestBody Map<String, Object> result){
-//		result.clear();
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
-
-
 }
