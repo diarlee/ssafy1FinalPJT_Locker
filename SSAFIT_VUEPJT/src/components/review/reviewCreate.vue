@@ -1,55 +1,36 @@
 <template>
   <div class="container">
-    <div class="shadow pt-5 pb-5 m-5 bg-light rounded" style="width: 80%">
+      
       <form
-        class="reviewform"
         @submit.prevent="createReview"
-        style="width: 80%; margin: auto"
-      >
+        style="width: 80%; margin: auto">
         <div class="text-center">
-          <span class="material-symbols-outlined">dialogs</span>
           <h2 class="d-inline mb-3 fs-4 fw-semibold">운동영상 리뷰 등록</h2>
-          <span class="material-symbols-outlined">dialogs</span>
         </div>
-
-        <hr class="mb-3" />
-
-        <div class="mb-3">
-          <label for="inputTitle" class="col-form-label">제목</label>
-          <input
-            v-model="review.title"
-            name="title"
-            type="text"
-            class="form-control"
-            id="inputEmail3"
-            placeholder="제목을 입력하세요"
-          />
+        <div class="reviewform">
+          <div class="mb-3">
+            <textarea
+              v-model="review.content"
+              name="content"
+              class="form-control"
+              rows="3"
+              placeholder="내용을 입력하세요"
+            ></textarea>
+            <!-- <button class="btn btn-outline-secondary" type="button" for="button-addon"></button> -->
+          </div>
+          <button type="submit" class="btn">
+            등록
+          </button>
         </div>
-
-        <div class="mb-4">
-          <label for="inputContent" class="col-form-label">내용</label>
-          <textarea
-            v-model="review.content"
-            name="content"
-            class="form-control"
-            rows="3"
-            placeholder="내용을 입력하세요"
-          ></textarea>
-        </div>
-
-        <button type="submit" class="w-20 me-2 btn btn-outline-primary">
-          등록
-        </button>
-        <RouterLink
+        <!-- <RouterLink
           class="w-20 btn btn-outline-danger"
           :to="{
             name: 'videoDetail',
             params: { id: route.params.id },
           }"
-          >취소</RouterLink>
+          >취소</RouterLink> -->
       </form>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -73,7 +54,7 @@ const review = ref({
 const createReview = function () {
   review.value.videoId = route.params.id
   review.value.userId = userStore.loginId
-  reviewStore.createReview(review);
+  reviewStore.createReview(review, route.params.videoType);
 };
 </script>
 
@@ -100,6 +81,10 @@ a {
   margin-top: 100px;
   margin-bottom: 200px;
   width: 1400px;
+}
+
+.reviewform {
+  margin-top: 20px;
 }
 
 #page-name {

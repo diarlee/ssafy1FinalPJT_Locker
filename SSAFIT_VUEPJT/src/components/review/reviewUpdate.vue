@@ -44,18 +44,7 @@
         >
           수정
         </button>
-        <RouterLink
-          :to="{
-            name: 'reviewDetail',
-            params: {
-              reviewId: route.params.reviewId,
-              videoId: route.params.videoId,
-            },
-          }"
-          type="button"
-          class="w-20 btn btn-outline-danger"
-          >취소</RouterLink
-        >
+        <button @click="goToCreate">취소</button>
       </form>
     </div>
   </div>
@@ -64,7 +53,7 @@
 <script setup>
 import { RouterView, RouterLink } from "vue-router";
 import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useUsersStore } from "@/stores/users";
 import { useReviewStore } from "@/stores/review";
 
@@ -72,9 +61,17 @@ const route = useRoute();
 const userStore = useUsersStore();
 const reviewStore = useReviewStore();
 
+const reviewIdd = computed (() => {
+  return reviewStore.status
+})
+
+const goToCreate = function () {
+  reviewStore.status = "create"
+}
+
 const review = ref({
-  reviewId: route.params.reviewId,
-  videoId: route.params.videoId,
+  reviewId: reviewIdd,
+  videoId: route.params.id,
   userId: userStore.loginId,
   title: "",
   content: "",
@@ -82,7 +79,7 @@ const review = ref({
 
 const updateReview = function () {
   // console.log(review.value)
-  reviewStore.updateReview(review);
+  reviewStore.updateReview(review, route.params.videoType);
 };
 </script>
 

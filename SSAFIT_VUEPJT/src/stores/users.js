@@ -71,7 +71,7 @@ export const useUsersStore = defineStore("users", () => {
       .then(() => {
         loginStatus.value = !loginStatus.value;
         loginId.value = "";
-        username.value = "";
+        username.value = ""
         score.value = 0;
         console.log("로그아웃 성공");
         window.location.reload(true);
@@ -83,9 +83,5 @@ export const useUsersStore = defineStore("users", () => {
 
   };
 
-  // user 정보 불러오기
-  const getUserInfo = () => {
-  }
-
-  return { loginStatus, loginId, username, score, signinFunc, loginFunc, logoutFunc, getUserInfo };
+  return { loginStatus, loginId, username, score, signinFunc, loginFunc, logoutFunc};
 }, {persist: true}); // pinia로 login 상태 local storage에 저장

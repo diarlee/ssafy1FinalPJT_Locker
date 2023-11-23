@@ -51,6 +51,7 @@ public class ArticleCommentRestController {
 		User user = userService.getUser(comment.getUserId());
 		
 		if(user != null && comment.getArticleId() == articleId) {
+			comment.setWriter(user.getUsername());
 			commentService.createComment(comment);
 			return new ResponseEntity<Void>(HttpStatus.CREATED);			
 		} else {
