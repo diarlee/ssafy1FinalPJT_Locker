@@ -39,9 +39,9 @@ public class VideoRestController {
 		}
 	}
 
-	@GetMapping("/type")
+	@GetMapping("/{type}")
 	@ApiOperation(value="타입별 영상", notes="타입별 영상 조회하기")
-	public ResponseEntity<?> getByType(String type) {
+	public ResponseEntity<?> getByType(@PathVariable String type) {
 		List<Video> list = videoService.getByType(type);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -50,9 +50,9 @@ public class VideoRestController {
 		}
 	}
 	
-	@GetMapping("/type4")
+	@GetMapping("/four/{type}")
 	@ApiOperation(value="타입별 영상 4개", notes="타입별 영상 4개 조회하기")
-	public ResponseEntity<?> getByTypeFour(String type) {
+	public ResponseEntity<?> getByTypeFour(@PathVariable String type) {
 		List<Video> list = videoService.getByTypeFour(type);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
