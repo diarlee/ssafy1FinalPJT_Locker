@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`video` (
     FOREIGN KEY (`userId`)
     REFERENCES `ssafit`.`user` (`userId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
     FOREIGN KEY (`videoId`)
     REFERENCES `ssafit`.`video` (`videoId`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
 -- Table `ssafit`.`heart`
