@@ -50,7 +50,7 @@ const store = useUsersStore();
 } */
 
 .img-fluid {
-    padding: 30px 0px 0px 10px;
+    padding: 10px 0px 10px 10px;
     width: 100px;
     height: 100px;
 }

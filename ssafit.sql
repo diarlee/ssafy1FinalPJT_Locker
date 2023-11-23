@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`review` (
   `writer` VARCHAR(32) NOT NULL,
   `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `content` VARCHAR(255) NOT NULL,
-  `viewCnt` INT NOT NULL,
+  `viewCnt` INT NOT NULL default 0,
   PRIMARY KEY (`reviewId`),
   CONSTRAINT `fk_review_user`
     FOREIGN KEY (`userId`)

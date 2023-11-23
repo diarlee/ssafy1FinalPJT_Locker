@@ -10,8 +10,11 @@ public interface VideoDao {
 	// 전체 영상 조회
 	public List<Video> selectAll();
 
-	// 부위별 영상 조회
+	// 타입별 영상 조회
 	public List<Video> selectByType(String type);
+
+	// 타입별 영상 조회 - 4개
+	public List<Video> selectByTypeFour(String type);
 
 	// 조회수 가장 많은 영상 조회
 	public Video selectVideo();
@@ -30,4 +33,5 @@ public interface VideoDao {
 
 	// 운동 영상 삭제하기
 	public void deleteVideo(String videoId);
+
 }
