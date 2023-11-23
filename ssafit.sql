@@ -146,7 +146,7 @@ VALUES ("master", "admin", "ssafy@naver.com", 9999, 10000),
 
 INSERT INTO video
 VALUES  
-("5MACh6ylf8g", "master", "운동할때 들으려고 모은 &#39;레전드&#39; 운동노래 모음🎵 [Playlist]", "music", "핏블리 FITVELY", 5, "https://www.youtube.com/embed/5MACh6ylf8g"),
+("5MACh6ylf8g", "master", "운동할때 들으려고 모은 &#39;레전드&#39; 운동노래 모음🎵 [Playlist]", "music", "핏블리 FITVELY", 0, "https://www.youtube.com/embed/5MACh6ylf8g"),
 ("5pz-VRjffXU", "master", "90%는 잘못된 방법으로 &#39;랫풀다운&#39; 하고 있습니다! (등넓이 가장 빠르게 넓히는 렛풀다운 그립)", "guide", "보통사람을 위한 운동채널",	111, "https://www.youtube.com/embed/5pz-VRjffXU"),
 ("8nPjlT1VnMA", "master", "'따라갈 생각하지 말고 뛰어넘을 생각해' 운동노래 쇠힙 Playlist", "music", "쥅쥅",	1, "https://www.youtube.com/embed/8nPjlT1VnMA"),
 ("9kkYi5BsJnE", "master", "𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 운동할 때 텐션🔥 끌어 올려주는 I 걸그룹 케이팝 플레이리스트", "music",	"𝐀𝐦𝐛𝐢𝐞𝐧𝐜𝐞 𝐕𝐢𝐞𝐰 : 휴식공간",	333, "https://www.youtube.com/embed/9kkYi5BsJnE"),
@@ -154,7 +154,7 @@ VALUES
 ("asJZXgbU8J0", "master", "어깨 넓어지려면, 하루라도 빨리 &#39;이 운동&#39;시작하세요!!! (프레임 넓혀주는 등운동 루틴/턱걸이/랫풀다운)", "guide", "보통사람을 위한 운동채널", 1, "https://www.youtube.com/embed/asJZXgbU8J0"),
 ("Hx8Lc_0hUaI", "master", "운동할 시간이 없다는 사람에게 보여주세요... 제발", "guide", "김종국 GYM JONG KOOK", 2, "https://www.youtube.com/embed/Hx8Lc_0hUaI"),
 ("sup4aPc-IvM", "master", "운동할때 듣기좋은 노래모음 2023(광고X) 진짜 괜찮은 헬스음악, 운동 효과보장!", "music", "운동 음악[Workout Music]", 0, "https://www.youtube.com/embed/sup4aPc-IvM"),
-("tzN6ypk6Sps", "master", "하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]	운동", "김강민", 0,	"https://www.youtube.com/embed/tzN6ypk6Sps"),
+("tzN6ypk6Sps", "master", "하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]",	"guide", "김강민", 0,	"https://www.youtube.com/embed/tzN6ypk6Sps"),
 ("U-pNUI_gk9c", "master", "𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 🎧 유산소 40분 걸그룹 플레이리스트 | 운동할 때 듣는 음악 운동플리 🔥 K-pop Playlist | 2023년 걸그룹 플리",	"music", "찡모먼 ⟡", 555,	"https://www.youtube.com/embed/U-pNUI_gk9c"),
 ("u5OgcZdNbMo", "master", "저는 하체 식주의자 입니다", "guide", "GYM종국", 222, "https://www.youtube.com/embed/u5OgcZdNbMo"),
 ("VhC7ujGgnwk", "master", "운동 할때 듣기 좋은 노래 💪 신나는 팝송 플리 모음 | Design making tutorial",	"music", "Blue rain", 0, "https://www.youtube.com/embed/VhC7ujGgnwk"),
@@ -164,32 +164,32 @@ VALUES
 
 INSERT INTO review(videoId, userId, title, writer, content, viewCnt)
 VALUES 
-("gMaB-fG4u4g", "ssafy", "bad", "ssafy", "bad", 0),
-("gMaB-fG4u4g", "ssafy", "good", "ssafy", "bad", 0);
+("VhrSqPx9npY", "son", "형", "손흥민", "축구랑 농구 뜨자", 0);
 
-INSERT INTO article(userId, title, content, isPublic, image, orgImage, writer)
+INSERT INTO article(userId, title, writer, content, ischecked, isPublic, image, orgImage, liked)
 values 
-("ssafy", "야호", "오늘은 등산을 조져봤읍니다.", 1, "이미지~ 속았지롱", "hh", "ssafy"),
-("test", "오리", "꽥꽥", 0, "이미지~ 속았지롱", "hh", "tester"),
-("test", "언제까지", "테스트 해야대냐", 1, "이미지~ 속았지롱", "hh", "tester"),
-("ssafy", "오운완", "오늘은 하체를 조져봤읍니다.", 0, "이미지~ 속았지롱", "hh", "ssafy"),
-("test", "런닝머신이...", "고장나서 오늘은 등 함", 0, "이미지~ 속았지롱", "hh", "tester"),
-("ssafy", "이것", "오늘은 상체를 조져봤읍니다.", 1, "이미지~ 속았지롱", "hh", "ssafy");
+("son",	"월드컵 예선 중국전", "손흥민", "3 : 0 승리 ~~ 대한민국 화이팅 !!!", 1, 1, "1700754582501_son.jpg", "son.jpg", 100),
+("suzy", "마라톤", "수지" ,"힘들어유", 1, 1, "1700754743196_suzy.jpg", "suzy.jp", 99),
+("cha",	"농구",	"차은우", "잘하고싶다 ㅠ 많이 보러 와주세요 ~",	1, 1, "1700755660593_ChaEunwoo.jpg", "ChaEunwoo.jpg", 100),
+("karina", "오늘 목표",	"카리나", "스쿼트 200개. 맛있는 거 많이 먹으려면 운동 필수", 1,	1, "1700755922458_karina.jpg", "karina.jpg", 99);
 
 INSERT INTO articleComment(articleId, userId, content)
-values (1, "ssafy", "신고합니다.");
+values (4, "son", "카리나 개이쁘다");
 
-SELECT *
-FROM video;
+-- SELECT *
+-- FROM video;
 
-SELECT *
-FROM user;
+-- SELECT *
+-- FROM user;
 
-SELECT *
-FROM review;
+-- SELECT *
+-- FROM review;
 
-SELECT *
-FROM article;
+-- SELECT *
+-- FROM article;
+
+-- SELECT *
+-- FROM articleComment;
 
 select * 
 from article
@@ -201,5 +201,3 @@ from article
 order by regDate desc
 limit 4, 8;
 
-SELECT *
-FROM articleComment;
