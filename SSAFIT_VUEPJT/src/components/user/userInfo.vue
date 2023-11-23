@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body" style="text-align: center;">
-                        <h5 class="card-title"> {{ store.username }} 님</h5>
-                        <p class="card-text"> 내 점수: {{ store.score }} 점</p>
+                        <h5 class="card-title" v-show="store.loginStatus"> {{ store.username }} 님</h5>
+                        <p class="card-text" v-show="store.loginStatus"> 내 점수: {{ store.score }} 점</p>
                         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
                         <RouterLink class="router" v-show="store.loginId == 'master'" :to="{ name: 'master' }">게시글 관리</RouterLink>
                         <RouterLink class="router" v-if="store.loginStatus == true && store.loginId != 'master'" type="button" :to="{name: 'articleCreate'}">UPLOAD</RouterLink>

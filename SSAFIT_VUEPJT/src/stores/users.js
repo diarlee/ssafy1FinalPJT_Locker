@@ -71,6 +71,7 @@ export const useUsersStore = defineStore("users", () => {
       .then(() => {
         loginStatus.value = !loginStatus.value;
         loginId.value = "";
+        username.value = "";
         score.value = 0;
         console.log("로그아웃 성공");
         window.location.reload(true);
