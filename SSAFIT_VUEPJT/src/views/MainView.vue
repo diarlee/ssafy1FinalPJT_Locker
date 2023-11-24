@@ -32,15 +32,7 @@ import articleList1 from "@/components/article/articleList1.vue";
 import articleList2 from "@/components/article/articleList2.vue";
 import guideList from "@/components/video/videoGuideList.vue";
 import musicList from "@/components/video/videoMusicList.vue";
-// import { ref } from "vue";
-// import { useVideoStore } from "@/stores/video";
-// import { onMounted } from "vue";
 
-// const store = useVideoStore();
-
-// onMounted(() => {
-//   store.getMusicList4();
-// });
 </script>
 
 <style scoped>

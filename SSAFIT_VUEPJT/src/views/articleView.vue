@@ -3,7 +3,7 @@
     <magic-grid>
       <div class="card" style="width: 12%;" v-for="article in articleStore.publicArticles">
         <RouterLink :to="{ name: 'articleDetail', params: { articleId: `${article.articleId}` },}" style="color: black;">
-          <img class="card-img-top" v-bind="articleStore.getImage(article.image)" :src="articleStore.image" alt="" />
+          <img class="card-img-top" :src="`http://localhost:8080/api/article/image/${article.image}`" alt="" />
           <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <div class="card-text">{{ article.content }}</div>

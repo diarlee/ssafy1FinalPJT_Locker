@@ -16,7 +16,6 @@
       </div>
       <div class="mb-3">
         <textarea class="form-control" rows="3" name="" required="" v-model="content" placeholder="content"></textarea>
-          <!-- <input class="form-control" type="text" name="" required="" v-model="content" placeholder="content"/> -->
       </div>
       <div class="create-button">
         <a class="btn" @click="createArticle">등록</a>

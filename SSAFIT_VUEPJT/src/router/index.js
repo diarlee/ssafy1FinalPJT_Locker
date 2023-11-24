@@ -13,7 +13,6 @@ import ArticleUpdate from "@/components/article/articleUpdate.vue"
 import VideoList from "@/views/videoView.vue"
 import VideoDetail from "@/components/video/videoDetail.vue";
 import ReviewCreate from "@/components/review/reviewCreate.vue";
-import ReviewDetail from "@/components/review/reviewDetail.vue";
 import ReviewUpdate from "@/components/review/reviewUpdate.vue";
 
 const router = createRouter({
@@ -88,11 +87,6 @@ const router = createRouter({
       path: "/review/create/:id",
       name: "reviewCreate",
       component: ReviewCreate,
-    },
-    {
-      path: "/review/detail/:reviewId/:videoId",
-      name: "reviewDetail",
-      component: ReviewDetail,
     },
     {
       path: "/review/update/:reviewId/:videoId",

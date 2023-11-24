@@ -22,13 +22,11 @@
         <div class="container-fluid">
           <div style="font-size: 100px; font-family: 'Orbitron', sans-serif;">
             <RouterLink :to="{ name: 'home' }">LOCKER</RouterLink>
-            <!-- <a class="navbar-brand" id="page-name" href="./main?act=main">SSAFIT</a> -->
           </div>
           <div class="nav justify-content-center" style="padding: 0">
             <ul class="nav nav-underline">
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'home' }">HOME</RouterLink>
-                <!-- <a class="nav-link active" aria-current="page" href="/board.main.jsp">HOME</a> -->
               </li>
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'youtube' }">VIDEO</RouterLink>
@@ -46,7 +44,6 @@
                   USER </a>
                 <ul class="dropdown-menu">
                   <li><RouterLink :to="{name: 'myHeart'}">HEART</RouterLink></li>
-                  <!-- <li><a class="dropdown-item" href="/user/follow.html">팔로우</a></li> -->
                   <li><RouterLink class="dropdown-item" :to="{ name: 'keysInfo' }">MY PAGE</RouterLink></li>
                 </ul>
               </li>
@@ -56,13 +53,11 @@
                 <RouterLink class="nav-link" :to="{ name: 'login' }"
                   >Check In</RouterLink
                 >
-                <!-- <a class="nav-link" href="/user/login.html">로그인</a> -->
               </li>
               <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'signin' }"
                   >Sign Up</RouterLink
                 >
-                <!-- <a class="nav-link" href="/user/login.html">회원가입</a> -->
               </li>
             </div>
             <div class="nav nav-underline" v-else>
@@ -70,8 +65,6 @@
                 <button class="nav-link" type="submit" @click="logout">
                   Check Out
                 </button>
-                <!-- <RouterLink class="nav-link" :to="{ name: 'home' }" @click="logout">로그아웃</RouterLink> -->
-                <!-- <a class="nav-link" href="/user/login.html">로그아웃</a> -->
               </li>
             </div>
           </div>

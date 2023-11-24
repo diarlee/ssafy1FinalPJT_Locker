@@ -19,7 +19,6 @@
         </div>
         <button class="btn" @click.prevent="signin">Sign Up</button>
         <!-- <RouterLink class="w-20 btn btn-outline-danger" :to="{ name: 'home' }">취소</RouterLink> -->
-        <!-- <button type="button" onclick="location.href='./main?act=reviewList&videoId=${videoId}&url=${url }'" class="w-20 btn btn-outline-danger">취소</button> -->
       </form>
   </div>
 </template>

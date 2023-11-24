@@ -20,7 +20,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("SSAFY 10기 BOARD REST API")
-				.description("이병 이병수!\n 넵 !!!").version("0.1").build();
+		return new ApiInfoBuilder().title("SSAFY 10기 1학기 최종 프로젝트")
+				.description("충성충성").version("0.1").build();
 	}
 }

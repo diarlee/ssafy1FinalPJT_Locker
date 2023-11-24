@@ -26,7 +26,7 @@
         <hr class="mb-3">
       </div>
       <div class="image-content">
-        <div class="image">{{ articleStore.article.image }}</div>
+        <div class="image"><img :src="`http://localhost:8080/api/article/image/${articleStore.article.image}`" alt=""></div>
         <br/>
         <div class="content">{{ articleStore.article.content }}</div>
       </div>
@@ -36,7 +36,13 @@
           <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
         </svg> {{ currentHeart }}</button>
         <div class="btn-container">
-          <RouterLink class="btn btn-update" :to="{ name: 'articleUpdate', params: { articleId: route.params.articleId }, }">수정</RouterLink>
+          <RouterLink class="btn btn-update" :to="{ name: 'articleUpdate', params: { articleId: route.params.articleId }, }" v-show="articleStore.article.userId == userStore.loginId">수정</RouterLink>
+          <button class="btn btn-remove"
+                @click.prevent="removeArticle(articleStore.article.articleId)"
+                v-show="articleStore.article.userId == userStore.loginId"
+              >
+                삭제
+              </button>
         </div>
       </div> 
     </div>
@@ -80,44 +86,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="comment-container">
-      <table class="table">
-        <thead>
-          <tr style="text-align: center">
-            <th scope="col">번호</th>
-            <th scope="col">작성자</th>
-            <th scope="col">내용</th>
-            <th scope="col">작성시간</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="comment in commentStore.commentList"
-            style="text-align: center"
-          >
-            <td>{{ comment.commentId }}</td>
-            <td>{{ comment.writer }}</td>
-            <td>{{ comment.content }}</td>
-            <td>{{ comment.regDate }}</td>
-            <td>
-              <button
-                @click.prevent="goToUpdate(comment.commentId)"
-                v-show="comment.userId == userStore.loginId"
-              >
-                수정
-              </button>
-              <button
-                @click.prevent="removeComment(comment.commentId)"
-                v-show="comment.userId == userStore.loginId"
-              >
-                삭제
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
   <commentCreate v-if="commentStore.status == 'create'"></commentCreate>
   <commentUpdate v-else></commentUpdate>
 </div>
@@ -147,9 +115,9 @@ const currentHeart = computed(() => {
   return articleStore.article.liked;
 });
 
-const changeArticleStatus = function () {
-  articleStore.updatePublic(route.params.articleId);
-};
+// const changeArticleStatus = function () {
+//   articleStore.updatePublic(route.params.articleId);
+// };
 
 const clickHeart = function () {
   articleStore.updateHeart(route.params.articleId, userStore.loginId);
@@ -158,6 +126,10 @@ const clickHeart = function () {
 const goToUpdate = function (commentId) {
     commentStore.status = commentId
     // console.log(commentStore.status)
+}
+
+const removeArticle = function (articleId) {
+  articleStore.deleteArticle(articleId);
 }
 
 const removeComment = function (commentId) {
@@ -265,10 +237,20 @@ onMounted(() => {
   color: #52796f;
   padding: 10px;
 }
+.btn-remove {
+  background: #ffffff;
+  color: rgb(186, 41, 41);
+  padding: 10px;
+}
 
 .btn-update:hover {
   color: #ffffff;
   background: #52796f;
+}
+
+.btn-remove:hover {
+  color: #ffffff;
+  background: rgb(150, 41, 41);
 }
 
 .comment-box {

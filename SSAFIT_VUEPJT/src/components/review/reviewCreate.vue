@@ -12,18 +12,10 @@
               rows="3"
               placeholder="내용을 입력하세요"
             ></textarea>
-            <!-- <button class="btn btn-outline-secondary" type="button" for="button-addon"></button> -->
           <button type="submit" class="btn">
             리뷰 등록
           </button>
         </div>
-        <!-- <RouterLink
-          class="w-20 btn btn-outline-danger"
-          :to="{
-            name: 'videoDetail',
-            params: { id: route.params.id },
-          }"
-          >취소</RouterLink> -->
       </form>
     </div>
   </div>

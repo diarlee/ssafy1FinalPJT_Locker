@@ -19,13 +19,6 @@
               </svg></td>
           </tr>
           <tr class="days">
-            <!-- <td>SUN</td>
-            <td>MON</td>
-            <td>TUE</td>
-            <td>WED</td>
-            <td>THU</td>
-            <td>FRI</td>
-            <td>SAT</td> -->
             <td>일</td>
             <td>월</td>
             <td>화</td>
@@ -149,17 +142,6 @@ function buildCalendar() {
   }
 }
 
-// 날짜 선택
-function choiceDate(nowColumn) {
-  if (document.getElementsByClassName("choiceDay")[0]) {
-    // 기존에 선택한 날짜가 있으면
-    document
-      .getElementsByClassName("choiceDay")[0]
-      .classList.remove("choiceDay"); // 해당 날짜의 "choiceDay" class 제거
-  }
-  nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
-}
-
 // 이전달 버튼 클릭
 function prevCalendar() {
   nowMonth = new Date(
@@ -210,10 +192,6 @@ td {
   margin: 0 auto;
 }
 
-/* .header {
-
-} */
-
 .Calendar>thead>tr:first-child>td {
   font-weight: bold;
   height: 35px;
@@ -248,11 +226,5 @@ td {
   background-color: #ffffff;
   cursor: pointer;
 }
-
-.futureDay.choiceDay,
-.today.choiceDay {
-  background-color: #3e85ef;
-  color: #fff;
-  cursor: pointer;
-} */
+ */
 </style>

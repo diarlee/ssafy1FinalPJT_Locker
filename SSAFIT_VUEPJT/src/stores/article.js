@@ -119,12 +119,22 @@ export const useArticleStore = defineStore("article", () => {
   };
 
   // 이미지 가져오기
-  const image = ref("");
+  const image = ref([]);
   const getImage = function (imgFileName) {
     axios.get(`${REST_ARTICLE_API}/image/${imgFileName}`).then((response) => {
       image.value = response.data;
     })
   };
+
+  // article 삭제
+  const deleteArticle = function (articleId) {
+    axios({
+      url: `${REST_ARTICLE_API}/delete/${articleId}`,
+      method: "DELETE",
+    }).then(() => {
+      router.push({name: 'articleList'})
+    });
+  }
 
   return {
     articleList,
@@ -142,6 +152,7 @@ export const useArticleStore = defineStore("article", () => {
     updateHeart,
     updatePublic,
     image,
-    getImage
+    getImage,
+    deleteArticle
   };
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="master-container">
+  <div class="master-container" style="width: 95%; margin: 0 auto">
     <h1>관리자 페이지</h1>
     <br />
     <table class="table">
@@ -19,11 +19,17 @@
           v-for="article in articleStore.articleList"
           :class="{ 'table-active': !article.checked }"
         >
-          <th scope="row"><RouterLink class="link"
-            :to="{name: 'articleDetail', params: {articleId: `${article.articleId}`}}"
-          >{{ article.articleId }}</RouterLink></th>
+          <th scope="row">
+            {{ article.articleId }}
+          </th>
           <td>{{ article.userId }}</td>
-          <td>{{ article.title }}</td>
+          <td><RouterLink
+              class="link"
+              :to="{
+                name: 'articleDetail',
+                params: { articleId: `${article.articleId}` },
+              }"
+              >{{ article.title }}</RouterLink></td>
           <td>{{ article.regDate }}</td>
           <td>{{ article.liked }}</td>
           <td>{{ article.public }}</td>
@@ -36,8 +42,8 @@
       </tbody>
     </table>
   </div>
-  <br>
-  <br>
+  <br />
+  <br />
 </template>
 
 <script setup>
@@ -85,4 +91,5 @@ onMounted(() => {
 <style>
 .link {
   color: black;
-}</style>
+}
+</style>
