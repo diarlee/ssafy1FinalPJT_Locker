@@ -70,7 +70,7 @@ const doApprove = function (articleId) {
     },
   })
     .then(() => {
-      // router.push({ name: "home" });
+      window.location.reload();
     })
     .catch((err) => {
       console.log(err);
