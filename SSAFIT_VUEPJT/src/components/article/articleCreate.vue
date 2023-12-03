@@ -5,8 +5,8 @@
         <!-- <button class="btn" @click="isPublic = !isPublic">
           {{ getIsPublic }}
         </button> -->
-        <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckDefault"  @click="isPublic = !isPublic">
-        <label class="form-check-label" for="flexSwitchCheckDefault">{{ getIsPublic }}</label>
+        <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckDefault"  @click="isPublic = !isPublic">{{ getIsPublic }}
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
       </div>
       <div class="mb-3">
         <input class="form-control" type="file" @change="appendImage" />
@@ -53,7 +53,8 @@ const appendImage = (e) => {
 };
 
 const getIsPublic = computed(() => {
-  return isPublic.value == true ? "private" : "public";
+  console.log(isPublic.value)
+  return isPublic.value == false ? "private" : "public";
 });
 
 const createArticle = function () {

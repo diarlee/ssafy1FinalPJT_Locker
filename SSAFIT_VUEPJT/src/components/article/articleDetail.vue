@@ -11,8 +11,8 @@
           </svg>
         </RouterLink>
         <div class="status">
-          <div class="public" v-if="currentStatus==true">public</div>
-          <div class="public" v-else="currentStatus==false">private</div>
+          <div class="public" v-if="currentStatus==true" @click=changeArticleStatus>public</div>
+          <div class="public" v-else="currentStatus==false" @click=changeArticleStatus>private</div>
           <div class="writer-date">
             <div class="writer">{{ articleStore.article.writer }}</div>
             <div class="date">{{ articleStore.article.regDate }}</div>
@@ -115,9 +115,9 @@ const currentHeart = computed(() => {
   return articleStore.article.liked;
 });
 
-// const changeArticleStatus = function () {
-//   articleStore.updatePublic(route.params.articleId);
-// };
+const changeArticleStatus = function () {
+  articleStore.updatePublic(route.params.articleId);
+};
 
 const clickHeart = function () {
   articleStore.updateHeart(route.params.articleId, userStore.loginId);

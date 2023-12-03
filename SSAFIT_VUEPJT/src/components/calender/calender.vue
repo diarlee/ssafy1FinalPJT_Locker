@@ -87,7 +87,9 @@ function buildCalendar() {
     // nowColumn.innerText = leftPad(nowDay.getDate()); // 추가한 열에 날짜 입력
 
     const month = nowMonth.getMonth() + 1;
-    const date = `${nowMonth.getFullYear()}-${month}-${nowDay.getDate()}`;
+    let day = nowDay.getDate();
+    if (day < 10) day = `0${day}`
+    const date = `${nowMonth.getFullYear()}-${month}-${day}`;
 
     // userId와 날짜로 articleId 가져오기
     axios({

@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ssafit`.`article` (
   `writer` VARCHAR(45) NOT NULL,
   `content` VARCHAR(255) NOT NULL,
   `isChecked` TINYINT NOT NULL DEFAULT 0,
-  `isPublic` TINYINT NOT NULL DEFAULT 0,
+  `isPublic` TINYINT NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `orgImage` VARCHAR(255) NOT NULL,
   `regDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -169,7 +169,7 @@ VALUES
 INSERT INTO article(userId, title, writer, content, ischecked, isPublic, image, orgImage, liked)
 values 
 ("son",	"월드컵 예선 중국전", "손흥민", "3 : 0 승리 ~~ 대한민국 화이팅 !!!", 1, 1, "1700754582501_son.jpg", "son.jpg", 100),
-("suzy", "마라톤", "수지" ,"힘들어유", 1, 1, "1700754743196_suzy.jpg", "suzy.jp", 99),
+("suzy", "마라톤", "수지" ,"힘들어유", 1, 1, "1700754743196_suzy.jpg", "suzy.jpg", 99),
 ("cha",	"농구",	"차은우", "잘하고싶다 ㅠ 많이 보러 와주세요 ~",	1, 1, "1700755660593_ChaEunwoo.jpg", "ChaEunwoo.jpg", 100),
 ("karina", "오늘 목표",	"카리나", "스쿼트 200개. 맛있는 거 많이 먹으려면 운동 필수", 1,	1, "1700755922458_karina.jpg", "karina.jpg", 99);
 
@@ -185,19 +185,8 @@ values (4, "son", "카리나 개이쁘다");
 -- SELECT *
 -- FROM review;
 
--- SELECT *
--- FROM article;
+SELECT *
+FROM article;
 
 -- SELECT *
 -- FROM articleComment;
-
-select * 
-from article
-order by regDate desc
-limit 4;
-
-select * 
-from article
-order by regDate desc
-limit 4, 8;
-
